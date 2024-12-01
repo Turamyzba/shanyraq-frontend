@@ -8,7 +8,7 @@ import MenuItem from "../../components/ui/MenuItem";
 import FormInput from "../../components/ui/FormInput";
 import FormSelect from "../../components/ui/FormSelect";
 
-export default function ProfilesPage() {
+export default function ProfilePage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [passwordFields, setPasswordFields] = useState({
         oldPassword: "",
@@ -88,6 +88,7 @@ export default function ProfilesPage() {
                             <MenuItem
                                 label="Профиль"
                                 isActive={activeItem === "profile"}
+                                href={"/profile"}
                                 onClick={() => setActiveItem("profile")}
                             >
                                 <Image src={"/user.svg"} alt="Profile Icon" width={20} height={20}/>
@@ -101,14 +102,15 @@ export default function ProfilesPage() {
                             </MenuItem>
                             <MenuItem
                                 label="Мои объявления"
-                                href={"/announcements"}
                                 isActive={activeItem === "announcements"}
+                                href={"/announcements"}
                                 onClick={() => setActiveItem("announcements")}
                             >
                                 <Image src={"/announcement.svg"} alt="Announcement Icon" width={20} height={20}/>
                             </MenuItem>
                             <MenuItem
                                 label="Анкета"
+                                href={"/questionnaire"}
                                 isActive={activeItem === "questionnaire"}
                                 onClick={() => setActiveItem("questionnaire")}
                             >

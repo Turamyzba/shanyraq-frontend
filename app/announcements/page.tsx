@@ -61,12 +61,14 @@ export default function AnnouncementsPage() {
                             <MenuItem
                                 label="Мои объявления"
                                 isActive={activeItem === "announcements"}
+                                href={"/announcements"}
                                 onClick={() => setActiveItem("announcements")}
                             >
                                 <Image src={"/announcement.svg"} alt="Announcement Icon" width={20} height={20}/>
                             </MenuItem>
                             <MenuItem
                                 label="Анкета"
+                                href={"/questionnaire"}
                                 isActive={activeItem === "questionnaire"}
                                 onClick={() => setActiveItem("questionnaire")}
                             >
