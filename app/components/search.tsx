@@ -1,7 +1,9 @@
 "use client";
 import * as Images from "../../public/images";
 
+import Slider from "@mui/material/Slider";
 import { useState } from "react";
+import AddressDatas from "../login/result.json"; // JSON файлын импорттау
 
 const Search = () => {
   const [city, setCity] = useState("");
@@ -9,14 +11,36 @@ const Search = () => {
   const [gender, setGender] = useState("");
   const [housemates, setHousemates] = useState("");
 
-  const [isCityDropdownOpen, setIsCityDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setIsPriceDropdownOpen] = useState(false);
   const [isGenderDropdownOpen, setIsGenderDropdownOpen] = useState(false);
   const [isHousematesDropdownOpen, setIsHousematesDropdownOpen] =
     useState(false);
 
+  const all_addresses = AddressDatas;
+
+  const [isAddressDropdownOpen, setIsAddressDropdownOpen] = useState(false);
+  const [isDistrictDropdownOpen, setIsDistrictDropdownOpen] = useState(false);
+  const [isMicroDistrictDropdownOpen, setIsMicroDistrictDropdownOpen] =
+    useState(false);
+
+  const [address, setAdress] = useState({
+    regionOrCityName: "Весь Казахстан",
+    districtName: "",
+    microDistrictName: "",
+  });
+
+  const [district, setDistrict] = useState({});
+  const [microDistrcit, setMicroDistrcit] = useState({});
+
+  const [priceRange, setPriceRange] = useState([0, 500000]);
+
+  const handleSliderChange = (event: any, newValue: number | number[]) => {
+    setPriceRange(newValue as number[]);
+  };
+
   // Toggle functions for opening and closing dropdowns
-  const toggleCityDropdown = () => setIsCityDropdownOpen(!isCityDropdownOpen);
+  const toggleAddressDropdown = () =>
+    setIsAddressDropdownOpen(!isAddressDropdownOpen);
   const togglePriceDropdown = () =>
     setIsPriceDropdownOpen(!isPriceDropdownOpen);
   const toggleGenderDropdown = () =>
@@ -25,7 +49,7 @@ const Search = () => {
     setIsHousematesDropdownOpen(!isHousematesDropdownOpen);
 
   const toggleAllDropDown = () => {
-    setIsCityDropdownOpen(false);
+    setIsAddressDropdownOpen(false);
     setIsPriceDropdownOpen(false);
     setIsGenderDropdownOpen(false);
     setIsHousematesDropdownOpen(false);
@@ -34,8 +58,8 @@ const Search = () => {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({
-      city,
-      price,
+      address: address,
+      price: priceRange,
       gender,
       housemates,
     });
@@ -64,27 +88,212 @@ const Search = () => {
           <div className="relative">
             <div
               className="w-[200px] h-[50px] bg-white rounded-[5px] flex justify-between items-center px-[12px] cursor-pointer"
-              style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}>
+              style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
+              onClick={() => {
+                toggleAllDropDown();
+                toggleAddressDropdown();
+              }}>
               <div className="flex items-center gap-[12px]">
                 <Images.Location w={"20"} h={"20"} />
                 <p className="text-left text-[14px] font-normal leading-[18px] text-[#B5B7C0]">
-                  Выберите город
+                  {city
+                    ? city.length <= 17
+                      ? city
+                      : `${city?.substring(0, 15)}...`
+                    : "Весь Казахстан"}
                 </p>
               </div>
               <Images.arrowDown w={"18"} h={"18"} />
             </div>
+            {isAddressDropdownOpen && (
+              <div
+                className="flex flex-col p-[16px] justify-between items-end absolute top-[60px] left-0 h-[514px] bg-white border border-gray-200 shadow-lg rounded-[5px]"
+                style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
+                onBlur={() => setIsAddressDropdownOpen(false)}>
+                <div className="w-full p-[11px] flex items-center border-[1px] border-[#D6D6D6] rounded-[5px] text-[#B5B7C0] text-[14px] leading-[17.5px] ">
+                  <input
+                    className="w-full border-none outline-none "
+                    type="text"
+                    placeholder="Поиск по городу"
+                  />
+                  <Images.SearchIconGray />
+                </div>
+                <div className="w-full flex justify-between text-left text-[14px] gap-[7px]">
+                  <div className="w-[214px] h-[380px] border-[1px] border-[#D6D6D6] rounded-[5px] overflow-y-auto scrollbar">
+                    <ul className="flex flex-col gap-1 max-h-[380px] text-[#252525] ">
+                      <li
+                        onClick={() => {
+                          setAdress((prevState) => ({
+                            ...prevState,
+                            regionOrCityName: "Весь Казахстан", // Defalut
+                          }));
+                          setIsDistrictDropdownOpen(false);
+                          setDistrict({});
+                          setMicroDistrcit({});
+                          setCity("Весь Казахстан");
+                        }}
+                        className={`flex p-[12px] cursor-pointer ${
+                          "Весь Казахстан" == address.regionOrCityName
+                            ? "bg-[#1aa68383] text-white"
+                            : ""
+                        }`}>
+                        Весь Казахстан
+                      </li>
+                      {all_addresses.map((region) => (
+                        <li
+                          key={region.id}
+                          onClick={() => {
+                            setAdress((prevState) => ({
+                              ...prevState,
+                              regionOrCityName: region.name,
+                            }));
+                            setDistrict(region);
+                            setMicroDistrcit({});
+                            setIsDistrictDropdownOpen(true);
+                            setCity(region.name);
+                          }}
+                          className={`flex p-[12px] cursor-pointer ${
+                            address.regionOrCityName === region.name
+                              ? "bg-[#1aa68383] text-white"
+                              : ""
+                          }`}>
+                          {region.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {isDistrictDropdownOpen &&
+                    district &&
+                    district?.children &&
+                    district.children.length > 0 && (
+                      <div className="w-[214px] h-[380px] border-[1px] border-[#D6D6D6] text-[#252525] rounded-[5px] overflow-y-auto scrollbar">
+                        {district.children.map((d) => (
+                          <li
+                            key={d.id}
+                            onClick={() => {
+                              setAdress((prevState) => ({
+                                ...prevState,
+                                districtName: d.name,
+                              }));
+                              setMicroDistrcit(d);
+                              setIsMicroDistrictDropdownOpen(true);
+                              setCity(d.name);
+                            }}
+                            className={`flex p-[12px] cursor-pointer ${
+                              address.districtName === d.name
+                                ? "bg-[#1aa68383] text-white"
+                                : ""
+                            }`}>
+                            {d.name}
+                          </li>
+                        ))}
+                      </div>
+                    )}
+
+                  {isMicroDistrictDropdownOpen &&
+                    microDistrcit &&
+                    microDistrcit?.children &&
+                    microDistrcit.children.length > 0 && (
+                      <div className="w-[214px] h-[380px] border-[1px] border-[#D6D6D6] text-[#252525] rounded-[5px] overflow-y-auto scrollbar">
+                        {microDistrcit.children.map((m) => (
+                          <li
+                            key={m.id}
+                            onClick={() => {
+                              setAdress((prevState) => ({
+                                ...prevState,
+                                microDistrictName: m.name,
+                              }));
+                              setCity(m.name);
+                            }}
+                            className={`flex p-[12px] cursor-pointer ${
+                              address.microDistrictName === m.name
+                                ? "bg-[#1aa68383] text-white"
+                                : ""
+                            }`}>
+                            {m.name}
+                          </li>
+                        ))}
+                      </div>
+                    )}
+                </div>
+                <div>
+                  <button className="font-circular font-bold text-[14px] text-[#FFFFFF] leading-[17.5px] tracking-[0.2px] bg-[#32343A] px-[55px] py-[12px] rounded-[5px] ">
+                    Выбрать
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div
-            className="w-[200px] h-[50px] bg-white rounded-[5px] flex justify-between items-center px-[12px] cursor-pointer"
-            style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}>
-            <div className="flex items-center gap-[12px]">
-              <Images.money w={"18"} h={"18"} />
-              <p className="text-left text-[14px] font-normal leading-[18px] text-[#B5B7C0]">
-                Выберите цену
-              </p>
+          <div className="relative">
+            <div
+              className="w-[200px] h-[50px] bg-white rounded-[5px] flex justify-between items-center px-[12px] cursor-pointer"
+              style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
+              onClick={() => {
+                toggleAllDropDown();
+                togglePriceDropdown();
+              }}>
+              <div className="flex items-center gap-[12px]">
+                <Images.money w={"18"} h={"18"} />
+                <p className="text-left text-[14px] font-normal leading-[18px] text-[#B5B7C0]">
+                  Выберите цену
+                </p>
+              </div>
+              <Images.arrowDown w={"18"} h={"18"} />
             </div>
-            <Images.arrowDown w={"18"} h={"18"} />
+            {isPriceDropdownOpen && (
+              <div
+                className="flex flex-col absolute top-[60px] left-0 w-[405px] bg-white border border-gray-200 rounded-[5px] shadow-lg p-4 space-y-[24px] text-[#252525] text-[14px] leading-[17.5px] font-normal"
+                style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}>
+                <h3 className="text-[#4B4B4B] text-left text-sm font-normal leading-7">
+                  Выберите цену
+                </h3>
+
+                <div className="flex space-x-[15px] mb-6">
+                  <input
+                    type="number"
+                    value={priceRange[0]}
+                    onChange={(e) =>
+                      setPriceRange([+e.target.value, priceRange[1]])
+                    }
+                    className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1aa683] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
+                    placeholder="Минимальный"
+                  />
+
+                  <input
+                    type="number"
+                    value={priceRange[1]}
+                    onChange={(e) =>
+                      setPriceRange([priceRange[0], +e.target.value])
+                    }
+                    className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1aa683] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
+                    placeholder="Максимальный"
+                  />
+                </div>
+
+                <div className="relative">
+                  <div className="flex justify-between text-[#1AA683] text-left font-semibold text-[12px] leading-[17px]">
+                    <span>0</span>
+                    <span>500000</span>
+                  </div>
+
+                  <Slider
+                    value={priceRange}
+                    id="price-range-slider"
+                    onChange={handleSliderChange}
+                    className="w-full
+                    [&_span.MuiSlider-thumb]:w-4 [&_span.MuiSlider-thumb]:h-4
+                    [&_span.MuiSlider-thumb]:bg-[#1AA683] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
+                    [&_span.MuiSlider-track]:bg-[#1AA683] [&_span.MuiSlider-track]:border-none
+                    [&_span.MuiSlider-rail]:bg-[#1AA683]"
+                    valueLabelDisplay="auto"
+                    min={0}
+                    max={500000}
+                    step={5000}
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="relative">

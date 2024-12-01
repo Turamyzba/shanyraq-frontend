@@ -13,7 +13,8 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        circular: ['"Circular Std"', "sans-serif"],
+        sans: ['"Source Sans Pro"', "sans-serif"],
+        circular: ['"Circular Std"', "sans-serif"], // Add your custom font
       },
     },
   },

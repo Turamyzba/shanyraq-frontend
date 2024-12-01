@@ -177,7 +177,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="w-full mt-[90px] flex flex-col gap-[30px]">
+        <div className="w-full mt-[90px] z-50 flex flex-col gap-[30px]">
           <div className="flex items-center justify-between">
             <h1 className="text-[36px] font-circular font-bold leading-[45px] text-left text-[#252525]">
               Выгодные предложения
