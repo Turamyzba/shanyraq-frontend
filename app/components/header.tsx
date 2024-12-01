@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import citiesData from "../login/result.json"; // JSON файлын импорттау
 import { json } from "stream/consumers";
 import * as Images from "../../public/images";
+import { useModal } from "../context/modal-context";
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -98,6 +99,7 @@ const Header = () => {
     const value = Math.max(Number(event.target.value), minPrice + 1000);
     setMaxPrice(value);
   };
+  const { openModal } = useModal();
 
   return (
     <header className="min-w-full">
@@ -108,8 +110,7 @@ const Header = () => {
             {/* <a className="underline underline-offset-2 pr-2">Астана</a> */}
             <a
               onClick={toggleCityDropdown}
-              className="underline underline-offset-2 pr-2 cursor-pointer"
-            >
+              className="underline underline-offset-2 pr-2 cursor-pointer">
               {selectedCity}
             </a>
             {isCityDropdownOpen && (
@@ -126,8 +127,7 @@ const Header = () => {
                         selectedCity === city.name
                           ? "bg-[#1aa68383] text-white"
                           : ""
-                      }`}
-                    >
+                      }`}>
                       {city.name}
                     </li>
                   ))}
@@ -203,8 +203,7 @@ const Header = () => {
               <div className="relative flex items-center justify-around p-2 h-[60px] bg-white border border-gray-300 rounded-md shadow-md min-w-[700px]">
                 <div
                   className="cursor-pointer font-circular flex w-3/5 pl-4 items-center border-r-2 text-[#252525] font-medium text-[16px] leading-5"
-                  onClick={toggleAddressDropdown}
-                >
+                  onClick={toggleAddressDropdown}>
                   {address.regionOrCityName}
                 </div>
 
@@ -235,8 +234,7 @@ const Header = () => {
                               "Весь Казахстан" == address.regionOrCityName
                                 ? "bg-[#1aa68383] text-white"
                                 : ""
-                            }`}
-                          >
+                            }`}>
                             Весь Казахстан
                           </li>
                           {all_addresses.map((city) => (
@@ -254,8 +252,7 @@ const Header = () => {
                                 address.regionOrCityName === city.name
                                   ? "bg-[#1aa68383] text-white"
                                   : ""
-                              }`}
-                            >
+                              }`}>
                               {city.name}
                             </li>
                           ))}
@@ -281,8 +278,7 @@ const Header = () => {
                                   address.districtName === d.name
                                     ? "bg-[#1aa68383] text-white"
                                     : ""
-                                }`}
-                              >
+                                }`}>
                                 {d.name}
                               </li>
                             ))}
@@ -307,8 +303,7 @@ const Header = () => {
                                   address.microDistrictName === m.name
                                     ? "bg-[#1aa68383] text-white"
                                     : ""
-                                }`}
-                              >
+                                }`}>
                                 {m.name}
                               </li>
                             ))}
@@ -333,8 +328,7 @@ const Header = () => {
                 {isPriceDropdownOpen && (
                   <div
                     className="flex flex-col absolute top-[70px] left-0 w-[500px] bg-white border border-gray-200 rounded-[5px] shadow-lg p-4 space-y-[24px] text-[#252525] text-[14px] leading-[17.5px] font-normal"
-                    onBlur={() => setIsPriceDropdownOpen(false)}
-                  >
+                    onBlur={() => setIsPriceDropdownOpen(false)}>
                     <h3 className="">Выберите цену</h3>
                     <div className="flex space-x-4 mb-6">
                       <input
@@ -440,7 +434,9 @@ const Header = () => {
                 <span>Войти</span>
               </button>
             )}
-            <button className="flex justify-center items-center space-x-2 bg-[#1aa683] text-white font-bold px-[25px] h-[50px] rounded">
+            <button
+              className="flex justify-center items-center space-x-2 bg-[#1aa683] text-white font-bold px-[25px] h-[50px] rounded"
+              onClick={openModal}>
               <span>Подать объявление</span>
               <Images.ArrowRight />
             </button>

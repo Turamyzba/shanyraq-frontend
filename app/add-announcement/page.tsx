@@ -1,189 +1,398 @@
 "use client";
 
 import { useState } from "react";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Image from "next/image";
-import MenuItem from "../../components/ui/MenuItem";
-import FormInput from "../../components/ui/FormInput";
-import FormSelect from "../../components/ui/FormSelect";
+import { useModal } from "../context/modal-context";
+import * as Images from "@/public/images";
 
-export default function AddAnnouncementPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [passwordFields, setPasswordFields] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmPassword: "",
-    showOldPassword: false,
-    showNewPassword: false,
-    showConfirmPassword: false,
+const AddAnnouncementModal = () => {
+  const { isModalOpen, closeModal } = useModal();
+  const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({
+    role: "",
+    title: "",
+    gender: "",
+    housematesCount: 0,
+    address: "",
+    moveInDate: "",
+    monthlyPayment: "",
+    deposit: false,
+    depositAmount: "",
+    apartmentDetails: {
+      petsAllowed: false,
+      utilitiesIncluded: false,
+      forStudents: false,
+      smokingAllowed: false,
+      description: "",
+      photos: [],
+    },
   });
 
-  const [activeItem, setActiveItem] = useState("profile");
-  const [selectedOption, setSelectedOption] = useState("");
+  const steps = [
+    { id: 1, name: "Роль", component: StepRole },
+    { id: 2, name: "Основная информация", component: StepBasicInfo },
+    { id: 3, name: "Детали квартиры", component: StepApartmentDetails },
+    { id: 4, name: "Контакты", component: StepContacts },
+    { id: 5, name: "Успех", component: StepSuccess },
+  ];
 
-  const handlePasswordChange = (field: string, value: string | boolean) => {
-    setPasswordFields((prev) => ({ ...prev, [field]: value }));
+  const handleNext = () => {
+    if (currentStep < steps.length) setCurrentStep(currentStep + 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (passwordFields.newPassword !== passwordFields.confirmPassword) {
-      alert("Пароли не совпадают!");
-      return;
+  const handleBack = () => {
+    if (currentStep > 1) setCurrentStep(currentStep - 1);
+  };
+
+  const CurrentStepComponent = steps[currentStep - 1].component;
+
+  if (!isModalOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-60 ">
+      {/* Modal Content */}
+      <div className="relative h-auto w-[640px] bg-white rounded-lg shadow-lg px-[40px] py-[60px] mt-[100px]">
+        <button
+          className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl"
+          onClick={() => {
+            setCurrentStep(1);
+            closeModal();
+          }}>
+          <Images.close />
+        </button>
+        <div className="flex flex-col items-between">
+          <CurrentStepComponent
+            formData={formData}
+            setFormData={setFormData}
+            handleNext={handleNext}
+            handleBack={handleBack}
+          />
+
+          {/* <div className="flex justify-between items-center mt-[50px]">
+            <button
+              className="px-[38px] py-[15px] text-[16px] font-bold leading-[20px] outline-none tracking-[0.2px] text-[#252525] border-[1px] border-[#252525] rounded-[5px]"
+              onClick={handleBack}>
+              Отменить
+            </button>
+            <button
+              onClick={handleNext}
+              className="px-[38px] py-[15px] bg-[#32343A] text-[16px] font-bold leading-[20px] outline-none tracking-[0.2px] text-[#FFFFFF] rounded-[5px] ">
+              Следующий
+            </button>
+          </div> */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AddAnnouncementModal;
+
+function StepRole({ handleNext }: any) {
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const [error, setError] = useState<boolean>(false);
+
+  const handleSelect = (role: string) => {
+    setSelectedRole(role);
+    setError(false); // Reset error when a role is selected
+  };
+
+  const handleProceed = () => {
+    if (selectedRole) {
+      handleNext();
+    } else {
+      setError(true); // Display error if no role is selected
     }
-    console.log("Password changed successfully:", passwordFields);
-    setIsModalOpen(false);
-  };
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(e.target.value);
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <Header />
+    <div className="w-full text-left">
+      <h2 className="text-[24px] font-bold leading-[30px] tracking-[0.2px] text-[#252525] text-left underline-from-font decoration-skip-ink-none mb-[16px]">
+        Кем вы являетесь?
+      </h2>
 
-      {/* Main Content */}
-      <div className="w-full max-w-[1300px] mx-auto px-4 flex-grow mt-[35px]">
-        {/* Progress Section */}
-        <div className="w-full">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center justify-center w-8 h-8 bg-green-100 text-green-600 rounded-full">
-              <span className="font-bold text-lg">!</span>
+      <p className="text-[16px] font-normal leading-[20px] text-[#252525] text-left underline-from-font decoration-skip-ink-none mb-[50px]">
+        Выберите роль, чтобы мы могли предложить подходящие функции
+      </p>
+
+      <div className="space-y-4">
+        {/* Option: Я хозяин */}
+        <button
+          onClick={() => handleSelect("owner")}
+          className={`w-full flex items-center border rounded-lg p-4 transition ${
+            selectedRole === "owner"
+              ? "border-[#1AA683] bg-[#E6F8F2]"
+              : "border-gray-300 hover:bg-gray-100"
+          }`}>
+          <div className="flex items-center gap-[36px] w-full">
+            <div className="min-w-[150px] h-[150px] flex items-center justify-center">
+              <Images.roleOwner />
             </div>
-            <div className="w-full">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-gray-800">25%</span>
-                <span className="text-sm text-gray-500">
-                  Заполните полностью профиль и получите доступ к функции
-                  "Поделиться профилем"
-                </span>
-              </div>
-              <div className="w-full h-2 bg-gray-300 rounded-full">
-                <div
-                  className="h-2 bg-green-500 rounded-full transition-all duration-300 ease-in-out"
-                  style={{ width: "55%" }}></div>
-              </div>
+            <div className="text-left flex flex-col gap-[16px]">
+              <p className="text-[20px] font-bold leading-[25px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
+                Я хозяин
+              </p>
+              <p className="text-[16px] font-semibold leading-[20px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
+                Эта опция для вас, если вы сдаёте жильё или предлагаете услуги
+              </p>
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="flex w-full gap-10 mt-[35px]">
-          {/* Sidebar */}
-          <div className="flex-none bg-white rounded-[10px] border border-gray-300 w-1/4 min-h-full">
-            <div className="relative flex justify-center mt-[30px]">
-              <div className="w-[130px] h-[130px] rounded-full overflow-hidden relative">
-                <Image
-                  src={"/prof.svg"}
-                  alt={"Profile Image"}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div>
-              <button className="absolute bottom-2 right-[10.5rem] bg-[#252525] p-2 rounded-full text-white shadow-lg flex items-center justify-center">
-                <Image src={"/pencil.svg"} alt="Edit" width={14} height={14} />
-              </button>
+        {/* Option: Я житель */}
+        <button
+          onClick={() => handleSelect("tenant")}
+          className={`w-full flex items-center border rounded-lg p-4 transition ${
+            selectedRole === "tenant"
+              ? "border-[#1AA683] bg-[#E6F8F2]"
+              : "border-gray-300 hover:bg-gray-100"
+          }`}>
+          <div className="flex items-center gap-[36px] w-full">
+            <div className="min-w-[150px] h-[150px] flex items-center justify-center">
+              <Images.roleTenant />
             </div>
-            <div className="text-center mt-5 mb-20">
-              <h2 className="text-base font-medium text-gray-900">
-                Алихан Оспанов
-              </h2>
-            </div>
-            <nav className="space-y-7">
-              <MenuItem
-                label="Профиль"
-                isActive={activeItem === "profile"}
-                onClick={() => setActiveItem("profile")}>
-                <Image
-                  src={"/user.svg"}
-                  alt="Profile Icon"
-                  width={20}
-                  height={20}
-                />
-              </MenuItem>
-              <MenuItem
-                label="Мои отклики"
-                isActive={activeItem === "responses"}
-                onClick={() => setActiveItem("responses")}>
-                <Image
-                  src={"/reply.svg"}
-                  alt="Responses Icon"
-                  width={20}
-                  height={20}
-                />
-              </MenuItem>
-              <MenuItem
-                label="Мои объявления"
-                href={"/announcements"}
-                isActive={activeItem === "announcements"}
-                onClick={() => setActiveItem("announcements")}>
-                <Image
-                  src={"/announcement.svg"}
-                  alt="Announcement Icon"
-                  width={20}
-                  height={20}
-                />
-              </MenuItem>
-              <MenuItem
-                label="Анкета"
-                isActive={activeItem === "questionnaire"}
-                onClick={() => setActiveItem("questionnaire")}>
-                <Image
-                  src={"/edit.svg"}
-                  alt="Questionnaire Icon"
-                  width={20}
-                  height={20}
-                />
-              </MenuItem>
-            </nav>
-          </div>
-
-          {/* Profile Form */}
-          <div className="flex-auto bg-white rounded-[10px] border border-gray-300 w-full p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormInput label="Имя" defaultValue="Алихан" disabled />
-              <FormInput label="Фамилия" defaultValue="Оспанов" disabled />
-              <FormInput
-                label="Email"
-                defaultValue="alikhaaan96@gmail.com"
-                type="email"
-                disabled
-              />
-              <FormInput
-                label="Номер телефона"
-                defaultValue="+7 747 447 54 40"
-                type="text"
-                disabled
-              />
-              <FormInput label="Дата рождения" type="date" />
-              <FormSelect
-                label="Гендер"
-                options={[
-                  { value: "male", label: "Мужской" },
-                  { value: "female", label: "Женский" },
-                ]}
-                defaultValue={selectedOption}
-                onChange={handleSelectChange}
-              />
-            </div>
-            <div className="flex justify-end space-x-4 mt-52">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100">
-                Изменить пароль
-              </button>
-              <button className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-700">
-                Редактировать
-              </button>
+            <div className="text-left flex flex-col gap-[16px]">
+              <p className="text-[20px] font-bold leading-[25px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
+                Я житель
+              </p>
+              <p className="text-[16px] font-semibold leading-[20px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
+                Эта опция для вас, если вы ищете жильё или услуги
+              </p>
             </div>
           </div>
+        </button>
+      </div>
+
+      {/* Error Message */}
+      {error && (
+        <p className="mt-4 text-[16px] font-semibold text-red-500">
+          Пожалуйста, выберите роль перед продолжением
+        </p>
+      )}
+
+      <div className="flex justify-between items-center mt-[50px]">
+        <button
+          className="px-[38px] py-[15px] text-[16px] font-bold leading-[20px] outline-none tracking-[0.2px] text-[#252525] border-[1px] border-[#252525] rounded-[5px]"
+          onClick={() => setSelectedRole(null)} // Reset role selection on cancel
+        >
+          Отменить
+        </button>
+        <button
+          onClick={handleProceed}
+          className={`px-[38px] py-[15px] text-[16px] font-bold leading-[20px] tracking-[0.2px] rounded-[5px] ${
+            selectedRole
+              ? "bg-[#32343A] text-[#FFFFFF]"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
+          // disabled={!selectedRole}
+        >
+          Следующий
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function StepBasicInfo({ handleNext, handleBack, formData, setFormData }: any) {
+  const [title, setTitle] = useState(formData.title || "");
+  const [gender, setGender] = useState(formData.gender || "");
+  const [livingInHome, setLivingInHome] = useState(
+    formData.livingInHome || true
+  );
+  const [peopleInApartment, setPeopleInApartment] = useState(
+    formData.peopleInApartment || 0
+  );
+  const [roommates, setRoommates] = useState(formData.roommates || 1);
+  const [ageRange, setAgeRange] = useState(formData.ageRange || [18, 50]);
+
+  const handleSubmit = () => {
+    setFormData({
+      ...formData,
+      title,
+      gender,
+      livingInHome,
+      peopleInApartment,
+      roommates,
+      ageRange,
+    });
+    handleNext();
+  };
+
+  return (
+    <div>
+      <h2 className="text-[24px] font-bold leading-[30px] text-[#252525] mb-[16px]">
+        Создание нового объявления
+      </h2>
+
+      {/* Title Input */}
+      <div className="mb-6">
+        <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-2">
+          Заголовок объявления:
+        </label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Введите заголовок"
+          className="w-full border border-gray-300 rounded-lg p-3 text-[16px] text-[#252525] outline-none focus:ring-2 focus:ring-[#1AA683]"
+        />
+      </div>
+
+      {/* Gender Selection */}
+      <div className="mb-6">
+        <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-2">
+          Кого вы подселяете?
+        </label>
+        <div className="flex gap-4">
+          {["Мужчина", "Женщина", "Любой"].map((option) => (
+            <button
+              key={option}
+              onClick={() => setGender(option)}
+              className={`px-6 py-3 border rounded-lg text-[16px] ${
+                gender === option
+                  ? "bg-[#1AA683] text-white border-[#1AA683]"
+                  : "border-gray-300 text-[#252525] hover:bg-gray-100"
+              }`}>
+              {option}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Living in Home */}
+      <div className="mb-6">
+        <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-2">
+          Вы проживаете в этом доме?
+        </label>
+        <div className="flex gap-4">
+          <button
+            onClick={() => setLivingInHome(true)}
+            className={`px-6 py-3 border rounded-lg text-[16px] ${
+              livingInHome
+                ? "bg-[#1AA683] text-white border-[#1AA683]"
+                : "border-gray-300 text-[#252525] hover:bg-gray-100"
+            }`}>
+            Да
+          </button>
+          <button
+            onClick={() => setLivingInHome(false)}
+            className={`px-6 py-3 border rounded-lg text-[16px] ${
+              !livingInHome
+                ? "bg-[#1AA683] text-white border-[#1AA683]"
+                : "border-gray-300 text-[#252525] hover:bg-gray-100"
+            }`}>
+            Нет
+          </button>
+        </div>
+      </div>
+
+      {/* People in Apartment */}
+      <div className="mb-6">
+        <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-2">
+          Сколько людей проживают в квартире? (не включая вас)
+        </label>
+        <div className="flex gap-4">
+          {[1, 2, 3, 4, "5+"].map((count) => (
+            <button
+              key={count}
+              onClick={() => setPeopleInApartment(count)}
+              className={`px-6 py-3 border rounded-lg text-[16px] ${
+                peopleInApartment === count
+                  ? "bg-[#1AA683] text-white border-[#1AA683]"
+                  : "border-gray-300 text-[#252525] hover:bg-gray-100"
+              }`}>
+              {count}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Number of Roommates */}
+      <div className="mb-6">
+        <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-2">
+          Сколько человек подселяете?
+        </label>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setRoommates((prev) => Math.max(prev - 1, 1))}
+            className="w-[40px] h-[40px] flex items-center justify-center border rounded-lg text-[20px] border-gray-300 hover:bg-gray-100">
+            -
+          </button>
+          <span className="text-[20px] font-bold text-[#252525]">
+            {roommates}
+          </span>
+          <button
+            onClick={() => setRoommates((prev) => prev + 1)}
+            className="w-[40px] h-[40px] flex items-center justify-center border rounded-lg text-[20px] border-gray-300 hover:bg-gray-100">
+            +
+          </button>
+        </div>
+      </div>
+
+      {/* Age Range */}
+      <div className="mb-6">
+        <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-2">
+          Возрастной диапазон
+        </label>
+        <div className="flex items-center gap-4">
+          <input
+            type="range"
+            min="18"
+            max="50"
+            value={ageRange[0]}
+            onChange={(e) =>
+              setAgeRange([parseInt(e.target.value), ageRange[1]])
+            }
+            className="w-full"
+          />
+          <span className="text-[16px] text-[#252525]">{ageRange[0]}</span>
+          <span>-</span>
+          <input
+            type="range"
+            min="18"
+            max="50"
+            value={ageRange[1]}
+            onChange={(e) =>
+              setAgeRange([ageRange[0], parseInt(e.target.value)])
+            }
+            className="w-full"
+          />
+          <span className="text-[16px] text-[#252525]">{ageRange[1]}</span>
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-between items-center mt-[50px]">
+        <button
+          onClick={handleBack}
+          className="px-[38px] py-[15px] text-[16px] font-bold text-[#252525] border-[1px] border-[#252525] rounded-lg hover:bg-gray-100">
+          Отменить
+        </button>
+        <button
+          onClick={handleSubmit}
+          className="px-[38px] py-[15px] text-[16px] font-bold bg-[#32343A] text-white rounded-lg hover:bg-[#4a4a50]">
+          Следующий
+        </button>
+      </div>
     </div>
   );
+}
+
+function StepApartmentDetails() {
+  return (
+    <div>
+      <h2>Step 3: Apartment Details</h2>
+    </div>
+  );
+}
+
+function StepContacts() {
+  return (
+    <div>
+      <h2>Step 4: Contacts</h2>
+    </div>
+  );
+}
+
+function StepSuccess() {
+  return <h2>Step 5: Success</h2>;
 }
