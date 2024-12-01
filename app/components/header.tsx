@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import citiesData from "../login/result.json";
 import * as Images from "../../public/images";
+import { useModal } from "../context/modal-context";
 import Slider from "@mui/material/Slider";
 
 const Header = () => {
@@ -114,6 +115,40 @@ const Header = () => {
     { id: 4, name: "Орал" },
     { id: 5, name: "Қарағанды" },
   ];
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleAddressDropdown = () => {
+    setIsAddressDropdownOpen(!isAddressDropdownOpen);
+    console.log(1);
+  };
+
+  const toggleCityDropdown = () => {
+    setIsCityDropdownOpen(!isCityDropdownOpen);
+  };
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
+  const togglePriceDropdown = () => setIsPriceDropdownOpen((prev) => !prev);
+
+  const toggleRoomDropdown = () => {
+    setIsRoomDropdownOpen(!isRoomDropdownOpen);
+  };
+
+  const handleMinPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Math.min(Number(event.target.value), maxPrice - 1000);
+    setMinPrice(value);
+  };
+
+  const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(Number(event.target.value), minPrice + 1000);
+    setMaxPrice(value);
+  };
+  const { openModal } = useModal();
 
   return (
     <header className="min-w-full">
@@ -509,7 +544,10 @@ const Header = () => {
                 <span>Войти</span>
               </button>
             )}
-            <button className="flex justify-center items-center space-x-2 bg-[#1aa683] text-white font-bold px-[25px] h-[50px] rounded">
+            <button
+              className="flex justify-center items-center space-x-2 bg-[#1aa683] text-white font-bold px-[25px] h-[50px] rounded"
+              onClick={openModal}
+            >
               <span>Подать объявление</span>
               <Images.ArrowRight />
             </button>

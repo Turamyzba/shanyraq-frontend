@@ -3,7 +3,7 @@
 import { useState } from "react";
 import * as Image from "../../public/images";
 import Header from "../components/header";
-import Footer from "@/components/footer";
+import Footer from "../components/footer";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
