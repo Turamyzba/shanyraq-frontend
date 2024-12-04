@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Image from "next/image";
@@ -8,11 +8,42 @@ import MenuItem from "../../components/ui/MenuItem";
 import Cards from "@/components/ui/Card";
 import Card from "@/components/ui/Card";
 import SuccessModal from "@/components/ui/SuccesModal";
+import Sidebar from "@/components/ui/Sidebar";
 
 export default function AnnouncementsPage() {
+    const token = `eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9PV05FUiIsInR5cCI6ImFjY2VzcyIsInN1YiI6Im1pa29vb3NpYTAwNUBnbWFpbC5jb20iLCJpYXQiOjE3MzMyMTk2MzAsImV4cCI6MTczMzgyNDQzMH0.rOTk_6xnTxxW7p6MVTijbSGguzfa81bdMq25-1SwSYg`;
     const [activeItem, setActiveItem] = useState("questionnaire");
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const [profileData, setProfileData] = useState({
+        firstName: '',
+        lastName: '',
+        profilePhoto: ''
+    });
+
+    useEffect(() => {
+        const fetchProfileData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': '*/*',
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9PV05FUiIsInR5cCI6ImFjY2VzcyIsInN1YiI6Im1pa29vb3NpYTAwNUBnbWFpbC5jb20iLCJpYXQiOjE3MzMyMjI1OTQsImV4cCI6MTczMzgyNzM5NH0.L9qLiI9WbZ858pWECKH8GCX9k8adrczflX-s6L3Ink8`,
+                    }
+                });
+                const data = await response.json();
+                setProfileData({
+                    firstName: data.firstName || '',
+                    lastName: data.lastName || '',
+                    profilePhoto: data.profilePhoto || '/profile.jpg'
+                });
+            } catch (error) {
+                console.error("Error fetching profile data:", error);
+            }
+        };
+
+        fetchProfileData().then(r => console.log("Profile data fetched successfully!"));
+    }, []);
 
     const openSuccessModal = () => {
         setIsSuccessModalOpen(true);
@@ -20,6 +51,13 @@ export default function AnnouncementsPage() {
 
     const handleSubmit = () => {
         setIsModalOpen(false);
+    };
+
+    const handlePhotoUpload = (newPhotoUrl: string) => {
+        setProfileData((prev) => ({
+            ...prev,
+            photo: newPhotoUrl,
+        }));
     };
 
     return (
@@ -53,53 +91,13 @@ export default function AnnouncementsPage() {
 
                 <div className="flex w-full gap-10 mt-[35px]">
                     {/* Sidebar */}
-                    <div className="flex-none bg-white rounded-[10px] border border-gray-300 w-1/4 min-h-full">
-                        <div className="relative flex justify-center mt-[30px]">
-                            <div className="w-[130px] h-[130px] rounded-full overflow-hidden relative">
-                                <Image src={"/prof.svg"} alt={"Profile Image"} layout="fill" objectFit="cover"/>
-                            </div>
-                            <button
-                                className="absolute bottom-2 right-[10.5rem] bg-[#252525] p-2 rounded-full text-white shadow-lg flex items-center justify-center">
-                                <Image src={"/pencil.svg"} alt="Edit" width={14} height={14}/>
-                            </button>
-                        </div>
-                        <div className="text-center mt-5 mb-20">
-                            <h2 className="text-base font-medium text-gray-900">Алихан Оспанов</h2>
-                        </div>
-                        <nav className="space-y-7">
-                            <MenuItem
-                                label="Профиль"
-                                isActive={activeItem === "profile"}
-                                href={"/profile"}
-                                onClick={() => setActiveItem("profile")}
-                            >
-                                <Image src={"/user.svg"} alt="Profile Icon" width={20} height={20}/>
-                            </MenuItem>
-                            <MenuItem
-                                label="Мои отклики"
-                                isActive={activeItem === "responses"}
-                                onClick={() => setActiveItem("responses")}
-                            >
-                                <Image src={"/reply.svg"} alt="Responses Icon" width={20} height={20}/>
-                            </MenuItem>
-                            <MenuItem
-                                label="Мои объявления"
-                                isActive={activeItem === "announcements"}
-                                href={"/announcements"}
-                                onClick={() => setActiveItem("announcements")}
-                            >
-                                <Image src={"/announcement.svg"} alt="Announcement Icon" width={20} height={20}/>
-                            </MenuItem>
-                            <MenuItem
-                                label="Анкета"
-                                href={"/questionnaire"}
-                                isActive={activeItem === "questionnaire"}
-                                onClick={() => setActiveItem("questionnaire")}
-                            >
-                                <Image src={"/edit.svg"} alt="Questionnaire Icon" width={20} height={20}/>
-                            </MenuItem>
-                        </nav>
-                    </div>
+                    <Sidebar
+                        activeItem={activeItem}
+                        setActiveItem={setActiveItem}
+                        profileName={`${profileData.firstName} ${profileData.lastName}`}
+                        profilePhoto={profileData.profilePhoto} // Pass profile photo URL
+                        onPhotoUpload={handlePhotoUpload}
+                    />
 
 
                     {/* Announcements */}

@@ -1,14 +1,17 @@
 'use client';
 
-import {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Image from "next/image";
 import MenuItem from "../../components/ui/MenuItem";
 import FormInput from "../../components/ui/FormInput";
 import FormSelect from "../../components/ui/FormSelect";
+import Sidebar from "@/components/ui/Sidebar";
+import PasswordUpdateModal from "@/components/ui/PasswordUpdateModal";
 
 export default function ProfilePage() {
+    const token = `eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9PV05FUiIsInR5cCI6ImFjY2VzcyIsInN1YiI6Im1pa29vb3NpYTAwNUBnbWFpbC5jb20iLCJpYXQiOjE3MzMyMTk2MzAsImV4cCI6MTczMzgyNDQzMH0.rOTk_6xnTxxW7p6MVTijbSGguzfa81bdMq25-1SwSYg`;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [passwordFields, setPasswordFields] = useState({
         oldPassword: "",
@@ -18,12 +21,198 @@ export default function ProfilePage() {
         showNewPassword: false,
         showConfirmPassword: false,
     });
-
+    const [successMessage, setSuccessMessage] = useState('');
     const [activeItem, setActiveItem] = useState("profile");
     const [selectedOption, setSelectedOption] = useState("");
+    const [profileData, setProfileData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        birthDate: '',
+        gender: '',
+        profilePhoto: ''
+    });
+    const [editMode, setEditMode] = useState(false);
 
-    const handlePasswordChange = (field: string, value: string | boolean) => {
-        setPasswordFields((prev) => ({...prev, [field]: value}));
+    // State to manage the loading and error states
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+
+    const handlePhotoUpload = (newPhotoUrl: string) => {
+        setProfileData((prev: any) => ({
+            ...prev,
+            photo: newPhotoUrl,
+        }));
+    };
+
+    // Toggle edit mode
+    const handleEditToggle = () => {
+        if (editMode) {
+            // Save data when switching back from edit mode
+            saveProfileData().then(r => console.log("Profile data saved successfully!"));
+        }
+        setEditMode(!editMode);
+    };
+
+    // Handle input change for editable fields
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const {name, value} = e.target;
+
+        console.log("name:", name);
+        setProfileData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+        console.log('Form 2:', profileData.firstName);
+
+    };
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const {name, value} = e.target;
+        setProfileData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    // Function to save updated profile data
+    const saveProfileData = async () => {
+        setLoading(true);
+        setError("");
+
+        try {
+            // Format the birthDate field to match the backend expectation (yyyy-MM-dd)
+            const formDataToSend = {
+                ...profileData,
+                birthDate: profileData.birthDate
+                    ? new Date(profileData.birthDate).toISOString().split('T')[0] // Formats to "yyyy-MM-dd"
+                    : new Date().toISOString().split('T')[0],  // Default to current date if not provided
+            };
+
+
+            console.log('Sending form data:', JSON.stringify(formDataToSend));
+
+            const response = await fetch('http://localhost:8080/api/profile/edit', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify(formDataToSend),  // Send updated form data
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                setError(`Error: ${errorData.message || 'Something went wrong.'}`);
+                return;
+            }
+
+            // Assuming the API returns updated profile data
+            const data = await response.json();
+            console.log('Profile old:', profileData);
+            console.log('Profile updated:', data);
+
+            setProfileData((prevData) => ({
+                ...prevData,
+                ...data,  // Assuming the response contains updated fields
+            }));
+
+            setEditMode(false);  // Exit edit mode after saving
+        } catch (err) {
+            setError(`Error: ${err.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        const fetchProfileData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': '*/*',
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9PV05FUiIsInR5cCI6ImFjY2VzcyIsInN1YiI6Im1pa29vb3NpYTAwNUBnbWFpbC5jb20iLCJpYXQiOjE3MzMyMjk1MjMsImV4cCI6MTczMzgzNDMyM30.LibDIQvp0VitQnh5P_YOMiJ8oMDKbdyiHy-75R6pDD0`,
+                    }
+                });
+                const data = await response.json();
+                setProfileData({
+                    firstName: data.firstName || '',
+                    lastName: data.lastName || '',
+                    email: data.email || '',
+                    phoneNumber: data.phoneNumber || '',
+                    birthDate: data.birthDate || '',
+                    gender: data.gender || 'NOT_PROVIDED',
+                    profilePhoto: data.profilePhoto || '/profile.jpg'
+                });
+            } catch (error) {
+                console.error("Error fetching profile data:", error);
+            }
+        };
+
+        fetchProfileData().then(r => console.log("Profile data fetched successfully!"));
+    }, []);
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setPasswordFields((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handlePasswordVisibilityToggle = (field: string) => {
+        setPasswordFields((prev) => ({
+            ...prev,
+            [field]: !prev[field],
+        }));
+    };
+
+    const handleSubmitPassword = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (passwordFields.newPassword !== passwordFields.confirmPassword) {
+            setError('Новый пароль и подтверждение пароля не совпадают');
+            return;
+        }
+        setError('');
+        setLoading(true);
+
+        try {
+            const response = await fetch('http://localhost:8080/api/profile/update-password', {
+                method: 'PATCH',
+                headers: {
+                    'Accept': '*/*',
+                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9PV05FUiIsInR5cCI6ImFjY2VzcyIsInN1YiI6Im1pa29vb3NpYTAwNUBnbWFpbC5jb20iLCJpYXQiOjE3MzMyMjk1MjMsImV4cCI6MTczMzgzNDMyM30.LibDIQvp0VitQnh5P_YOMiJ8oMDKbdyiHy-75R6pDD0`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    oldPassword: passwordFields.oldPassword,
+                    newPassword: passwordFields.newPassword,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                setError(errorData.message || 'Ошибка при обновлении пароля');
+            } else {
+                setSuccessMessage('Пароль успешно изменен');
+                setPasswordFields({
+                    oldPassword: '',
+                    newPassword: '',
+                    confirmPassword: '',
+                    showOldPassword: false,
+                    showNewPassword: false,
+                    showConfirmPassword: false,
+                });
+                setTimeout(() => setSuccessMessage(''), 5000); // Clear success message after 5 seconds
+            }
+        } catch (error) {
+            setError('Ошибка на сервере. Попробуйте позже.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -34,10 +223,6 @@ export default function ProfilePage() {
         }
         console.log("Password changed successfully:", passwordFields);
         setIsModalOpen(false);
-    };
-
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption(e.target.value);
     };
 
     return (
@@ -71,72 +256,69 @@ export default function ProfilePage() {
 
                 <div className="flex w-full gap-10 mt-[35px]">
                     {/* Sidebar */}
-                    <div className="flex-none bg-white rounded-[10px] border border-gray-300 w-1/4 min-h-full">
-                        <div className="relative flex justify-center mt-[30px]">
-                            <div className="w-[130px] h-[130px] rounded-full overflow-hidden relative">
-                                <Image src={"/prof.svg"} alt={"Profile Image"} layout="fill" objectFit="cover"/>
-                            </div>
-                            <button
-                                className="absolute bottom-2 right-[10.5rem] bg-[#252525] p-2 rounded-full text-white shadow-lg flex items-center justify-center">
-                                <Image src={"/pencil.svg"} alt="Edit" width={14} height={14}/>
-                            </button>
-                        </div>
-                        <div className="text-center mt-5 mb-20">
-                            <h2 className="text-base font-medium text-gray-900">Алихан Оспанов</h2>
-                        </div>
-                        <nav className="space-y-7">
-                            <MenuItem
-                                label="Профиль"
-                                isActive={activeItem === "profile"}
-                                href={"/profile"}
-                                onClick={() => setActiveItem("profile")}
-                            >
-                                <Image src={"/user.svg"} alt="Profile Icon" width={20} height={20}/>
-                            </MenuItem>
-                            <MenuItem
-                                label="Мои отклики"
-                                isActive={activeItem === "responses"}
-                                onClick={() => setActiveItem("responses")}
-                            >
-                                <Image src={"/reply.svg"} alt="Responses Icon" width={20} height={20}/>
-                            </MenuItem>
-                            <MenuItem
-                                label="Мои объявления"
-                                isActive={activeItem === "announcements"}
-                                href={"/announcements"}
-                                onClick={() => setActiveItem("announcements")}
-                            >
-                                <Image src={"/announcement.svg"} alt="Announcement Icon" width={20} height={20}/>
-                            </MenuItem>
-                            <MenuItem
-                                label="Анкета"
-                                href={"/questionnaire"}
-                                isActive={activeItem === "questionnaire"}
-                                onClick={() => setActiveItem("questionnaire")}
-                            >
-                                <Image src={"/edit.svg"} alt="Questionnaire Icon" width={20} height={20}/>
-                            </MenuItem>
-                        </nav>
-                    </div>
+                    <Sidebar
+                        activeItem={activeItem}
+                        setActiveItem={setActiveItem}
+                        profileName={`${profileData.firstName} ${profileData.lastName}`}
+                        profilePhoto={profileData.profilePhoto} // Pass profile photo URL
+                        onPhotoUpload={handlePhotoUpload}
+                    />
 
                     {/* Profile Form */}
                     <div className="flex-auto bg-white rounded-[10px] border border-gray-300 w-full p-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <FormInput label="Имя" defaultValue="Алихан" disabled/>
-                            <FormInput label="Фамилия" defaultValue="Оспанов" disabled/>
-                            <FormInput label="Email" defaultValue="alikhaaan96@gmail.com" type="email" disabled/>
-                            <FormInput label="Номер телефона" defaultValue="+7 747 447 54 40" type="text" disabled/>
-                            <FormInput label="Дата рождения" type="date"/>
+                            <FormInput
+                                label="Имя"
+                                name="firstName"
+                                defaultValue={profileData.firstName}
+                                disabled={!editMode}
+                                onChange={handleInputChange}
+                            />
+                            <FormInput
+                                label="Фамилия"
+                                name="lastName"
+                                defaultValue={profileData.lastName}
+                                disabled={!editMode}
+                                onChange={handleInputChange}
+                            />
+                            <FormInput
+                                label="Email"
+                                name="email"
+                                type="email"
+                                defaultValue={profileData.email}
+                                disabled={!editMode}
+                                onChange={handleInputChange}
+                            />
+                            <FormInput
+                                label="Номер телефона"
+                                name="phoneNumber"
+                                type="text"
+                                defaultValue={profileData.phoneNumber}
+                                disabled={!editMode}
+                                onChange={handleInputChange}
+                            />
+                            <FormInput
+                                label="Дата рождения"
+                                name="birthDate"
+                                type="date"
+                                defaultValue={profileData.birthDate}
+                                disabled={!editMode}
+                                onChange={handleInputChange}
+                            />
                             <FormSelect
                                 label="Гендер"
-                                options={[
-                                    {value: "male", label: "Мужской"},
-                                    {value: "female", label: "Женский"},
-                                ]}
-                                defaultValue={selectedOption}
+                                name="gender"
+                                value={profileData.gender}
                                 onChange={handleSelectChange}
+                                options={[
+                                    {value: "MALE", label: "Мужской"},
+                                    {value: "FEMALE", label: "Женский"},
+                                    {value: "NOT_PROVIDED", label: "Не указано"}
+                                ]}
+                                disabled={!editMode}
                             />
                         </div>
+                        {error && <div className="text-red-600 mt-4">{error}</div>}
                         <div className="flex justify-end space-x-4 mt-52">
                             <button
                                 onClick={() => setIsModalOpen(true)}
@@ -145,56 +327,18 @@ export default function ProfilePage() {
                                 Изменить пароль
                             </button>
                             <button
-                                className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-700">Редактировать
+                                onClick={handleEditToggle}
+                                className='bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded-lg'
+                                disabled={loading}
+                            >
+                                {loading ? 'Сохранение...' : editMode ? 'Сохранить' : 'Редактировать'}
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Modal */}
-            {isModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-                        <h2 className="text-lg font-semibold mb-4">Поменяйте свой пароль</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="space-y-4">
-                                <FormInput
-                                    label="Старый пароль"
-                                    type={passwordFields.showOldPassword ? "text" : "password"}
-                                    defaultValue={passwordFields.oldPassword}
-                                    disabled={false}
-                                />
-                                <FormInput
-                                    label="Новый пароль"
-                                    type={passwordFields.showNewPassword ? "text" : "password"}
-                                    defaultValue={passwordFields.newPassword}
-                                    disabled={false}
-                                />
-                                <FormInput
-                                    label="Подтвердите пароль"
-                                    type={passwordFields.showConfirmPassword ? "text" : "password"}
-                                    defaultValue={passwordFields.confirmPassword}
-                                    disabled={false}
-                                />
-                            </div>
-                            <div className="mt-6 flex justify-between">
-                                <button type="submit"
-                                        className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600">
-                                    Подтвердить
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                    className="text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100"
-                                >
-                                    Отменить
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+            <PasswordUpdateModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
 
             {/* Footer */}
             <Footer/>

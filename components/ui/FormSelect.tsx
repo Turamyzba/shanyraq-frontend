@@ -1,16 +1,21 @@
+import React from "react";
+
 interface FormSelectProps {
     label: string;
     options: { value: string; label: string }[];
-    defaultValue?: string;
-    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    value: string; // Controlled value
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    name: string;
+    disabled?: boolean;
 }
 
 const FormSelect: React.FC<FormSelectProps> = ({
                                                    label,
                                                    options,
-                                                   defaultValue = "",
-                                                   onChange = () => {
-                                                   },
+                                                   value, // Now controlled via value prop
+                                                   onChange,
+                                                   name,
+                                                   disabled = false
                                                }) => {
     return (
         <div>
@@ -18,8 +23,10 @@ const FormSelect: React.FC<FormSelectProps> = ({
                 {label}
             </label>
             <select
-                defaultValue={defaultValue}
+                value={value}
                 onChange={onChange}
+                disabled={disabled}
+                name={name}
                 className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 bg-white"
             >
                 <option value="" disabled>

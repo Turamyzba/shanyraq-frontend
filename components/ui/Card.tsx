@@ -10,8 +10,12 @@ type CardProps = {
     genderOfRoommate: string;
     numberOfRoommates: number;
     price: number;
+    isArchived: boolean;
     onShareClick: () => void;
     onChevronClick: () => void;
+    onArchiveClick: (id: number, isArchived: boolean) => void;
+    onDeleteClick: (id: number) => void;
+    id: number;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -23,18 +27,22 @@ const Card: React.FC<CardProps> = ({
                                        genderOfRoommate,
                                        numberOfRoommates,
                                        price,
+                                       isArchived,
                                        onShareClick,
                                        onChevronClick,
+                                       onArchiveClick,
+                                       onDeleteClick,
+                                       id,
                                    }) => {
     return (
         <div className="relative bg-white rounded-lg shadow-md border border-gray-300 max-w-sm p-4">
             {/* Image */}
             <div className="relative mb-4">
                 <Image
-                    src={'/room.svg'}
+                    src={imageUrl || '/room2.svg'}
                     alt={title}
-                    width={400} // Adjust to your image's width
-                    height={160} // Adjust to your image's height
+                    width={400}
+                    height={160}
                     className="w-full h-40 object-cover rounded-lg"
                 />
                 {/* Chevron Left */}
@@ -143,11 +151,17 @@ const Card: React.FC<CardProps> = ({
 
             {/* Buttons */}
             <div className="flex justify-between gap-4">
-                <button className="w-full py-3 bg-gray-800 text-white rounded-lg text-sm font-semibold">
-                    Архивировать
+                <button
+                    onClick={() => onArchiveClick(id, isArchived)}
+                    className="w-full py-3 bg-gray-800 text-white rounded-lg text-sm font-semibold"
+                >
+                    {isArchived ? 'Разархивировать' : 'Архивировать'}
                 </button>
-                <button className="w-full py-3 bg-gray-700 text-white rounded-lg text-sm font-semibold">
-                    Заявки
+                <button
+                    onClick={() => onDeleteClick(id)}
+                    className="w-full py-3 bg-gray-700 text-white rounded-lg text-sm font-semibold"
+                >
+                    {isArchived ? 'Удалить' : 'Заявки'}
                 </button>
             </div>
         </div>
