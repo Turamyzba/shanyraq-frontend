@@ -1,9 +1,9 @@
 "use client";
-import * as Images from "../../public/images";
+import * as Images from "../public/images";
 
 import Slider from "@mui/material/Slider";
 import { useState } from "react";
-import AddressDatas from "../login/result.json"; // JSON файлын импорттау
+import AddressDatas from "@/app/result.json";
 
 const Search = () => {
   const [city, setCity] = useState("");
@@ -167,7 +167,7 @@ const Search = () => {
                     district?.children &&
                     district.children.length > 0 && (
                       <div className="w-[214px] h-[380px] border-[1px] border-[#D6D6D6] text-[#252525] rounded-[5px] overflow-y-auto scrollbar">
-                        {district.children.map((d) => (
+                        {district.children.map((d: any) => (
                           <li
                             key={d.id}
                             onClick={() => {
@@ -195,7 +195,7 @@ const Search = () => {
                     microDistrcit?.children &&
                     microDistrcit.children.length > 0 && (
                       <div className="w-[214px] h-[380px] border-[1px] border-[#D6D6D6] text-[#252525] rounded-[5px] overflow-y-auto scrollbar">
-                        {microDistrcit.children.map((m) => (
+                        {microDistrcit.children.map((m: any) => (
                           <li
                             key={m.id}
                             onClick={() => {

@@ -1,4 +1,4 @@
-import * as Images from "../../public/images";
+import * as Images from "../public/images";
 
 interface AccordionProps {
   data: {

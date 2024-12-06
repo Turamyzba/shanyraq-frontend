@@ -2,42 +2,41 @@
 
 import React, { useState, useRef } from "react";
 import Header from "@/components/header";
-import axiosInstance from "@/axiosInstance/axios";
 import Footer from "@/components/footer";
+import axiosInstance from "@/axiosInstance/axios";
 import { useRouter } from "next/navigation";
 
 const ResetCodePage = () => {
   const [code, setCode] = useState<string[]>(new Array(6).fill(""));
   const inputs = useRef<HTMLInputElement[]>([]);
+  const [error, setError] = useState<string>("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const email = localStorage.getItem("email");
+    const email = localStorage.getItem("email"); // Get email from localStorage
+
+    if (!email) {
+      setError("Email not found.");
+      return;
+    }
+
+    if (code.some((num) => num === "")) {
+      setError("Please fill in all the code fields.");
+      return;
+    }
     const codeString = code.join("");
+
     try {
-      const response = await axiosInstance.post("/auth/forgot-password", {
+      const response = await axiosInstance.post("/auth/verify-email", {
         email,
         code: codeString,
       });
-
-      router.push("/forgot-password/confirm-password");
+      router.push("/login");
+      localStorage.removeItem("email");
     } catch (error: any) {
       console.error("Verification failed:", error);
-    }
-  };
-
-  const resend = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const email = localStorage.getItem("email");
-    try {
-      const response = await axiosInstance.post("/auth/resendCode", {
-        email,
-      });
-
-      alert("Resends the Code to your Email");
-    } catch (error: any) {
-      console.error("Verification failed:", error);
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -78,6 +77,11 @@ const ResetCodePage = () => {
       <Header />
       <div className="w-[1440px] mx-auto flex justify-center items-center">
         <div className="border-[#D6D6D6] border rounded-lg p-8 px-[110px] py-[120px]">
+          {error && (
+            <div className="w-full text-red-600 my-[20px] text-left">
+              {error}
+            </div>
+          )}
           <div className="w-[570px] flex flex-col items-center">
             <h1 className="mb-3 font-circular text-[32px] font-bold leading-[40px] text-center">
               Введите код подтверждения
@@ -108,6 +112,7 @@ const ResetCodePage = () => {
               {/* Submit Button */}
               <button
                 type="submit"
+                onClick={handleSubmit}
                 className="mb-3 w-full font-circular font-semibold text-[20px] bg-[#1AA683] text-white py-[10px] rounded-lg hover:bg-[#1aa683df] focus:outline-none transition">
                 Потвердить
               </button>
@@ -115,9 +120,15 @@ const ResetCodePage = () => {
               {/* Back Button */}
               <button
                 type="button"
-                className="w-full font-circular font-semibold text-[16px] py-[20px] rounded-lg"
-                onClick={resend}>
+                className="w-full font-circular font-semibold text-[16px] py-[20px] rounded-lg">
                 Отправить код повторно
+              </button>
+
+              <button
+                type="button"
+                className="w-full font-circular font-semibold text-[20px] py-[10px] rounded-lg"
+                onClick={() => router.push("/register")}>
+                Назад
               </button>
             </form>
           </div>

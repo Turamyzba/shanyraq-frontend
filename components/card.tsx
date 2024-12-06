@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import * as Images from "../../public/images";
+import * as Images from "../public/images";
 import { useEffect, useState } from "react";
 
 interface CardProps {
-  card: {
+  card?: {
     id: number;
     title: string;
     description: string;
@@ -16,7 +16,7 @@ interface CardProps {
     people: number;
     date: string;
   };
-  isLast: boolean;
+  isLast?: boolean;
 }
 
 const Card: React.FC<CardProps> = ({ card, isLast }) => {
@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ card, isLast }) => {
           <Image
             src={card.imageUrl}
             alt={card.title}
-            className="rounded-[10px]"
+            className="rounded-[10px] object-cover max-w-[343px] max-h-[220px]"
             width={343}
             height={220}
           />
@@ -39,7 +39,7 @@ const Card: React.FC<CardProps> = ({ card, isLast }) => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[24px] justify-start">
+        <div className="flex flex-col gap-[24px] justify-start w-full">
           <div className="flex flex-col gap-[10px] justify-start">
             <p className="text-[20px] font-normal text-[#252525] text-left">
               {card.title}
