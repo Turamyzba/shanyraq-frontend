@@ -51,6 +51,7 @@ export default function Home() {
 
       // Update announcements state
       setAnnouncements(response.data || []);
+      console.log(response.data);
       setErrorMessage(""); // Clear any previous error messages
     } catch (error) {
       console.error(
@@ -66,6 +67,7 @@ export default function Home() {
       setLoading(false); // End loading
     }
   };
+
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());
@@ -104,22 +106,22 @@ export default function Home() {
     fetchAllAnnouncements(filters);
   }, [searchParams, selectedSort, viewType]);
 
-  // useEffect(() => {
-  //   // Check if there's a saved filter in sessionStorage on page load
-  //   const savedFilter = sessionStorage.getItem("savedFilter");
-  //   if (savedFilter) {
-  //     // Ask user if they want to autofill their saved filter
-  //     const userWantsToLoad = window.confirm(
-  //       "У вас есть сохраненный фильтр. Хотите его загрузить?"
-  //     );
-  //     if (userWantsToLoad) {
-  //       const parsedFilter = JSON.parse(savedFilter);
-  //       console.log(parsedFilter);
-  //       setInitialQuery(parsedFilter);
-  //       setQuery(parsedFilter);
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Check if there's a saved filter in sessionStorage on page load
+    const savedFilter = sessionStorage.getItem("savedFilter");
+    if (savedFilter) {
+      // Ask user if they want to autofill their saved filter
+      const userWantsToLoad = window.confirm(
+        "У вас есть сохраненный фильтр. Хотите его загрузить?"
+      );
+      if (userWantsToLoad) {
+        const parsedFilter = JSON.parse(savedFilter);
+        console.log(parsedFilter);
+        setInitialQuery(parsedFilter);
+        setQuery(parsedFilter);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (query) {
@@ -296,7 +298,7 @@ export default function Home() {
                   <Images.map />
                 </button>
               </div>
-              {/* <div className="flex justify-center">
+               <div className="flex justify-center">
                 {announcements && announcements.length > 0 && (
                   <div className="grid grid-cols-3 gap-4">
                     {announcements.map((announcement: any, index: number) => (
@@ -308,21 +310,23 @@ export default function Home() {
                     ))}
                   </div>
                 )}
-              </div> */}
+              </div>
               <div className="flex justify-center">
                 <div className="grid grid-cols-3 gap-4">
                   {loading
-                    ? Array.from({ length: 6 }).map((_, index) => (
-                        <div key={index}>{renderSkeletonCard()}</div>
+                      ? Array.from({ length: 6 }).map((_, index) => (
+                          <div key={index}>{renderSkeletonCard()}</div>
                       ))
-                    : announcements &&
-                      announcements.length > 0 &&
-                      announcements.map((announcement) => (
-                        <HomeCard
-                          key={announcement.announcementId}
-                          card={announcement}
-                        />
-                      ))}
+                      : Array.isArray(announcements) && announcements.length > 0 ? (
+                          announcements.map((announcement) => (
+                              <HomeCard key={announcement.announcementId} card={announcement} />
+                          ))
+                      ) : (
+                          <p>No announcements found.</p> // Handle empty state
+                      )}
+
+
+
                 </div>
               </div>
             </div>
