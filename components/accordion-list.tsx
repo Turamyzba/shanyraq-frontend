@@ -2,11 +2,9 @@ import { useState } from "react";
 import Accordion from "./accordion";
 
 const AccordionList: React.FC = () => {
-  // State to track which accordion is open (null means no accordion is open)
   const [activeId, setActiveId] = useState<number | null>(null);
 
   const toggleAccordion = (id: number) => {
-    // If the clicked accordion is already open, close it. Otherwise, open it.
     setActiveId((prev) => (prev === id ? null : id));
   };
 
@@ -56,23 +54,26 @@ const AccordionList: React.FC = () => {
   ];
 
   return (
-    <div className="w-full flex justify-between max-h-[670px] overflow-y-auto custom-scrollbar mr-[50px]">
-      <div className="max-w-[700px] max-h-full flex flex-col">
+    <div className="w-full flex flex-col md:flex-row justify-between overflow-visible md:overflow-y-auto custom-scrollbar mr-0 md:mr-[50px] max-h-full md:max-h-[670px]">
+      <div className="w-full flex flex-col">
         {appAdvantages.map((data, index) => (
           <div key={data.id} className="flex group">
             <div
-              className={`h-full w-[6px] border-none outline-none group-hover:bg-[#1AA683] ${
+              className={`w-[4px] sm:w-[6px] flex-shrink-0 min-h-[40px] border-none outline-none group-hover:bg-[#1AA683] ${
                 activeId === data.id && "bg-[#1AA683]"
-              } `}></div>
-            <div className={`w-full ml-[70px] flex flex-col justify-between`}>
+              }`}
+            />
+
+            <div
+              className={`w-full ml-[20px] sm:ml-[40px] md:ml-[70px] flex flex-col justify-between`}
+            >
               <Accordion
                 data={data}
-                activeDesc={activeId === data.id} // Only this accordion will be active
-                toggleAccordion={() => toggleAccordion(data.id)} // Toggle function for each accordion
+                activeDesc={activeId === data.id}
+                toggleAccordion={() => toggleAccordion(data.id)}
               />
               {index !== appAdvantages.length - 1 && (
-                <div
-                  className={`w-full h-[2px] border-none outline-none bg-[#D6D6D6]`}></div>
+                <div className="w-full h-[2px] border-none outline-none bg-[#D6D6D6]" />
               )}
             </div>
           </div>

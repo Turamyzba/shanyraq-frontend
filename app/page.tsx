@@ -40,30 +40,30 @@ export default function Home() {
   const fetchAllAnnouncements = async (filters) => {
     try {
       setLoading(true);
-      // Determine the endpoint dynamically based on viewType
       const endpoint =
         filters.viewType === "lists"
           ? "/announcement/all"
           : "/announcement/all-for-map";
 
-      // Fetch data from the API with the constructed filters
       const response = await axiosInstance.get(endpoint, { params: filters });
 
-      // Update announcements state
-      setAnnouncements(response.data || []);
-      setErrorMessage(""); // Clear any previous error messages
-    } catch (error) {
-      console.error(
-        "Error fetching announcements:",
-        error.response?.data?.message || error.message
-      );
+      // If the server returns { announcements: [...], ... }:
+      if (Array.isArray(response.data.announcements)) {
+        setAnnouncements(response.data.announcements);
+      } else if (Array.isArray(response.data)) {
+        // If the server just returns an array
+        setAnnouncements(response.data);
+      } else {
+        setAnnouncements([]);
+      }
 
-      // Set an error message
-      setErrorMessage(
-        error.response?.data?.message || "Failed to fetch announcements"
-      );
+      setErrorMessage("");
+    } catch (error) {
+      // ✅ Put something valid here:
+      console.error("Error fetching announcements:", error);
+      setErrorMessage(error.response?.data?.message || error.message);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
@@ -165,7 +165,8 @@ export default function Home() {
     <div className="relative">
       <div
         className="min-h-[345px] min-w-[267px] rounded-[10px] p-[16px] gap-[26px] bg-white flex flex-col justify-between items-start"
-        style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}>
+        style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
+      >
         {/* Skeleton for image */}
         <Skeleton
           variant="rectangular"
@@ -218,7 +219,8 @@ export default function Home() {
             <div className="absolute left-10 top-5 z-10 bg-white p-4 rounded-lg shadow-lg flex flex-col items-end">
               <button
                 onClick={handleFilterVisibility} // Close filter
-                className="text-gray-600 hover:text-gray-900 text-2xl mb-[10px]">
+                className="text-gray-600 hover:text-gray-900 text-2xl mb-[10px]"
+              >
                 <Images.close />
               </button>
               <Filter
@@ -233,7 +235,8 @@ export default function Home() {
             {/* Button 1 */}
             <button
               onClick={handleFilterVisibility}
-              className="bg-white text-black px-5 py-4 rounded-lg border-[1px] border-[#BFBFBF4D] text-[24px]">
+              className="bg-white text-black px-5 py-4 rounded-lg border-[1px] border-[#BFBFBF4D] text-[24px]"
+            >
               <Images.filterIcon />
             </button>
 
@@ -243,7 +246,8 @@ export default function Home() {
                 setMapDropdownOpen(false);
                 setViewType("lists");
               }}
-              className="bg-white text-black px-10 py-4 rounded-lg border-[1px] border-[#BFBFBF4D] text-[24px]">
+              className="bg-white text-black px-10 py-4 rounded-lg border-[1px] border-[#BFBFBF4D] text-[24px]"
+            >
               Списком
             </button>
           </div>
@@ -259,7 +263,8 @@ export default function Home() {
                 <div className="relative">
                   <div
                     className="flex items-center gap-[12px] cursor-pointer"
-                    onClick={toggleSortDropdown}>
+                    onClick={toggleSortDropdown}
+                  >
                     <p className="text-left text-[14px] font-normal leading-[18px] text-[#5c5c5c">
                       {selectedSort}
                     </p>
@@ -284,7 +289,8 @@ export default function Home() {
                               sortOption === selectedSort
                                 ? "bg-[#D1EDE6] text-[#1AA683]"
                                 : "bg-white text-[#252525]"
-                            } w-full px-[12px] py-[4px] rounded-[5px] cursor-pointer font-normal text-[14px] leading-[17.5px]`}>
+                            } w-full px-[12px] py-[4px] rounded-[5px] cursor-pointer font-normal text-[14px] leading-[17.5px]`}
+                          >
                             {sortOption}
                           </li>
                         ))}

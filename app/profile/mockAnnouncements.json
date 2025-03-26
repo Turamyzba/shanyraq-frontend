@@ -1,0 +1,57 @@
+[
+  {
+    "announcementId": 1,
+    "title": "Уютная квартира в центре",
+    "cost": "120000",
+    "image": "/images/sample1.jpg",
+    "address": "г. Алматы, ул. Абая 15",
+    "roomCount": 3,
+    "roommates": 2,
+    "arriveDate": "2025-04-01",
+    "selectedGender": "Любой"
+  },
+  {
+    "announcementId": 2,
+    "title": "Комната рядом с университетом",
+    "cost": "50000",
+    "image": "/images/sample2.jpg",
+    "address": "г. Нур-Султан, ул. Байтерек 5",
+    "roomCount": 1,
+    "roommates": 0,
+    "arriveDate": "2025-05-15",
+    "selectedGender": "Женщина"
+  },
+  {
+    "announcementId": 3,
+    "title": "Современная студия",
+    "cost": "80000",
+    "image": "/images/sample3.jpg",
+    "address": "г. Шымкент, ул. Мекен 12",
+    "roomCount": 1,
+    "roommates": 0,
+    "arriveDate": "2025-06-10",
+    "selectedGender": "Мужчина"
+  },
+  {
+    "announcementId": 4,
+    "title": "Комната рядом с университетом",
+    "cost": "50000",
+    "image": "/images/sample2.jpg",
+    "address": "г. Нур-Султан, ул. Байтерек 5",
+    "roomCount": 1,
+    "roommates": 0,
+    "arriveDate": "2025-05-15",
+    "selectedGender": "Женщина"
+  },
+  {
+    "announcementId": 5,
+    "title": "Современная студия",
+    "cost": "80000",
+    "image": "/images/sample3.jpg",
+    "address": "г. Шымкент, ул. Мекен 12",
+    "roomCount": 1,
+    "roommates": 0,
+    "arriveDate": "2025-06-10",
+    "selectedGender": "Мужчина"
+  }
+]

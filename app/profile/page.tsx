@@ -138,59 +138,63 @@ export default function ProfilesPage() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="min-h-screen flex flex-col gap-[35px] items-center justify-center">
-        <Header isFilterResults={true} />
-        <div className="text-center">
-          <h1 className="text-xl font-bold mb-4">Error</h1>
-          <p>{error}</p>
-          <button
-            onClick={fetchProfile}
-            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg">
-            Retry
-          </button>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className="min-h-screen flex flex-col gap-[35px] items-center justify-center">
+  //       <Header isFilterResults={true} />
+  //       <div className="text-center">
+  //         <h1 className="text-xl font-bold mb-4">Error</h1>
+  //         <p>{error}</p>
+  //         <button
+  //           onClick={fetchProfile}
+  //           className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg"
+  //         >
+  //           Retry
+  //         </button>
+  //       </div>
+  //       <Footer />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen flex flex-col gap-[35px]">
       <Header isFilterResults={true} />
       <div className="w-full max-w-[1300px] mx-auto px-4 flex-grow mt-[35px]">
         <Progress value={value} />
-        <div className="flex w-full gap-10 mt-[35px]">
-          <div className="bg-white rounded-[10px] border-[1px] border-[#B5B7C0] w-[300px] max-h-[500px] sticky top-[40px]">
+        <div className="flex flex-col md:flex-row w-full gap-10 mt-[35px]">
+          <div className="flex flex-col md:block bg-white rounded-[10px] border-[1px] border-[#B5B7C0] md:w-[300px] max-h-[500px] md:sticky top-[40px]">
             <div className="flex justify-center mt-[30px]">
-              <div className="w-[130px] h-[130px] rounded-full overflow-hidden relative">
+              <div className="w-[120px] h-[120px] rounded-full overflow-hidden relative">
                 {formData.photo ? (
                   <img
                     src={formData.photo}
                     alt="User Photo"
-                    className="min-w-[130px] h-[130px] object-cover"
+                    className="w-full h-full object-cover"
                   />
                 ) : (
-                  <Images.userPhoto h={"130"} w={"130"} />
+                  <Images.userPhoto h={"120"} w={"120"} />
                 )}
+
                 <button
                   onClick={openPhotoModal}
-                  className="absolute bottom-[20px] right-[10px] bg-[#252525] p-[5px] rounded-full text-white shadow-lg">
+                  className="absolute bottom-[14px] right-[8px] bg-[#252525] p-[4px] rounded-full text-white shadow-lg"
+                >
                   <Images.userPhotoEdit />
                 </button>
               </div>
             </div>
-            <div className="flex justify-center mt-5 mb-20">
+            <div className="flex justify-center mt-5 mb-2 md:mb-20">
               <p className="font-circular font-medium text-[#252525] leading-[20px] tracking-[0.2px] text-left">
                 {`${formData.firstName || "User"}`}
               </p>
             </div>
-            <nav className="space-y-7">
+            <nav className="flex md:flex-col w-full justify-around md:space-y-7">
               <MenuItem
                 label="Профиль"
                 isactive={activeItem === "profile"}
-                onClick={() => setActiveItem("profile")}>
+                onClick={() => setActiveItem("profile")}
+              >
                 <Image
                   src={"/user.svg"}
                   alt="Profile Icon"
@@ -201,7 +205,8 @@ export default function ProfilesPage() {
               <MenuItem
                 label="Мои объявления"
                 isactive={activeItem === "my-announcements"}
-                onClick={() => setActiveItem("my-announcements")}>
+                onClick={() => setActiveItem("my-announcements")}
+              >
                 <Image
                   src={"/announcement.svg"}
                   alt="Announcement Icon"
