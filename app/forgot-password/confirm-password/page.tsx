@@ -15,6 +15,19 @@ const RegisterPage = () => {
   const [isError, setIsError] = useState(false);
   const [isErrorPassword, setIsErrorPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,11 +75,13 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-full min-w-full space-y-[90px]">
-      <Header />
-      <div className="w-[1440px] mx-auto flex justify-center items-center">
-        <div className="border-[#D6D6D6] border rounded-lg p-8 px-[110px] py-[120px]">
-          <div className="w-[500px] flex flex-col items-center">
-            <h1 className="w-full text-center mb-3 font-circular text-[32px] font-bold leading-[40px] text">
+      <div className="hidden sm:block">
+        <Header/>
+      </div>
+      <div className="w-full  mx-auto flex justify-center items-center">
+        <div className="border-0lg:border-[#D6D6D6] lg:border lg:rounded-lg lg:p-8 lg:px-[110px] lg:py-[120px]">
+          <div className="w-[350px] md:w-full flex flex-col items-center md:relative md:top-10 relative top-20 lg:relative lg:top-0">
+            <h1 className="w-full text-start mb-3 font-circular text-[24px] lg:text-[32px] font-bold leading-[40px] text">
               Восстановление пароля
             </h1>
             <p className="font-circular text-[16px] font-normal leading-[20px]">
@@ -178,7 +193,9 @@ const RegisterPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="hidden sm:block">
+        <Footer/>
+      </div>
     </div>
   );
 };

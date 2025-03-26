@@ -1,0 +1,57 @@
+[
+  {
+    "announcementId": 1,
+    "title": "Уютная студия в центре города",
+    "cost": "120,000",
+    "image": "/welcomeLanding.png",
+    "address": "пр. Абая, д. 10, Алматы",
+    "roomCount": 1,
+    "roommates": 1,
+    "arriveDate": "2025-04-10",
+    "selectedGender": "Не важно"
+  },
+  {
+    "announcementId": 2,
+    "title": "Светлая квартира в тихом районе",
+    "cost": "200,000",
+    "image": "/images/apartment2.jpg",
+    "address": "ул. Сатпаева, д. 45, Алматы",
+    "roomCount": 2,
+    "roommates": 1,
+    "arriveDate": "2025-05-01",
+    "selectedGender": "Мужчины"
+  },
+  {
+    "announcementId": 3,
+    "title": "Просторная трёхкомнатная квартира",
+    "cost": "300,000",
+    "image": "/images/apartment3.jpg",
+    "address": "ул. Толе би, д. 22, Алматы",
+    "roomCount": 3,
+    "roommates": 2,
+    "arriveDate": "2025-03-30",
+    "selectedGender": "Женщины"
+  },
+  {
+    "announcementId": 4,
+    "title": "Студия рядом с университетом",
+    "cost": "100,000",
+    "image": "/images/studio4.jpg",
+    "address": "ул. Масанчи, д. 7, Алматы",
+    "roomCount": 1,
+    "roommates": 1,
+    "arriveDate": "2025-06-15",
+    "selectedGender": "Не важно"
+  },
+  {
+    "announcementId": 5,
+    "title": "Комната в двухкомнатной квартире",
+    "cost": "80,000",
+    "image": "/images/apartment5.jpg",
+    "address": "ул. Панфилова, д. 30, Алматы",
+    "roomCount": 2,
+    "roommates": 1,
+    "arriveDate": "2025-04-25",
+    "selectedGender": "Мужчины"
+  }
+]

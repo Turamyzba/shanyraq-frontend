@@ -36,22 +36,22 @@ const HomeCard: React.FC<HomeCardProps> = ({card, key}) => {
     };
 
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <div
-                className="min-h-[345px] min-w-[267px] rounded-[10px] p-[16px] gap-[26px] bg-white flex flex-col justify-between items-start"
+                className="min-h-[438px] xl:min-h-[345px] w-full lg:min-w-[267px] rounded-[10px] p-[16px] gap-[16px] bg-white flex flex-col justify-between items-start"
                 style={{boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)"}}>
-                <div className="relative">
+                <div className="relative flex justify-start items-start w-full h-full">
                     <Link href={`/announcement/${card?.announcementId}`}>
                         <Image
                             src={card.image}
                             alt={card.image}
-                            className="rounded-[10px] object-cover max-w-[240px] max-h-[130px]"
+                            className="rounded-[10px] object-cover w-full h-full "
                             width={343}
                             height={220}
                         />
                     </Link>
 
-                    <div className="absolute top-2 right-2 z-10">
+                    <div className="absolute flex justify-end items-start w-full h-full">
                         <button onClick={toggleShareModal}>
                             <Images.share w={"50"} h={"50"}/>
                         </button>

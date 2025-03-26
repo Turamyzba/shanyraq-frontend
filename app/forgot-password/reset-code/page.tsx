@@ -13,7 +13,11 @@ const ResetCodePage = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const inputs = useRef<HTMLInputElement[]>([]);
   const router = useRouter();
+
   const [delay, setDelay] = useState(0); // Delay time in seconds
+
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,11 +112,13 @@ const ResetCodePage = () => {
 
   return (
     <div className="min-h-full min-w-full space-y-[90px]">
-      <Header />
-      <div className="w-[1440px] mx-auto flex justify-center items-center">
-        <div className="border-[#D6D6D6] border rounded-lg p-8 px-[110px] py-[120px]">
-          <div className="w-[570px] flex flex-col items-center">
-            <h1 className="mb-3 font-circular text-[32px] font-bold leading-[40px] text-center">
+      <div className="hidden sm:block">
+        <Header/>
+      </div>
+      <div className="w-[350px] md:w-full mx-auto flex justify-center items-center">
+        <div className="border-0 lg:border-[#D6D6D6] lg:border lg:rounded-lg lg:p-8 lg:px-[110px] lg:py-[120px] md:relative md:top-0 relative top-20 lg:relative lg:top-0">
+          <div className="w-[350px] md:w-full flex flex-col items-center justify-center">
+            <h1 className="mb-3 font-circular text-[24px] lg:text-[32px] font-bold leading-[40px] text-center">
               Введите код подтверждения
             </h1>
             <p className="font-circular text-[15px] font-normal leading-[20px] text-[#757575]">
@@ -138,7 +144,7 @@ const ResetCodePage = () => {
                     ref={(el) => (inputs.current[idx] = el!)}
                     onChange={(e) => processInput(e, idx)}
                     onKeyDown={(e) => handleBackspace(e, idx)}
-                    className="w-[80px] h-[80px] text-center text-[24px] border border-gray-300 rounded-lg focus:outline-none focus:border-[#1AA683]"
+                    className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] text-center text-[24px] border border-gray-300 rounded-lg focus:outline-none focus:border-[#1AA683]"
                     autoFocus={idx === 0}
                   />
                 ))}
@@ -165,7 +171,9 @@ const ResetCodePage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="hidden sm:block">
+        <Footer/>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,12 @@
+[
+  {
+    "email": "john@example.com",
+    "password": "mypassword",
+    "accessToken": "token_john_123"
+  },
+  {
+    "email": "jane@example.com",
+    "password": "password123",
+    "accessToken": "token_jane_456"
+  }
+]

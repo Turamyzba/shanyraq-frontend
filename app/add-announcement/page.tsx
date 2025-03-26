@@ -11,6 +11,23 @@ import { useRouter } from "next/navigation";
 import axiosInstance from "@/axiosInstance/axios";
 import { FileUpload } from "../../components/file-upload";
 
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false)
+
+  useEffect(() => {
+    const media = window.matchMedia(query)
+    const updateMatches = () => setMatches(media.matches)
+
+    updateMatches()
+    media.addEventListener("change", updateMatches)
+    return () => {
+      media.removeEventListener("change", updateMatches)
+    }
+  }, [query])
+
+  return matches
+}
+
 const AddAnnouncementModal = () => {
   const router = useRouter();
   const { isModalOpen, closeModal } = useModal();
@@ -51,7 +68,7 @@ const AddAnnouncementModal = () => {
   });
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingId, setIsEditingId] = useState(0);
-
+  const isMobile = useMediaQuery("(max-width: 767px)")
   useEffect(() => {
     const announcementDetail = sessionStorage.getItem("announcement_details");
     if (announcementDetail) {
@@ -356,18 +373,21 @@ const AddAnnouncementModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-60 ">
+    <div className="w-full h-full fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-60 ">
       {/* Modal Content */}
-      <div className="relative h-auto w-[640px] bg-white rounded-lg shadow-lg px-[40px] py-[60px] mt-[80px] overflow-y-auto scrollbar max-h-[calc(100vh-100px)]">
-        <button
-          className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl"
-          onClick={() => {
-            if (currentStep === 6) handleSubmit(isEditing);
-            closeModalHandle();
-          }}>
-          <Images.close />
-        </button>
-        <div className="flex flex-col items-between">
+      <div className="md:relative h-full md:h-auto w-screen md:w-[640px] bg-white md:rounded-lg md:shadow-lg md:px-[40px] md:py-[60px] md:mt-[80px] overflow-y-auto overflow-x-hidden scrollbar md:max-h-[calc(100vh-100px)]">
+        {!isMobile && (
+            <button
+                className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl"
+                onClick={() => {
+                  if (currentStep === 6) handleSubmit(isEditing);
+                  closeModalHandle();
+                }}>
+              <Images.close />
+            </button>
+        )}
+
+        <div className="flex flex-col items-between ">
           <CurrentStepComponent
             formData={formData}
             setFormData={setFormData}
@@ -388,6 +408,7 @@ export default AddAnnouncementModal;
 function StepRole({ handleNext, formData, setFormData, closeModal }: any) {
   const [selectedRole, setSelectedRole] = useState(formData.role || "");
   const [error, setError] = useState<boolean>(false);
+  const isMobile = useMediaQuery("(max-width: 767px)")
 
   const handleSelect = (role: string) => {
     setSelectedRole(role);
@@ -408,90 +429,63 @@ function StepRole({ handleNext, formData, setFormData, closeModal }: any) {
   };
 
   return (
-    <div className="w-full text-left">
-      <h2 className="text-[24px] font-bold leading-[30px] tracking-[0.2px] text-[#252525] text-left underline-from-font decoration-skip-ink-none mb-[16px]">
-        Кем вы являетесь?
-      </h2>
+      <div className="flex flex-col max-w-full max-h-full md:justify-center md:text-left px-4 md:px-0">
+        <div className={`max-w-full max-h-full flex flex-col items-center md:items-start justify-center py-10 md:py-0 gap-3 ${isMobile ? '' : 'md:text-left'}`}>
+          <h2 className="text-[24px] font-bold  leading-[30px] tracking-[0.2px] text-[#252525] underline-from-font decoration-skip-ink-none mb-4 md:mb-[16px]">
+            Кем вы являетесь?
+          </h2>
+          <p className="text-[16px] font-normal leading-[20px] text-[#252525] text-center md:text-left underline-from-font decoration-skip-ink-none mb-4 md:mb-[50px]">
+            Выберите роль, чтобы мы могли предложить подходящие функции
+          </p>
+        </div>
 
-      <p className="text-[16px] font-normal leading-[20px] text-[#252525] text-left underline-from-font decoration-skip-ink-none mb-[50px]">
-        Выберите роль, чтобы мы могли предложить подходящие функции
-      </p>
+        <div className="space-y-4 w-full h-full">
 
-      <div className="space-y-4">
-        {/* Option: Я хозяин */}
-        {/* <button
-          onClick={() => handleSelect("Я хозяин")}
-          className={`w-full flex items-center border rounded-lg p-4 transition ${
-            selectedRole === "Я хозяин"
-              ? "border-[#1AA683] bg-[#E6F8F2]"
-              : "border-gray-300 hover:bg-gray-100"
-          }`}>
-          <div className="flex items-center gap-[36px] w-full">
-            <div className="min-w-[150px] h-[150px] flex items-center justify-center">
-              <Images.roleOwner />
-            </div>
-            <div className="text-left flex flex-col gap-[16px]">
-              <p className="text-[20px] font-bold leading-[25px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
-                Я хозяин
-              </p>
-              <p className="text-[16px] font-semibold leading-[20px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
-                Эта опция для вас, если вы сдаёте жильё или предлагаете услуги
-              </p>
-            </div>
+          {/* Option: Я житель */}
+          <div className={isMobile ? "w-full h-full flex items-center justify-center" : ""}>
+            <button
+                onClick={() => handleSelect("Я житель")}
+                className={`w-full flex items-center border rounded-lg p-4 transition ${selectedRole === "Я житель" ? "border-[#1AA683] bg-[#E6F8F2]" : "border-gray-300 hover:bg-gray-100"}`}>
+              <div className="flex items-center w-full justify-center md:gap-[36px] w-full">
+                <div className="min-w-[150px] h-[150px] flex items-center justify-start p-5 md:p-0 md:justify-center">
+                  <Images.roleTenant />
+                </div>
+                <div className="text-left w-full flex flex-col gap-[16px]">
+                  <p className="text-[20px] font-bold leading-[25px] text-[#252525] underline-from-font decoration-skip-ink-none">
+                    Я житель
+                  </p>
+                  <p className="text-[16px] font-semibold leading-[20px] text-[#252525] underline-from-font decoration-skip-ink-none">
+                    Эта опция для вас, если вы ищете сожителей
+                  </p>
+                </div>
+              </div>
+            </button>
           </div>
-        </button> */}
+        </div>
 
-        {/* Option: Я житель */}
-        <button
-          onClick={() => handleSelect("Я житель")}
-          className={`w-full flex items-center border rounded-lg p-4 transition ${
-            selectedRole === "Я житель"
-              ? "border-[#1AA683] bg-[#E6F8F2]"
-              : "border-gray-300 hover:bg-gray-100"
-          }`}>
-          <div className="flex items-center gap-[36px] w-full">
-            <div className="min-w-[150px] h-[150px] flex items-center justify-center">
-              <Images.roleTenant />
-            </div>
-            <div className="text-left flex flex-col gap-[16px]">
-              <p className="text-[20px] font-bold leading-[25px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
-                Я житель
-              </p>
-              <p className="text-[16px] font-semibold leading-[20px] text-[#252525] text-left underline-from-font decoration-skip-ink-none">
-                Эта опция для вас, если вы ищете сожителей
-              </p>
-            </div>
-          </div>
-        </button>
+        {/* Error Message */}
+        {error && (
+            <p className="mt-4 text-[16px] font-semibold text-red-500">
+              Пожалуйста, выберите роль перед продолжением
+            </p>
+        )}
+
+        <div className="w-full h-full flex justify-between md:pb-10 md:pb-0 mt-16 pt-16 md:mt-6 md:pt-6 border-t-[1px] border-gray-300">
+          <button
+              className="px-[38px] py-[15px] text-[16px] font-bold text-[#252525] border-[1px] border-[#252525] rounded-[5px]"
+              onClick={() => closeModal()}
+          >
+            Закрыть
+          </button>
+          <button
+              onClick={handleProceed}
+              className={`px-[38px] py-[15px] text-[16px] font-bold rounded-[5px] ${selectedRole ? "bg-[#32343A] text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+          >
+            Следующий
+          </button>
+        </div>
       </div>
 
-      {/* Error Message */}
-      {error && (
-        <p className="mt-4 text-[16px] font-semibold text-red-500">
-          Пожалуйста, выберите роль перед продолжением
-        </p>
-      )}
-
-      <div className="flex justify-between items-center mt-[25px] pt-[25px] border-t-[1px]">
-        <button
-          className="px-[38px] py-[15px] text-[16px] font-bold leading-[20px] outline-none tracking-[0.2px] text-[#252525] border-[1px] border-[#252525] rounded-[5px]"
-          onClick={() => closeModal()} // Reset role selection on cancel
-        >
-          Закрыть
-        </button>
-        <button
-          onClick={handleProceed}
-          className={`px-[38px] py-[15px] text-[16px] font-bold leading-[20px] tracking-[0.2px] rounded-[5px] ${
-            selectedRole
-              ? "bg-[#32343A] text-[#FFFFFF]"
-              : "bg-gray-300 text-gray-500 cursor-not-allowed"
-          }`}
-          // disabled={!selectedRole}
-        >
-          Следующий
-        </button>
-      </div>
-    </div>
   );
 }
 
@@ -514,7 +508,7 @@ function StepBasicInfo({
   const [ageRange, setAgeRange] = useState(formData.ageRange || [18, 50]);
 
   const [isNextDisabled, setIsNextDisabled] = useState(true);
-
+  const [isMobile, setIsMobile] = useState(true);
   const validateForm = () => {
     if (title.trim().length >= 10 && gender && peopleInApartment) {
       setIsNextDisabled(false);
@@ -544,7 +538,7 @@ function StepBasicInfo({
   };
 
   return (
-    <div className="flex flex-col gap-[36px]">
+    <div className="flex flex-col p-5 md:p-0 w-full gap-[36px]">
       <h2 className="text-[24px] font-circular font-semibold leading-[30px] text-[#252525] text-left mb-[14px]">
         {isEditing ? "Редактирование объявления" : "Создание нового объявления"}
       </h2>
@@ -655,7 +649,7 @@ function StepBasicInfo({
       </div>
 
       {/* Number of Roommates */}
-      <div className="flex flex-col gap-[12px] ">
+      <div className="flex flex-col w-full gap-[12px] ">
         <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-2">
           Сколько человек подселяете?
         </label>
@@ -682,7 +676,7 @@ function StepBasicInfo({
       </div>
 
       {/* Age Range */}
-      <div className="flex flex-col">
+      <div className="flex w-full flex-col">
         <label className="block text-[16px] font-semibold leading-[20px] text-[#252525] mb-[40px]">
           Возрастной диапазон
         </label>
@@ -711,16 +705,16 @@ function StepBasicInfo({
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between items-center mt-[25px] pt-[25px] border-t-[1px]">
+      <div className="flex w-full h-full justify-between gap-2 md:gap-0 items-center mt-[25px] pt-[25px] border-t-[1px]">
         <button
           onClick={handleBack}
-          className="px-[38px] py-[15px] text-[16px] font-bold text-[#252525] border-[1px] border-[#252525] rounded-lg hover:bg-gray-100">
+          className="px-[38px] py-[15px]  text-[16px] font-bold text-[#252525] border-[1px] border-[#252525] rounded-lg hover:bg-gray-100">
           Отменить
         </button>
         <button
           onClick={handleSubmit}
           disabled={isNextDisabled}
-          className={`px-[38px] py-[15px] text-[16px] font-bold leading-[20px] tracking-[0.2px] rounded-[5px] ${
+          className={`px-[38px] py-[15px]  text-[16px] font-bold leading-[20px] tracking-[0.2px] rounded-[5px] ${
             !isNextDisabled
               ? "bg-[#32343A] text-[#FFFFFF]"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -845,7 +839,7 @@ function StepApartmentDetails({
   }, []);
 
   return (
-    <div className="flex flex-col gap-[36px]">
+    <div className="flex flex-col p-5 md:p-0 gap-[36px]">
       <h2 className="text-[24px] font-circular font-semibold leading-[30px] text-[#252525] text-left mb-[14px]">
         Детали квартиры
       </h2>
@@ -1051,7 +1045,7 @@ function StepApartmentDetails({
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between items-center mt-[25px] pt-[25px] border-t-[1px]">
+      <div className="flex justify-between gap-2 md:gap-0 items-center mt-[25px] pt-[25px] border-t-[1px]">
         <button
           onClick={handleBack}
           className="px-[38px] py-[15px] text-[16px] font-bold text-[#252525] border-[1px] border-[#252525] rounded-lg hover:bg-gray-100">
@@ -1148,7 +1142,7 @@ function StepApartmentAdditionallyDetails({
     setUtilitiesAmount(newAmount);
   };
   return (
-    <div className="flex flex-col gap-[36px]">
+    <div className="flex flex-col p-5 md:p-0 gap-[36px]">
       <h2 className="text-[24px] font-circular font-semibold leading-[30px] text-[#252525] text-left mb-[14px]">
         Детали квартиры
       </h2>
@@ -1236,7 +1230,7 @@ function StepApartmentAdditionallyDetails({
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between items-center mt-[25px] pt-[25px] border-t-[1px]">
+      <div className="flex justify-between gap-2 md:gap-0 items-center mt-[25px] pt-[25px] border-t-[1px]">
         <button
           onClick={handleBack}
           className="px-[38px] py-[15px] text-[16px] font-bold text-[#252525] border-[1px] border-[#252525] rounded-lg hover:bg-gray-100">
@@ -1331,7 +1325,7 @@ function StepApartmentFullDetails({
   }, [propertyType, floorsFrom, floorsTo, roomSize, longTerm, ownerPhone]);
 
   return (
-    <div className="flex flex-col gap-[36px]">
+    <div className="flex flex-col p-5 md:p-0 gap-[36px]">
       <h2 className="text-[24px] font-circular font-semibold leading-[30px] text-[#252525] text-left mb-[14px]">
         Полные детали квартиры
       </h2>
@@ -1573,7 +1567,7 @@ function StepApartmentFullDetails({
       </button> */}
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between items-center mt-[25px] pt-[25px] border-t-[1px]">
+      <div className="flex justify-between items-center gap-2 md:gap-0 mt-[25px] pt-[25px] border-t-[1px]">
         <button
           onClick={handleBack}
           className="px-[38px] py-[15px] text-[16px] font-bold text-[#252525] border-[1px] border-[#252525] rounded-lg hover:bg-gray-100">
@@ -1631,10 +1625,10 @@ function StepSuccess({
   };
 
   return (
-    <div className="flex flex-col gap-[50px]">
-      <div className="w-[500px] mx-auto flex flex-col text-center gap-[32px] items-center justify-center">
+    <div className="flex flex-col p-5 gap-[50px]">
+      <div className="w-full mx-auto flex flex-col text-center gap-[32px] items-center justify-center">
         <Images.finished />
-        <h2 className="text-[24px] font-circular font-semibold leading-[30px] text-[#252525] px-[50px]">
+        <h2 className="text-[24px] w-full font-circular font-semibold leading-[30px] text-[#252525] px-[50px]">
           {isEditing
             ? "Поздравляем! Ваше объявление успешно изменено"
             : "Поздравляем! Ваше объявление успешно загружено"}

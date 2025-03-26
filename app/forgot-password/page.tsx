@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import axiosInstance from "@/axiosInstance/axios";
@@ -11,6 +11,18 @@ const ForgotPasswordPage = () => {
   const [isError, setIsError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust the breakpoint if needed
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (isError) {
@@ -40,10 +52,12 @@ const ForgotPasswordPage = () => {
 
   return (
     <div className="min-h-full min-w-full space-y-[90px]">
-      <Header />
-      <div className="w-[1440px] mx-auto flex justify-center items-center">
-        <div className="border-[#D6D6D6] border rounded-lg p-8 px-[110px] py-[120px]">
-          <div className="w-[500px] flex flex-col items-center">
+      <div className="hidden sm:block">
+        <Header/>
+      </div>
+      <div className="w-full lg:mx-auto flex justify-center items-center">
+        <div className="border-0 lg:border-[#D6D6D6] lg:border lg:rounded-lg lg:p-8 lg:px-[110px] lg:py-[120px]">
+          <div className="w-[350px] lg:w-[500px] flex flex-col justify-center items-center relative top-20 lg:relative lg:top-0">
             <h1 className="w-full mb-3 font-circular text-[32px] font-bold leading-[40px] text">
               Забыли пароль?
             </h1>
@@ -96,7 +110,9 @@ const ForgotPasswordPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="hidden sm:block">
+        <Footer/>
+      </div>
     </div>
   );
 };
