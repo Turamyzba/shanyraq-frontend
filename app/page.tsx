@@ -252,6 +252,7 @@ export default function Home() {
                                         : announcements.map((announcement) => (
                                             <HomeCard key={announcement.announcementId} card={announcement} />
                                         ))}
+                                        
                                 </div>
                             </div>
                         </div>
