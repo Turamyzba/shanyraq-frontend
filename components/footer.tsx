@@ -19,7 +19,7 @@ const Footer = () => {
             <Link href="/landing" className="hover:underline">
               shanyraq.kz
             </Link>
-            , все права защищены
+            , all rights reserved
           </div>
           <div className="flex space-x-2 order-first sm:order-last">
             <Images.TelegramIcon className="w-[28px] h-[28px]" />

@@ -64,7 +64,7 @@ const Card: React.FC<CardProps> = ({ card, isLast }) => {
             <div className="flex flex-col items-center gap-[6px]">
               <Images.apartment h={"24px"} w={"24px"} />
               <p className="text-[12px] sm:text-[14px] text-[#929292] text-center">
-                {card?.roomCount} комната
+                {card?.roomCount} room
               </p>
             </div>
 
@@ -85,13 +85,13 @@ const Card: React.FC<CardProps> = ({ card, isLast }) => {
 
           <p className="text-[20px] sm:text-[24px] font-[700] text-[#252525] text-left">
             {card?.cost}
-            <span className="underline text-[#252525]">₸</span>
+            <span className="underline text-[#252525]">$</span>
           </p>
         </div>
 
         <span className="flex items-center">
           <p className="text-[13px] sm:text-[14px] font-[700] text-[#999999] text-left mr-[10px]">
-            Узнать больше
+            Learn more
           </p>
           <Images.ArrowRight w={"14"} h={"14"} color={"#999999"} />
         </span>
@@ -103,7 +103,7 @@ const Card: React.FC<CardProps> = ({ card, isLast }) => {
             onClick={() => router.push("/")}
             className="p-[16px] px-[20px] gap-[8px] rounded-[10px] bg-[#1132F5] text-white text-[15px] sm:text-[16px] font-medium"
           >
-            Смотреть все квартиры
+            View all apartments
           </button>
         </div>
       )}

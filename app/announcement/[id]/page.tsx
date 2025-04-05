@@ -438,8 +438,8 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                           Utilities:
                         </p>
                         <p className="text-[#252525] text-[15px] lg:text-[16px] leading-[20px]">
-                          ${announcement.minAmountOfCommunalService} -{" "}
-                          ${announcement.maxAmountOfCommunalService}
+                          ${announcement.minAmountOfCommunalService} - $
+                          {announcement.maxAmountOfCommunalService}
                         </p>
                       </div>
 
@@ -455,7 +455,8 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
 
                     <div className="flex-1 p-6 border rounded-lg space-y-4">
                       <p className="text-[13px] lg:text-[14px] text-[#4D4D4D] leading-[20px]">
-                        You can contact the residents to discuss any questions...
+                        You can contact the residents to discuss any
+                        questions...
                       </p>
 
                       <div className="flex items-start flex-col space-y-1">

@@ -6,7 +6,7 @@ import { useModal } from "@/app/context/modal-context";
 import Slider from "@mui/material/Slider";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import * as Logo from '@/public/logo.png'
 interface HeaderProps {
   isFilterResults?: boolean;
 }
@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
     useState(false);
 
   const [address, setAdress] = useState({
-    regionOrCityName: "Весь Казахстан",
+    regionOrCityName: "All Kazakhstan",
     districtName: "",
     microDistrictName: "",
   });
@@ -79,17 +79,15 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
       minPrice: priceRange[0] || 0,
       maxPrice: priceRange[1] || 500000,
       gender: gender || "",
-      roommatesCount: parseInt(housemates, 10) || 1, // Ensure housemates is an integer
+      roommatesCount: parseInt(housemates, 10) || 1,
     };
 
-    // Filter out undefined or empty keys
     const cleanedParams = Object.fromEntries(
       Object.entries(queryParams).filter(
         ([_, v]) => v !== undefined && v !== ""
       )
     );
 
-    // Redirect to home with query parameters
     const queryString = new URLSearchParams(
       cleanedParams as Record<string, string>
     ).toString();
@@ -98,8 +96,8 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
   };
 
   const genders = [
-    { id: 1, name: "Мужчина" },
-    { id: 2, name: "Женщина" },
+    { id: 1, name: "Male" },
+    { id: 2, name: "Female" },
   ];
 
   const housematesCount = [
@@ -119,14 +117,14 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
     setIsHousematesDropdownOpen(false);
   };
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("Рус");
+  const [selectedLanguage, setSelectedLanguage] = useState("Eng");
 
   const languages = [
-    { id: 1, name: "Рус" },
-    { id: 2, name: "Қаз" },
+    { id: 1, name: "Eng" },
+    { id: 2, name: "Kaz" },
   ];
 
-  const [selectedCity, setSelectedCity] = useState("Алматы");
+  const [selectedCity, setSelectedCity] = useState("Almaty");
   const [isCityDropdownOpen, setIsCityDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -135,11 +133,11 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
   };
 
   const cities = [
-    { id: 1, name: "Астана" },
-    { id: 2, name: "Алматы" },
-    { id: 3, name: "Шымкент" },
-    { id: 4, name: "Орал" },
-    { id: 5, name: "Қарағанды" },
+    { id: 1, name: "Astana" },
+    { id: 2, name: "Almaty" },
+    { id: 3, name: "Shymkent" },
+    { id: 4, name: "Oral" },
+    { id: 5, name: "Karaganda" },
   ];
 
   const toggleTheme = () => {
@@ -161,7 +159,6 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
             <div className="hidden sm:block">
               <Images.Location />
             </div>
-            {/* <a className="underline underline-offset-2 pr-2">Астана</a> */}
             <a
               onClick={() => {
                 toggleAllDropDown();
@@ -175,7 +172,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                     ? selectedCity.length <= 17
                       ? selectedCity
                       : `${selectedCity?.substring(0, 15)}...`
-                    : "Весь Казахстан"}
+                    : "All Kazakhstan"}
                 </p>
 
                 {Images.arrowDown({ w: "18", h: "18", color: "#000000" })}
@@ -205,17 +202,13 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
             )}
           </div>
 
-          {/* Dark Mode Toggle and Language Dropdown */}
-
           <div className="relative hidden sm:flex items-center space-x-5 ">
-            {/* Dark Mode Toggle */}
             <button
               onClick={toggleTheme}
               className={`relative w-[56px] h-[26px] flex items-center rounded-[5px] transition-colors outline-none  ${
                 isDarkMode ? "bg-[#252525]" : "border border-gray-200"
               }`}
             >
-              {/* Light Icon */}
               <div
                 className={`absolute right-2 transition-opacity duration-300 ${
                   isDarkMode ? "opacity-0" : "opacity-100"
@@ -223,7 +216,6 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
               >
                 <Images.LightModeIcon className="w-5 h-5 " />
               </div>
-              {/* Dark Icon */}
               <div
                 className={`absolute left-2 transition-opacity duration-300 ${
                   isDarkMode ? "opacity-100" : "opacity-0"
@@ -251,10 +243,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
         </section>
         <section className="flex flex-row justify-between">
           <Link href="/" className="flex items-center space-x-2 cursor-pointer">
-            <Images.Logo className="w-[50px] h-[50px]" />
-            <h1 className="font-circular font-semibold text-[28px] leading-[38px]">
-              Şañyraq
-            </h1>
+            <img src="/public/logo.png" alt="" />
           </Link>
           {isAuth && isFilterResults && (
             <div className="flex items-center space-x-2">
@@ -272,7 +261,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                         ? city.length <= 17
                           ? city
                           : `${city?.substring(0, 14)}...`
-                        : "Весь Казахстан"}
+                        : "All Kazakhstan"}
                     </p>
                   </div>
                 </div>
@@ -288,7 +277,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                       <input
                         className="w-full border-none outline-none "
                         type="text"
-                        placeholder="Поиск по городу"
+                        placeholder="Search by city"
                       />
                       <Images.SearchIconGray />
                     </div>
@@ -299,20 +288,20 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                             onClick={() => {
                               setAdress((prevState) => ({
                                 ...prevState,
-                                regionOrCityName: "Весь Казахстан", // Defalut
+                                regionOrCityName: "All Kazakhstan",
                               }));
                               setIsDistrictDropdownOpen(false);
                               setDistrict({ children: [] });
                               setMicroDistrcit({ children: [] });
-                              setCity("Весь Казахстан");
+                              setCity("All Kazakhstan");
                             }}
                             className={`flex p-[12px] cursor-pointer ${
-                              "Весь Казахстан" == address.regionOrCityName
+                              "All Kazakhstan" == address.regionOrCityName
                                 ? "bg-[#1132F583] text-white"
                                 : ""
                             }`}
                           >
-                            Весь Казахстан
+                            All Kazakhstan
                           </li>
                           {all_addresses.map((region) => (
                             <li
@@ -396,7 +385,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                     </div>
                     <div>
                       <button className="font-circular font-bold text-[14px] text-[#FFFFFF] leading-[17.5px] tracking-[0.2px] bg-[#32343A] px-[55px] py-[12px] rounded-[5px] ">
-                        Выбрать
+                        Select
                       </button>
                     </div>
                   </div>
@@ -413,7 +402,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                     <p className="font-circular text-left text-[14px] font-medium leading-[18px] text-[#252525]">
                       {priceRange[0] || priceRange[1] != 500000
                         ? `${priceRange[0]} - ${priceRange[1]}`
-                        : "Выберите цену"}
+                        : "Select price"}
                     </p>
                   </div>
                 </div>
@@ -425,7 +414,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                     }}
                   >
                     <h3 className="text-[#4B4B4B] text-left text-sm font-normal leading-7">
-                      Выберите цену
+                      Select price
                     </h3>
 
                     <div className="flex space-x-[15px] mb-6">
@@ -436,7 +425,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                           setPriceRange([+e.target.value, priceRange[1]])
                         }
                         className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1132F5] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
-                        placeholder="Минимальный"
+                        placeholder="Minimum"
                       />
 
                       <input
@@ -446,7 +435,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                           setPriceRange([priceRange[0], +e.target.value])
                         }
                         className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1132F5] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
-                        placeholder="Максимальный"
+                        placeholder="Maximum"
                       />
                     </div>
 
@@ -483,7 +472,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                 >
                   <div className="flex items-center">
                     <p className="font-circular text-left text-[14px] font-medium leading-[18px] text-[#252525]">
-                      {gender || "Выберите пол"}
+                      {gender || "Select gender"}
                     </p>
                   </div>
                 </div>
@@ -496,7 +485,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                     }}
                   >
                     <p className="text-[14px] font-normal leading-[17.5px] text-left text-[#252525]">
-                      Выберите пол
+                      Select gender
                     </p>
 
                     <ul className="flex flex-col">
@@ -505,7 +494,6 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                           key={g.id}
                           onClick={() => {
                             setGender(g.name);
-                            // setIsGenderDropdownOpen(false);
                           }}
                           className={`${
                             g.name === gender
@@ -529,17 +517,16 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                 >
                   <div className="flex items-center">
                     <p className="font-circular text-left text-[14px] font-medium leading-[18px] text-[#252525]">
-                      {/* {housemates + " жителей" || "Количество сожителей"} */}
                       {housemates
-                        ? `${housemates} жителей`
-                        : "Количество сожителей"}
+                        ? `${housemates} residents`
+                        : "Number of roommates"}
                     </p>
                   </div>
                 </div>
                 {isHousematesDropdownOpen && (
                   <div className="absolute top-[60px] left-0 p-[20px] space-y-[24px] bg-white border border-gray-200 rounded-md shadow-lg text-[#252525]">
                     <div className="font-normal text-[14px] leading-[17.5px]">
-                      Количество сожителей
+                      Number of roommates
                     </div>
                     <ul className="flex justify-between space-x-[7px]">
                       {housematesCount.map((room) => (
@@ -578,14 +565,14 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                 className="flex justify-center items-center space-x-2 text-[#1132F5] font-bold px-[25px] h-[50px] rounded"
                 onClick={() => router.push("/login")}
               >
-                <span>Войти</span>
+                <span>Login</span>
               </button>
             )}
             <button
               className="flex justify-center items-center space-x-2 bg-[#1132F5] text-white font-bold px-[25px] h-[50px] rounded"
               onClick={handleCreateAnn}
             >
-              <span>Подать объявление</span>
+              <span>Post ad</span>
               <Images.ArrowRight />
             </button>
             {isAuth && (
@@ -596,7 +583,6 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                 >
                   <Images.UserIcon className="w-[32px] h-[32px]" />
                 </button>
-                {/* Dropdown Menu */}
                 {dropdownOpen && (
                   <div
                     className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-20"
@@ -607,14 +593,14 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
-                      Мой профиль
+                      My profile
                     </Link>
                     <Link
                       href="/login"
                       onClick={() => setDropdownOpen(false)}
                       className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
-                      Выйти
+                      Logout
                     </Link>
                   </div>
                 )}
