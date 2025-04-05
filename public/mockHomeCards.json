@@ -8,7 +8,8 @@
     "roomCount": 1,
     "roommates": 1,
     "arriveDate": "2025-05-15",
-    "selectedGender": "Any"
+    "selectedGender": "Any",
+    "description": "Modern studio apartment with city views, fully furnished with high-speed internet included."
   },
   {
     "announcementId": 2,
@@ -19,7 +20,8 @@
     "roomCount": 2,
     "roommates": 1,
     "arriveDate": "2025-06-01",
-    "selectedGender": "Male"
+    "selectedGender": "Male",
+    "description": "Luxury 2-bedroom apartment near shopping district with gym and pool access."
   },
   {
     "announcementId": 3,
@@ -30,7 +32,8 @@
     "roomCount": 3,
     "roommates": 2,
     "arriveDate": "2025-04-20",
-    "selectedGender": "Female"
+    "selectedGender": "Female",
+    "description": "Beachfront condo with stunning views, close to East Coast Park and dining options."
   },
   {
     "announcementId": 4,
@@ -41,7 +44,8 @@
     "roomCount": 1,
     "roommates": 1,
     "arriveDate": "2025-07-01",
-    "selectedGender": "Any"
+    "selectedGender": "Any",
+    "description": "Compact studio perfect for students, walking distance to NUS and public transport."
   },
   {
     "announcementId": 5,
@@ -52,6 +56,43 @@
     "roomCount": 2,
     "roommates": 1,
     "arriveDate": "2025-05-10",
-    "selectedGender": "Male"
+    "selectedGender": "Male",
+    "description": "Private room in a well-maintained HDB apartment with shared kitchen and living area."
+  },
+  {
+    "announcementId": 6,
+    "title": "Executive Condo near Downtown",
+    "cost": "4,200",
+    "image": "https://ulcdn.universityliving.com/cms/LDBw3S4dqMiqCrljRtOC52QNdXAO1F.jpg?format=auto&width=1920",
+    "address": "Tanjong Pagar, Singapore",
+    "roomCount": 3,
+    "roommates": 1,
+    "arriveDate": "2025-05-30",
+    "selectedGender": "Any",
+    "description": "Premium executive condo with city views, smart home features, and 24-hour security."
+  },
+  {
+    "announcementId": 7,
+    "title": "Affordable Room in Jurong East",
+    "cost": "950",
+    "image": "https://ulcdn.universityliving.com/cms/9JTpj6rVl0Xv4z6bRoXvWE67e5Q2rF.jpg?format=auto&width=1920",
+    "address": "Jurong East, Singapore",
+    "roomCount": 1,
+    "roommates": 2,
+    "arriveDate": "2025-04-15",
+    "selectedGender": "Female",
+    "description": "Budget-friendly room in quiet neighborhood, close to Jurong East MRT and shopping malls."
+  },
+  {
+    "announcementId": 8,
+    "title": "Luxury Penthouse with Skyline View",
+    "cost": "7,500",
+    "image": "https://ulcdn.universityliving.com/cms/Kni9j5k0N3T4vczlUbypGtYXBRdP8s.jpg?format=auto&width=1920",
+    "address": "Marina Bay, Singapore",
+    "roomCount": 4,
+    "roommates": 1,
+    "arriveDate": "2025-06-15",
+    "selectedGender": "Any",
+    "description": "Exclusive penthouse with panoramic views, private terrace, and luxury amenities."
   }
 ]

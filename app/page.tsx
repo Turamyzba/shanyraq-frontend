@@ -90,7 +90,10 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-between">
             {Array.from({ length: 4 }).map((_, index) => (
-              <div key={index} className="flex flex-col items-center gap-[4px]">
+              <div
+                key={`skeleton-${index}`}
+                className="flex flex-col items-center gap-[4px]"
+              >
                 <Skeleton variant="circular" width={14} height={14} />
                 <Skeleton variant="text" width={40} height={16} />
               </div>
@@ -121,64 +124,62 @@ export default function Home() {
     <div className="min-h-full min-w-full space-y-[20px]">
       <Header isFilterResults={false} />
 
-      {isMapDropdownOpen ? (
-        <div className="bg-white relative w-full h-[90vh]">
-          <div className="absolute inset-0 z-0">
-            <Map announcements={announcements} />
-          </div>
-
-          {isFilterVisible && !isMobile && (
-            <div className="absolute left-10 top-5 z-10 bg-white p-4 rounded-lg shadow-lg flex flex-col items-end">
-              <button
-                onClick={handleFilterVisibility}
-                className="text-gray-600 hover:text-gray-900 text-2xl mb-[10px]"
-              >
-                <Images.close />
-              </button>
-              <FilterModal onSubmit={() => null} initialQuery={null} />
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        {isMapDropdownOpen ? (
+          <div className="bg-white relative w-full h-[90vh] rounded-lg overflow-hidden">
+            <div className="absolute inset-0 z-0">
+              <Map announcements={announcements} />
             </div>
-          )}
 
-          <div
-            className={
-              isMobile
-                ? "absolute w-full top-0 flex justify-center h-[60px]"
-                : "absolute top-10 right-10 z-10 flex gap-4"
-            }
-            style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
-          >
-            <button
-              onClick={() => {
-                setMapDropdownOpen(false);
-                setViewType("lists");
-              }}
-              className="flex items-center justify-center gap-2 bg-white text-black border border-[#BFBFBF4D] hover:bg-gray-100 w-full md:w-auto px-4 py-2"
-            >
-              <Images.ListIcon />
-              List View
-            </button>
-            {isMobile ? (
-              <FilterModal onSubmit={() => null} initialQuery={null} />
-            ) : (
-              <button
-                onClick={handleFilterVisibility}
-                className="flex items-center justify-center gap-2 bg-white text-black border border-[#BFBFBF4D] hover:bg-gray-100 w-full md:w-auto px-4 py-2 "
-              >
-                <Images.filterIcon />
-              </button>
+            {isFilterVisible && !isMobile && (
+              <div className="absolute left-10 top-5 z-10 bg-white p-4 rounded-lg shadow-lg flex flex-col items-end">
+                <button
+                  onClick={handleFilterVisibility}
+                  className="text-gray-600 hover:text-gray-900 text-2xl mb-[10px]"
+                >
+                  <Images.close />
+                </button>
+                <FilterModal onSubmit={() => null} initialQuery={null} />
+              </div>
             )}
-          </div>
-        </div>
-      ) : (
-        <div className="flex-grow w-screen xl:px-10 2xl:px-10 md:px-10">
-          {errorMessage && <div className="text-red-500">{errorMessage}</div>}
 
+            <div
+              className={
+                isMobile
+                  ? "absolute w-full top-0 flex justify-center h-[60px]"
+                  : "absolute top-10 right-10 z-10 flex gap-4"
+              }
+              style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
+            >
+              <button
+                onClick={() => {
+                  setMapDropdownOpen(false);
+                  setViewType("lists");
+                }}
+                className="flex items-center justify-center gap-2 bg-white text-black border border-[#BFBFBF4D] hover:bg-gray-100 w-full md:w-auto px-4 py-2 rounded-md"
+              >
+                <Images.ListIcon />
+                List View
+              </button>
+              {isMobile ? (
+                <FilterModal onSubmit={() => null} initialQuery={null} />
+              ) : (
+                <button
+                  onClick={handleFilterVisibility}
+                  className="flex items-center justify-center gap-2 bg-white text-black border border-[#BFBFBF4D] hover:bg-gray-100 w-full md:w-auto px-4 py-2 rounded-md"
+                >
+                  <Images.filterIcon />
+                </button>
+              )}
+            </div>
+          </div>
+        ) : (
           <div className="flex flex-col w-full md:flex-row justify-around gap-[20px] md:gap-[25px]">
             <div
               className={
                 isMobile
                   ? "w-full flex flex-row h-[60px]"
-                  : "md:min-w-[300px] lg:min-w-[350px] xl:min-w-[450px]"
+                  : "md:min-w-[250px] lg:min-w-[300px] xl:min-w-[350px] sticky top-4 self-start"
               }
               style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
             >
@@ -186,7 +187,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={toggleMapDropdown}
-                  className="flex items-center justify-center gap-2 bg-white text-black border border-[#BFBFBF4D] hover:bg-gray-100 w-full md:w-auto px-4 py-2 "
+                  className="flex items-center justify-center gap-2 bg-white text-black border border-[#BFBFBF4D] hover:bg-gray-100 w-full md:w-auto px-4 py-2 rounded-md"
                 >
                   <Images.map />
                   Map
@@ -209,7 +210,7 @@ export default function Home() {
                       <Images.arrowDown w={"20"} h={"20"} color={"#5c5c5c"} />
                     </div>
                     {isSortDropdownOpen && (
-                      <div className="absolute top-[30px] left-[-10px] bg-white space-y-[12px] min-w-[200px] rounded-[5px] text-left z-10">
+                      <div className="absolute top-[30px] left-[-10px] bg-white space-y-[12px] min-w-[200px] rounded-[5px] text-left z-10 shadow-md p-2">
                         <ul className="flex flex-col">
                           {[
                             "Most relevant",
@@ -239,30 +240,34 @@ export default function Home() {
                 )}
 
                 {!isMobile && (
-                  <button type="button" onClick={toggleMapDropdown}>
+                  <button
+                    type="button"
+                    onClick={toggleMapDropdown}
+                    className="bg-white p-2 rounded-md hover:bg-gray-100 transition-colors"
+                  >
                     <Images.map />
                   </button>
                 )}
               </div>
 
-              <div className="flex justify-center w-full">
-                <div className="w-full px-[30px] md:px-[10px] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-x-[10px] gap-y-[10px] ">
-                  {loading
-                    ? Array.from({ length: 6 }).map((_, index) => (
-                        <div key={index}>{renderSkeletonCard()}</div>
-                      ))
-                    : announcements.map((announcement) => (
-                        <HomeCard
-                          key={announcement.announcementId}
-                          card={announcement}
-                        />
-                      ))}
-                </div>
+              <div className="w-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-6">
+                {loading
+                  ? Array.from({ length: 6 }).map((_, index) => (
+                      <div key={`skeleton-card-${index}`}>
+                        {renderSkeletonCard()}
+                      </div>
+                    ))
+                  : announcements.map((announcement) => (
+                      <HomeCard
+                        card={announcement}
+                        id={announcement.announcementId.toString()}
+                      />
+                    ))}
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
       <Footer />
     </div>
   );
