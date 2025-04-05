@@ -1,3 +1,4 @@
+// components/home-card.tsx (исправленная версия)
 "use client";
 import Image from "next/image";
 import * as Images from "../public/images";

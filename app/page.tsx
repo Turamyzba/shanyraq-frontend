@@ -124,7 +124,7 @@ export default function Home() {
     <div className="min-h-full min-w-full space-y-[20px]">
       <Header isFilterResults={false} />
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl mx-auto px-4">
         {isMapDropdownOpen ? (
           <div className="bg-white relative w-full h-[90vh] rounded-lg overflow-hidden">
             <div className="absolute inset-0 z-0">
@@ -259,6 +259,7 @@ export default function Home() {
                     ))
                   : announcements.map((announcement) => (
                       <HomeCard
+                        key={announcement.announcementId}
                         card={announcement}
                         id={announcement.announcementId.toString()}
                       />

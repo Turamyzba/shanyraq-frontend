@@ -291,7 +291,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
     return (
 
         <div
-            className="filter w-full md:min-w-[250px] lg:min-w-[250px] xl:min-w-[450px]  w-full bg-white  overflow-y-auto scrollbar max-h-[90vh] sticky top-[30px]"
+            className="filter w-full md:min-w-[250px] lg:min-w-[250px] xl:min-w-[350px]  w-full bg-white  overflow-y-auto scrollbar max-h-[90vh] sticky top-[30px]"
             style={{
                 boxShadow: "0px 4px 9px 0px #98A0B440",
             }}>
