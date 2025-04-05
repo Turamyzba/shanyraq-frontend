@@ -19,11 +19,13 @@ const Accordion: React.FC<AccordionProps> = ({
     <div
       className={`accordion ${
         !activeDesc ? (data.id === 1 ? "mb-[40px]" : "my-[40px]") : "my-[0]"
-      }`}>
+      }`}
+    >
       <div className="accordion-item overflow-hidden pt-[10px] pb-[20px]">
         <button
           className="accordion-header w-full text-left flex items-center gap-[12px]"
-          onClick={toggleAccordion}>
+          onClick={toggleAccordion}
+        >
           <span className="font-circular text-[20px] font-bold leading-[25px] tracking-[0.2px]">
             {data.title}
           </span>
@@ -40,7 +42,8 @@ const Accordion: React.FC<AccordionProps> = ({
             </p>
             <a
               href="#"
-              className="font-circular text-[16px] mt-[50px] font-medium leading-[20px] tracking-[0.2px] underline block">
+              className="font-circular text-[16px] mt-[50px] font-medium leading-[20px] tracking-[0.2px] underline block"
+            >
               Узнать больше
             </a>
           </div>

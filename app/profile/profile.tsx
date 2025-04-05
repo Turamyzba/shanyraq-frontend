@@ -265,26 +265,29 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
               disabled={!isEditing}
               className={`${
                 isEditing ? "cursor-text" : "cursor-not-allowed"
-              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683]`}>
+              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683]`}
+            >
               <option value="Мужской">Мужской</option>
               <option value="Женский">Женский</option>
               <option value="Любой">Любой</option>
             </select>
           </div>
         </div>
-        <div className="flex justify-end space-x-4 mt-[200px]">
+        <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 mt-16 md:mt-[200px]">
           <button
             type="button"
             onClick={() => {
               formData.hasPassword ? openModal() : setIsNewModalShow(true);
             }}
-            className="border-[1px] border-[#B5B7C0] text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100">
+            className="border-[1px] border-[#B5B7C0] text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100"
+          >
             Изменить пароль
           </button>
           <button
             type="button"
             onClick={handleSubmit}
-            className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-700">
+            className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-700"
+          >
             {isEditing ? "Сохранить изменения" : "Редактировать"}
           </button>
         </div>
@@ -294,7 +297,8 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <form
             onSubmit={handlePasswordSubmit}
-            className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
+          >
             <h2 className="text-lg font-semibold mb-6 text-[#252525]">
               Поменяйте свой пароль
             </h2>
@@ -318,14 +322,16 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                   passwordData.oldPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
-                }`}>
+                }`}
+              >
                 Старый пароль
               </label>
               <button
                 className="absolute right-4 bottom-3 cursor-pointer"
                 type="button"
                 disabled={!passwordData.oldPassword}
-                onClick={() => toggleVisibility("old")}>
+                onClick={() => toggleVisibility("old")}
+              >
                 {!passwordVisibility.old ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
@@ -359,14 +365,16 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                   passwordData.newPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
-                }`}>
+                }`}
+              >
                 Новый пароль
               </label>
               <button
                 className="absolute right-4 bottom-3 cursor-pointer"
                 type="button"
                 disabled={!passwordData.newPassword}
-                onClick={() => toggleVisibility("new")}>
+                onClick={() => toggleVisibility("new")}
+              >
                 {!passwordVisibility.new ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
@@ -400,14 +408,16 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                   passwordData.confirmPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
-                }`}>
+                }`}
+              >
                 Подтвердите пароль
               </label>
               <button
                 className="absolute right-4 bottom-3 cursor-pointer"
                 type="button"
                 disabled={!passwordData.confirmPassword}
-                onClick={() => toggleVisibility("confirm")}>
+                onClick={() => toggleVisibility("confirm")}
+              >
                 {!passwordVisibility.confirm ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
@@ -427,13 +437,15 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
             <div className="flex flex-col items-center gap-4">
               <button
                 type="submit"
-                className="bg-[#1aa683] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center">
+                className="bg-[#1aa683] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center"
+              >
                 Подтвердить
               </button>
               <button
                 type="button"
                 onClick={closeModal}
-                className="text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100 w-full text-center">
+                className="text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100 w-full text-center"
+              >
                 Отменить
               </button>
             </div>
@@ -444,7 +456,8 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <form
             onSubmit={handlePasswordSubmit}
-            className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
+          >
             <h2 className="text-lg font-semibold mb-6 text-[#252525]">
               Добавьте свой пароль
             </h2>
@@ -468,14 +481,16 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                   passwordData.newPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
-                }`}>
+                }`}
+              >
                 Новый пароль
               </label>
               <button
                 className="absolute right-4 bottom-3 cursor-pointer"
                 type="button"
                 disabled={!passwordData.newPassword}
-                onClick={() => toggleVisibility("new")}>
+                onClick={() => toggleVisibility("new")}
+              >
                 {!passwordVisibility.new ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
@@ -509,14 +524,16 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                   passwordData.confirmPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
-                }`}>
+                }`}
+              >
                 Подтвердите пароль
               </label>
               <button
                 className="absolute right-4 bottom-3 cursor-pointer"
                 type="button"
                 disabled={!passwordData.confirmPassword}
-                onClick={() => toggleVisibility("confirm")}>
+                onClick={() => toggleVisibility("confirm")}
+              >
                 {!passwordVisibility.confirm ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
@@ -536,13 +553,15 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
             <div className="flex flex-col items-center gap-4">
               <button
                 type="submit"
-                className="bg-[#1aa683] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center">
+                className="bg-[#1aa683] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center"
+              >
                 Подтвердить
               </button>
               <button
                 type="button"
                 onClick={() => setIsNewModalShow(false)}
-                className="text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100 w-full text-center">
+                className="text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-100 w-full text-center"
+              >
                 Отменить
               </button>
             </div>
