@@ -3,11 +3,11 @@
 <circle cx="300" cy="300" r="287.5" stroke="url(#paint1_linear_420_14)" stroke-width="25"/>
 <defs>
 <linearGradient id="paint0_linear_420_14" x1="50" y1="300" x2="550" y2="300" gradientUnits="userSpaceOnUse">
-<stop stop-color="#1AA683"/>
+<stop stop-color="#1132F5"/>
 <stop offset="1" stop-color="#1AA715"/>
 </linearGradient>
 <linearGradient id="paint1_linear_420_14" x1="0" y1="300" x2="600" y2="300" gradientUnits="userSpaceOnUse">
-<stop stop-color="#1AA683"/>
+<stop stop-color="#1132F5"/>
 <stop offset="1" stop-color="#1AA620"/>
 </linearGradient>
 </defs>

@@ -186,7 +186,7 @@ export const ProfilePhotoModal = ({
           <button
             type="button"
             onClick={handleConfirmPhoto}
-            className="bg-[#1aa683] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-[#1132F5] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={!tempPhoto || uploadingPhoto}>
             Подтвердить
           </button>

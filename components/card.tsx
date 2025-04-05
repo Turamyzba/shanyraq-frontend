@@ -101,7 +101,7 @@ const Card: React.FC<CardProps> = ({ card, isLast }) => {
         <div className="absolute top-0 left-0 w-full h-full bg-white bg-opacity-70 flex items-center justify-center rounded-[10px] z-50">
           <button
             onClick={() => router.push("/")}
-            className="p-[16px] px-[20px] gap-[8px] rounded-[10px] bg-[#1AA683] text-white text-[15px] sm:text-[16px] font-medium"
+            className="p-[16px] px-[20px] gap-[8px] rounded-[10px] bg-[#1132F5] text-white text-[15px] sm:text-[16px] font-medium"
           >
             Смотреть все квартиры
           </button>

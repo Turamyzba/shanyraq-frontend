@@ -1,57 +1,57 @@
 [
   {
     "announcementId": 1,
-    "title": "Уютная студия в центре города",
-    "cost": "120,000",
-    "image": "/welcomeLanding.png",
-    "address": "пр. Абая, д. 10, Алматы",
+    "title": "Cozy Studio in Singapore CBD",
+    "cost": "2,500",
+    "image": "https://ulcdn.universityliving.com/cms/asgpz9S3QVC4TTGe8Nm6e5Ifu1ElHE.JPG?format=auto&width=1920",
+    "address": "Marina Bay, Singapore",
     "roomCount": 1,
     "roommates": 1,
-    "arriveDate": "2025-04-10",
-    "selectedGender": "Не важно"
+    "arriveDate": "2025-05-15",
+    "selectedGender": "Any"
   },
   {
     "announcementId": 2,
-    "title": "Светлая квартира в тихом районе",
-    "cost": "200,000",
-    "image": "/images/apartment2.jpg",
-    "address": "ул. Сатпаева, д. 45, Алматы",
+    "title": "Modern Apartment in Orchard",
+    "cost": "3,200",
+    "image": "https://ulcdn.universityliving.com/cms/FiFMGzzPElsgKcmp401mnRBIL2K6kz.jpg?format=auto&width=1920",
+    "address": "Orchard Road, Singapore",
     "roomCount": 2,
     "roommates": 1,
-    "arriveDate": "2025-05-01",
-    "selectedGender": "Мужчины"
+    "arriveDate": "2025-06-01",
+    "selectedGender": "Male"
   },
   {
     "announcementId": 3,
-    "title": "Просторная трёхкомнатная квартира",
-    "cost": "300,000",
-    "image": "/images/apartment3.jpg",
-    "address": "ул. Толе би, д. 22, Алматы",
+    "title": "Spacious Condo in East Coast",
+    "cost": "3,800",
+    "image": "https://ulcdn.universityliving.com/cms/5MleILe18zURlyI1QMvJkN4pmzdOu2.jpg?format=auto&width=1920",
+    "address": "East Coast Road, Singapore",
     "roomCount": 3,
     "roommates": 2,
-    "arriveDate": "2025-03-30",
-    "selectedGender": "Женщины"
+    "arriveDate": "2025-04-20",
+    "selectedGender": "Female"
   },
   {
     "announcementId": 4,
-    "title": "Студия рядом с университетом",
-    "cost": "100,000",
-    "image": "/images/studio4.jpg",
-    "address": "ул. Масанчи, д. 7, Алматы",
+    "title": "Studio near NUS Campus",
+    "cost": "1,800",
+    "image": "https://ulcdn.universityliving.com/cms/zE7iDxB9dXjEP00a3Aj2ftSE6uvyRu.jpg?format=auto&width=1920",
+    "address": "Kent Ridge, Singapore",
     "roomCount": 1,
     "roommates": 1,
-    "arriveDate": "2025-06-15",
-    "selectedGender": "Не важно"
+    "arriveDate": "2025-07-01",
+    "selectedGender": "Any"
   },
   {
     "announcementId": 5,
-    "title": "Комната в двухкомнатной квартире",
-    "cost": "80,000",
-    "image": "/images/apartment5.jpg",
-    "address": "ул. Панфилова, д. 30, Алматы",
+    "title": "Room in Shared HDB Flat",
+    "cost": "1,200",
+    "image": "https://ulcdn.universityliving.com/cms/hirYLeWpQwT20lcIpUKAoGs1Q7u8EB.jpg?format=auto&width=1920",
+    "address": "Tampines, Singapore",
     "roomCount": 2,
     "roommates": 1,
-    "arriveDate": "2025-04-25",
-    "selectedGender": "Мужчины"
+    "arriveDate": "2025-05-10",
+    "selectedGender": "Male"
   }
 ]

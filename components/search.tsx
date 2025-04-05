@@ -146,7 +146,7 @@ const Search = () => {
                             setAddressLevel("regions");
                           }
                         }}
-                        className="text-[#1AA683] mb-2 font-semibold"
+                        className="text-[#1132F5] mb-2 font-semibold"
                       >
                         ← Назад
                       </button>
@@ -250,7 +250,7 @@ const Search = () => {
                             }}
                             className={`flex p-[12px] cursor-pointer ${
                               "Весь Казахстан" === address.regionOrCityName
-                                ? "bg-[#1aa68383] text-white"
+                                ? "bg-[#1132F583] text-white"
                                 : ""
                             }`}
                           >
@@ -271,7 +271,7 @@ const Search = () => {
                               }}
                               className={`flex p-[12px] cursor-pointer ${
                                 address.regionOrCityName === region.name
-                                  ? "bg-[#1aa68383] text-white"
+                                  ? "bg-[#1132F583] text-white"
                                   : ""
                               }`}
                             >
@@ -299,7 +299,7 @@ const Search = () => {
                                 }}
                                 className={`flex p-[12px] cursor-pointer ${
                                   address.districtName === d.name
-                                    ? "bg-[#1aa68383] text-white"
+                                    ? "bg-[#1132F583] text-white"
                                     : ""
                                 }`}
                               >
@@ -325,7 +325,7 @@ const Search = () => {
                                 }}
                                 className={`flex p-[12px] cursor-pointer ${
                                   address.microDistrictName === m.name
-                                    ? "bg-[#1aa68383] text-white"
+                                    ? "bg-[#1132F583] text-white"
                                     : ""
                                 }`}
                               >
@@ -380,7 +380,7 @@ const Search = () => {
                     onChange={(e) =>
                       setPriceRange([+e.target.value, priceRange[1]])
                     }
-                    className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1aa683] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
+                    className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1132F5] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
                     placeholder="Минимальный"
                   />
 
@@ -390,13 +390,13 @@ const Search = () => {
                     onChange={(e) =>
                       setPriceRange([priceRange[0], +e.target.value])
                     }
-                    className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1aa683] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
+                    className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1132F5] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
                     placeholder="Максимальный"
                   />
                 </div>
 
                 <div className="relative z-[9998]">
-                  <div className="flex justify-between text-[#1AA683] text-left font-semibold text-[12px] leading-[17px]">
+                  <div className="flex justify-between text-[#1132F5] text-left font-semibold text-[12px] leading-[17px]">
                     <span>0</span>
                     <span>500000</span>
                   </div>
@@ -407,9 +407,9 @@ const Search = () => {
                     onChange={handleSliderChange}
                     className="w-full
                     [&_span.MuiSlider-thumb]:w-4 [&_span.MuiSlider-thumb]:h-4
-                    [&_span.MuiSlider-thumb]:bg-[#1AA683] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
-                    [&_span.MuiSlider-track]:bg-[#1AA683] [&_span.MuiSlider-track]:border-none
-                    [&_span.MuiSlider-rail]:bg-[#1AA683]"
+                    [&_span.MuiSlider-thumb]:bg-[#1132F5] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
+                    [&_span.MuiSlider-track]:bg-[#1132F5] [&_span.MuiSlider-track]:border-none
+                    [&_span.MuiSlider-rail]:bg-[#1132F5]"
                     valueLabelDisplay="auto"
                     min={0}
                     max={500000}
@@ -458,7 +458,7 @@ const Search = () => {
                       }}
                       className={`${
                         g.name === gender
-                          ? "bg-[#D1EDE6] text-[#1AA683]"
+                          ? "bg-[#D1EDE6] text-[#1132F5]"
                           : "bg-white text-[#252525]"
                       } w-full px-[12px] py-[4px] rounded-[5px] cursor-pointer font-normal text-[14px] leading-[17.5px] flex justify-center`}
                     >
@@ -504,7 +504,7 @@ const Search = () => {
                       }}
                       className={`${
                         housemates == room.name
-                          ? "bg-[#1AA683] text-[#FFFFFF]"
+                          ? "bg-[#1132F5] text-[#FFFFFF]"
                           : "bg-[#D1EDE6] text-[#5c5c5c]"
                       } flex items-center justify-center px-[12px] py-[4px] rounded-[5px] cursor-pointer font-light text-[14px] leading-[17.5px] `}
                     >
@@ -519,7 +519,7 @@ const Search = () => {
 
         {/*_____________________________ SEARCH BUTTON _________________________________________*/}
         <button
-          className="w-full sm:w-[330px] md:w-[50px] h-[50px] flex items-center justify-center bg-[#1AA683] md:bg-[#32343A] rounded-[5px] cursor-pointer text-white text-[14px] font-semibold"
+          className="w-full sm:w-[330px] md:w-[50px] h-[50px] flex items-center justify-center bg-[#1132F5] md:bg-[#32343A] rounded-[5px] cursor-pointer text-white text-[14px] font-semibold"
           style={{ boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.2)" }}
         >
           <span className="block md:hidden">Search</span>

@@ -113,12 +113,12 @@ const RegisterPage = () => {
                 <div className="flex justify-center gap-4 mt-6">
                   <button
                       onClick={handleLogout}
-                      className="font-bold text-white bg-[#1AA683] py-2 px-6 rounded-lg hover:bg-[#1aa683df] transition">
+                      className="font-bold text-white bg-[#1132F5] py-2 px-6 rounded-lg hover:bg-[#1132F5df] transition">
                     Выйти
                   </button>
                   <button
                       onClick={() => router.push("/landing")}
-                      className="font-bold text-[#1AA683] py-2 px-6 rounded-lg hover:bg-[#f1f1f1] transition">
+                      className="font-bold text-[#1132F5] py-2 px-6 rounded-lg hover:bg-[#f1f1f1] transition">
                     Оставаться
                   </button>
                 </div>
@@ -153,11 +153,11 @@ const RegisterPage = () => {
                           required
                           placeholder=""
                           className="peer w-full px-3 py-[8px] text-[20px] font-normal
-                text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                       />
                       <label
                           htmlFor="firstname"
-                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                               firstname ? "top-[-7px] px-[4px] text-xs" : "text-[20px] "
                           }`}>
                         Имя
@@ -175,11 +175,11 @@ const RegisterPage = () => {
                           autoComplete="off"
                           placeholder=""
                           className="peer w-full px-3 py-[8px] text-[20px] font-normal
-                text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                       />
                       <label
                           htmlFor="lastname"
-                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                               lastname ? "top-[-7px] px-[4px] text-xs" : "text-[20px] "
                           }`}>
                         Фамилия
@@ -197,11 +197,11 @@ const RegisterPage = () => {
                           required
                           placeholder=""
                           className="peer w-full px-3 py-[8px] text-[20px] font-normal
-                text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                       />
                       <label
                           htmlFor="email"
-                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                               email ? "top-[-7px] px-[4px] text-xs" : "text-[20px] "
                           }`}>
                         Почта
@@ -217,11 +217,11 @@ const RegisterPage = () => {
                           onChange={(e) => setPassword(e.target.value)}
                           required
                           placeholder=""
-                          className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                          className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                       />
                       <label
                           htmlFor="password"
-                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                               password ? "top-[-7px] px-[4px] text-xs" : "text-[20px]"
                           }`}>
                         Пароль
@@ -234,12 +234,12 @@ const RegisterPage = () => {
                         {showPassword ? (
                             <Image.eyeOn
                                 className="w-[20px] h-[20px]"
-                                color={`${password ? "#1AA683" : "gray"}`}
+                                color={`${password ? "#1132F5" : "gray"}`}
                             />
                         ) : (
                             <Image.eyeOff
                                 className="w-[20px] h-[20px]"
-                                color={`${password ? "#1AA683" : "gray"}`}
+                                color={`${password ? "#1132F5" : "gray"}`}
                             />
                         )}
                       </button>
@@ -254,11 +254,11 @@ const RegisterPage = () => {
                           onChange={(e) => setConfirmPassword(e.target.value)}
                           required
                           placeholder=""
-                          className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                          className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                       />
                       <label
                           htmlFor="confirmPassword"
-                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                          className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                               confirmPassword
                                   ? "top-[-7px] px-[4px] text-xs"
                                   : "text-[20px]"
@@ -275,12 +275,12 @@ const RegisterPage = () => {
                         {showConfirmPassword ? (
                             <Image.eyeOn
                                 className="w-[20px] h-[20px]"
-                                color={`${confirmPassword ? "#1AA683" : "gray"}`}
+                                color={`${confirmPassword ? "#1132F5" : "gray"}`}
                             />
                         ) : (
                             <Image.eyeOff
                                 className="w-[20px] h-[20px]"
-                                color={`${confirmPassword ? "#1AA683" : "gray"}`}
+                                color={`${confirmPassword ? "#1132F5" : "gray"}`}
                             />
                         )}
                       </button>
@@ -289,7 +289,7 @@ const RegisterPage = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full font-circular font-bold text-[20px] bg-[#1AA683] text-white py-[10px] rounded-lg hover:bg-[#1aa683df] focus:outline-none transition">
+                        className="w-full font-circular font-bold text-[20px] bg-[#1132F5] text-white py-[10px] rounded-lg hover:bg-[#1132F5df] focus:outline-none transition">
                       Зарегистрироваться
                     </button>
                   </form>
@@ -309,7 +309,7 @@ const RegisterPage = () => {
 
                   <p className="text-center mt-6 text-[20px] text-gray-700">
                     Уже есть учетная запись?{" "}
-                    <Link href="/login" className="text-[#1AA683] hover:underline">
+                    <Link href="/login" className="text-[#1132F5] hover:underline">
                       Войдите
                     </Link>
                   </p>

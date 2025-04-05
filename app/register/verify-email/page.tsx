@@ -103,7 +103,7 @@ const ResetCodePage = () => {
                     ref={(el) => (inputs.current[idx] = el!)}
                     onChange={(e) => processInput(e, idx)}
                     onKeyDown={(e) => handleBackspace(e, idx)}
-                    className="w-[80px] h-[80px] text-center text-[24px] border border-gray-300 rounded-lg focus:outline-none focus:border-[#1AA683]"
+                    className="w-[80px] h-[80px] text-center text-[24px] border border-gray-300 rounded-lg focus:outline-none focus:border-[#1132F5]"
                     autoFocus={idx === 0}
                   />
                 ))}
@@ -113,7 +113,7 @@ const ResetCodePage = () => {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="mb-3 w-full font-circular font-semibold text-[20px] bg-[#1AA683] text-white py-[10px] rounded-lg hover:bg-[#1aa683df] focus:outline-none transition">
+                className="mb-3 w-full font-circular font-semibold text-[20px] bg-[#1132F5] text-white py-[10px] rounded-lg hover:bg-[#1132F5df] focus:outline-none transition">
                 Потвердить
               </button>
 

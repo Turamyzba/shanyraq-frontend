@@ -107,11 +107,11 @@ const RegisterPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder=""
-                  className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                  className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                 />
                 <label
                   htmlFor="password"
-                  className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                  className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                     password ? "top-[-7px] px-[4px] text-xs" : "text-[20px]"
                   }`}>
                   Создайте новый пароль
@@ -124,12 +124,12 @@ const RegisterPage = () => {
                   {showPassword ? (
                     <Image.eyeOn
                       className="w-[20px] h-[20px]"
-                      color={`${password ? "#1AA683" : "gray"}`}
+                      color={`${password ? "#1132F5" : "gray"}`}
                     />
                   ) : (
                     <Image.eyeOff
                       className="w-[20px] h-[20px]"
-                      color={`${password ? "#1AA683" : "gray"}`}
+                      color={`${password ? "#1132F5" : "gray"}`}
                     />
                   )}
                 </button>
@@ -144,11 +144,11 @@ const RegisterPage = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   placeholder=""
-                  className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                  className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                 />
                 <label
                   htmlFor="confirmPassword"
-                  className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                  className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                     confirmPassword
                       ? "top-[-7px] px-[4px] text-xs"
                       : "text-[20px]"
@@ -163,12 +163,12 @@ const RegisterPage = () => {
                   {showConfirmPassword ? (
                     <Image.eyeOn
                       className="w-[20px] h-[20px]"
-                      color={`${confirmPassword ? "#1AA683" : "gray"}`}
+                      color={`${confirmPassword ? "#1132F5" : "gray"}`}
                     />
                   ) : (
                     <Image.eyeOff
                       className="w-[20px] h-[20px]"
-                      color={`${confirmPassword ? "#1AA683" : "gray"}`}
+                      color={`${confirmPassword ? "#1132F5" : "gray"}`}
                     />
                   )}
                 </button>
@@ -178,7 +178,7 @@ const RegisterPage = () => {
               <button
                 disabled={isLoading}
                 type="submit"
-                className="w-full font-circular font-bold text-[20px] bg-[#1AA683] text-white py-[10px] rounded-lg hover:bg-[#1aa683df] focus:outline-none transition">
+                className="w-full font-circular font-bold text-[20px] bg-[#1132F5] text-white py-[10px] rounded-lg hover:bg-[#1132F5df] focus:outline-none transition">
                 {isLoading ? "Отправка..." : "Подтвердить"}
               </button>
 

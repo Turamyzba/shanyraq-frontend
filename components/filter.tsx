@@ -307,7 +307,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                     <div className={isMobile ? "hidden" : ""}>
                         <button
                             // href="#"
-                            className="font-circular text-[14px] px-[6px] py-[4px] text-[#1AA683] font-normal leading-[17px] hover:underline outline-none">
+                            className="font-circular text-[14px] px-[6px] py-[4px] text-[#1132F5] font-normal leading-[17px] hover:underline outline-none">
                             Сбросить все
                         </button>
                     </div>
@@ -326,7 +326,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                 className={`w-full py-[10px] bg-white rounded-[5px] border-[1px] flex justify-between items-center px-[10px] cursor-pointer ${
                                     !isGenderDropdownOpen
                                         ? "border-[#EBEBEB]"
-                                        : "border-[#1AA683]"
+                                        : "border-[#1132F5]"
                                 }`}
                                 onClick={toggleGenderDropdown}>
                                 <div className="flex items-center gap-[12px]">
@@ -335,7 +335,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                     </p>
                                 </div>
                                 {isGenderDropdownOpen ? (
-                                    <Images.arrowUp w={"20"} h={"20"} color={"#1AA683"} />
+                                    <Images.arrowUp w={"20"} h={"20"} color={"#1132F5"} />
                                 ) : (
                                     <Images.arrowDown w={"20"} h={"20"} color={"#B5B7C0"} />
                                 )}
@@ -348,10 +348,10 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                             onClick={() => handleGenderSelect(gender)} // Set selected gender
                                             className={`${
                                                 selectedGender === gender
-                                                    ? "bg-[#1AA683] text-[#FFFFFF]"
+                                                    ? "bg-[#1132F5] text-[#FFFFFF]"
                                                     : "hover:bg-[#D1EDE6] hover:text-[#5c5c5c]"
                                             } p-[10px] cursor-pointer `}
-                                            //   className=" hover:bg-[#1AA683] hover:text-white"
+                                            //   className=" hover:bg-[#1132F5] hover:text-white"
                                         >
                                             {gender}
                                         </div>
@@ -371,7 +371,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                 className={`w-full py-[10px] bg-white rounded-[5px] border-[1px] flex justify-between items-center px-[10px] cursor-pointer ${
                                     !isRegionDropdownOpen
                                         ? "border-[#EBEBEB]"
-                                        : "border-[#1AA683]"
+                                        : "border-[#1132F5]"
                                 }`}
                                 onClick={() => setIsRegionDropdownOpen(!isRegionDropdownOpen)}>
                                 <div className="flex items-center gap-[12px]">
@@ -380,7 +380,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                     </p>
                                 </div>
                                 {isRegionDropdownOpen ? (
-                                    <Images.arrowUp w={"20"} h={"20"} color={"#1AA683"} />
+                                    <Images.arrowUp w={"20"} h={"20"} color={"#1132F5"} />
                                 ) : (
                                     <Images.arrowDown w={"20"} h={"20"} color={"#B5B7C0"} />
                                 )}
@@ -397,7 +397,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                         }}
                                         className={`${
                                             region === "Весь Казахстан"
-                                                ? "bg-[#1AA683] text-[#FFFFFF]"
+                                                ? "bg-[#1132F5] text-[#FFFFFF]"
                                                 : "hover:bg-[#D1EDE6] hover:text-[#5c5c5c]"
                                         } p-[10px] cursor-pointer `}>
                                         Весь Казахстан
@@ -408,10 +408,10 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                             onClick={() => handleRegionSelect(regionData.name)}
                                             className={`${
                                                 region === regionData.name
-                                                    ? "bg-[#1AA683] text-[#FFFFFF]"
+                                                    ? "bg-[#1132F5] text-[#FFFFFF]"
                                                     : "hover:bg-[#D1EDE6] hover:text-[#5c5c5c]"
                                             } p-[10px] cursor-pointer `}
-                                            //   className="p-[10px] cursor-pointer hover:bg-[#1AA683] hover:text-white"
+                                            //   className="p-[10px] cursor-pointer hover:bg-[#1132F5] hover:text-white"
                                         >
                                             {regionData.name}
                                         </div>
@@ -432,7 +432,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                     className={`w-full py-[10px] bg-white rounded-[5px] border-[1px] flex justify-between items-center px-[10px] cursor-pointer ${
                                         !isDistrictDropdownOpen
                                             ? "border-[#EBEBEB]"
-                                            : "border-[#1AA683]"
+                                            : "border-[#1132F5]"
                                     }`}
                                     onClick={() =>
                                         setIsDistrictDropdownOpen(!isDistrictDropdownOpen)
@@ -443,7 +443,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                         </p>
                                     </div>
                                     {isDistrictDropdownOpen ? (
-                                        <Images.arrowUp w={"20"} h={"20"} color={"#1AA683"} />
+                                        <Images.arrowUp w={"20"} h={"20"} color={"#1132F5"} />
                                     ) : (
                                         <Images.arrowDown w={"20"} h={"20"} color={"#B5B7C0"} />
                                     )}
@@ -456,7 +456,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                                 onClick={() => handleDistrictSelect(districtData.name)}
                                                 className={`${
                                                     district === districtData.name
-                                                        ? "bg-[#1AA683] text-[#FFFFFF]"
+                                                        ? "bg-[#1132F5] text-[#FFFFFF]"
                                                         : "hover:bg-[#D1EDE6] hover:text-[#5c5c5c]"
                                                 } p-[10px] cursor-pointer `}>
                                                 {districtData.name}
@@ -479,7 +479,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                     className={`w-full py-[10px] bg-white rounded-[5px] border-[1px] flex justify-between items-center px-[10px] cursor-pointer ${
                                         !isMicroDistrictDropdownOpen
                                             ? "border-[#EBEBEB]"
-                                            : "border-[#1AA683]"
+                                            : "border-[#1132F5]"
                                     }`}
                                     onClick={() =>
                                         setIsMicroDistrictDropdownOpen(!isMicroDistrictDropdownOpen)
@@ -490,7 +490,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                         </p>
                                     </div>
                                     {isMicroDistrictDropdownOpen ? (
-                                        <Images.arrowUp w={"20"} h={"20"} color={"#1AA683"} />
+                                        <Images.arrowUp w={"20"} h={"20"} color={"#1132F5"} />
                                     ) : (
                                         <Images.arrowDown w={"20"} h={"20"} color={"#B5B7C0"} />
                                     )}
@@ -505,7 +505,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                                 }
                                                 className={`${
                                                     microDistrict === microDistrictData.name
-                                                        ? "bg-[#1AA683] text-[#FFFFFF]"
+                                                        ? "bg-[#1132F5] text-[#FFFFFF]"
                                                         : "hover:bg-[#D1EDE6] hover:text-[#5c5c5c]"
                                                 } p-[10px] cursor-pointer `}>
                                                 {microDistrictData.name}
@@ -529,7 +529,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                 value={zhk} // Use zhk state
                 onChange={(e) => setZhk(e.target.value)} // Update zhk state
                 placeholder="Введите жилой комплекс"
-                className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
               />
             </div>
           </div> */}
@@ -547,7 +547,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                 onChange={
                                     (e) => setPriceRange([+e.target.value, priceRange[1]]) // Update min price
                                 }
-                                className="w-full focus:text-[#252525] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                                className="w-full focus:text-[#252525] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
                                 placeholder="Минимальный"
                             />
 
@@ -557,14 +557,14 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                 onChange={
                                     (e) => setPriceRange([priceRange[0], +e.target.value]) // Update max price
                                 }
-                                className="w-full focus:text-[#252525] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                                className="w-full focus:text-[#252525] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
                                 placeholder="Максимальный"
                             />
                         </div>
 
                         {/* Price Range Slider */}
                         <div className="relative">
-                            <div className="flex justify-between text-[#1AA683] text-left font-semibold text-[12px] leading-[17px]">
+                            <div className="flex justify-between text-[#1132F5] text-left font-semibold text-[12px] leading-[17px]">
                                 <span>0</span>
                                 <span>500000</span>
                             </div>
@@ -572,9 +572,9 @@ const Filter = ({ onSubmit, initialQuery }) => {
                             <Slider
                                 value={priceRange}
                                 onChange={handleSliderChange}
-                                className="w-full [&_span.MuiSlider-thumb]:w-4 [&_span.MuiSlider-thumb]:h-4 [&_span.MuiSlider-thumb]:bg-[#1AA683] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
-                    [&_span.MuiSlider-track]:bg-[#1AA683] [&_span.MuiSlider-track]:border-none
-                    [&_span.MuiSlider-rail]:bg-[#1AA683]"
+                                className="w-full [&_span.MuiSlider-thumb]:w-4 [&_span.MuiSlider-thumb]:h-4 [&_span.MuiSlider-thumb]:bg-[#1132F5] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
+                    [&_span.MuiSlider-track]:bg-[#1132F5] [&_span.MuiSlider-track]:border-none
+                    [&_span.MuiSlider-rail]:bg-[#1132F5]"
                                 valueLabelDisplay="auto"
                                 min={0}
                                 max={500000}
@@ -596,7 +596,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                     onClick={() => setHousemates(room)} // Set the selected housemates count
                                     className={`${
                                         housemates === room
-                                            ? "bg-[#1AA683] text-[#FFFFFF]"
+                                            ? "bg-[#1132F5] text-[#FFFFFF]"
                                             : "bg-[#D1EDE6] text-[#5c5c5c]"
                                     } h-[34px] w-[48px] flex items-center justify-center rounded-[5px] cursor-pointer font-light text-[14px] leading-[17.5px]`}>
                                     {room}
@@ -641,16 +641,16 @@ const Filter = ({ onSubmit, initialQuery }) => {
                         </p>
 
                         <div className="relative">
-                            <div className="flex justify-between text-[#1AA683] text-left font-semibold text-[12px] leading-[17px]">
+                            <div className="flex justify-between text-[#1132F5] text-left font-semibold text-[12px] leading-[17px]">
                                 <span>0</span>
                                 <span>50</span>
                             </div>
 
                             <Slider
                                 value={ageRange}
-                                className="w-full [&_span.MuiSlider-thumb]:w-4 [&_span.MuiSlider-thumb]:h-4 [&_span.MuiSlider-thumb]:bg-[#1AA683] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
-                    [&_span.MuiSlider-track]:bg-[#1AA683] [&_span.MuiSlider-track]:border-none
-                    [&_span.MuiSlider-rail]:bg-[#1AA683]"
+                                className="w-full [&_span.MuiSlider-thumb]:w-4 [&_span.MuiSlider-thumb]:h-4 [&_span.MuiSlider-thumb]:bg-[#1132F5] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
+                    [&_span.MuiSlider-track]:bg-[#1132F5] [&_span.MuiSlider-track]:border-none
+                    [&_span.MuiSlider-rail]:bg-[#1132F5]"
                                 onChange={handleAgeRangeChange}
                                 valueLabelDisplay="auto"
                                 valueLabelFormat={(value) => `${value} лет`}
@@ -671,7 +671,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                 onClick={() => setLongTerm(true)}
                 className={`${
                   longTerm === true
-                    ? "bg-[#1AA683] text-[#FFFFFF]"
+                    ? "bg-[#1132F5] text-[#FFFFFF]"
                     : "bg-[#D1EDE6] text-[#5c5c5c]"
                 } flex items-center justify-center h-[40px] w-[150px] rounded-[5px] cursor-pointer font-light text-[14px] leading-[17.5px]`}>
                 Долгосрочно
@@ -681,7 +681,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                 onClick={() => setLongTerm(false)}
                 className={`${
                   longTerm === false
-                    ? "bg-[#1AA683] text-[#FFFFFF]"
+                    ? "bg-[#1132F5] text-[#FFFFFF]"
                     : "bg-[#D1EDE6] text-[#5c5c5c]"
                 } flex items-center justify-center  h-[40px] w-[150px] rounded-[5px] cursor-pointer font-light text-[14px] leading-[17.5px]`}>
                 Краткосрочно
@@ -707,7 +707,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                     />
                                     <div
                                         className={`w-6 h-6 mr-2 flex items-center justify-center rounded border outline-none ${
-                                            isToday ? "border-[#1AA683]" : "border-gray-300"
+                                            isToday ? "border-[#1132F5]" : "border-gray-300"
                                         }`}>
                                         {isToday && <Images.check />}
                                     </div>
@@ -727,7 +727,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                     />
                                     <div
                                         className={`w-6 h-6 mr-2 flex items-center justify-center rounded border outline-none ${
-                                            isTomorrow ? "border-[#1AA683]" : "border-gray-300"
+                                            isTomorrow ? "border-[#1132F5]" : "border-gray-300"
                                         }`}>
                                         {isTomorrow && <Images.check />}
                                     </div>
@@ -741,7 +741,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                 type="date"
                                 value={moveInDate}
                                 onChange={handleDateChange}
-                                className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                                className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
                             />
                         </div>
                     </div>
@@ -760,14 +760,14 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                         value={roomSize[0]}
                                         onChange={(e) => handleRoomSizeChange(e, 0)}
                                         placeholder="От"
-                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
                                     />
                                     <input
                                         type="number"
                                         value={roomSize[1]}
                                         onChange={(e) => handleRoomSizeChange(e, 1)}
                                         placeholder="До"
-                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
                                     />
                                 </div>
                             </div>
@@ -784,14 +784,14 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                         value={floors[0]}
                                         onChange={(e) => handleFloorChange(e, 0)}
                                         placeholder="От"
-                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
                                     />
                                     <input
                                         type="number"
                                         value={floors[1]}
                                         onChange={(e) => handleFloorChange(e, 1)}
                                         placeholder="До"
-                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1aa683] text-[#B5B7C0]"
+                                        className="w-full border-[1px] focus:text-[#252525] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-left text-[14px] font-normal leading-[18px] outline-none focus:outline-none focus:border-[#1132F5] text-[#B5B7C0]"
                                     />
                                 </div>
 
@@ -809,7 +809,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                         />
                                         <div
                                             className={`w-6 h-6 mr-2 flex items-center justify-center rounded border outline-none ${
-                                                isNotFirstFloor ? "border-[#1AA683]" : "border-gray-300"
+                                                isNotFirstFloor ? "border-[#1132F5]" : "border-gray-300"
                                             }`}>
                                             {isNotFirstFloor && <Images.check />}
                                         </div>
@@ -829,7 +829,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                         />
                                         <div
                                             className={`w-6 h-6 mr-2 flex items-center justify-center rounded border outline-none ${
-                                                isNotLastFloor ? "border-[#1AA683]" : "border-gray-300"
+                                                isNotLastFloor ? "border-[#1132F5]" : "border-gray-300"
                                             }`}>
                                             {isNotLastFloor && <Images.check />}
                                         </div>
@@ -896,7 +896,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                             <div
                                                 className={`w-6 h-6 mr-2 flex items-center justify-center rounded border outline-none ${
                                                     propertyType === "Квартира"
-                                                        ? "border-[#1AA683]"
+                                                        ? "border-[#1132F5]"
                                                         : "border-gray-300"
                                                 }`}>
                                                 {propertyType === "Квартира" && <Images.check />}
@@ -917,7 +917,7 @@ const Filter = ({ onSubmit, initialQuery }) => {
                                             <div
                                                 className={`w-6 h-6 mr-2 flex items-center justify-center rounded border outline-none ${
                                                     propertyType === "Дом"
-                                                        ? "border-[#1AA683]"
+                                                        ? "border-[#1132F5]"
                                                         : "border-gray-300"
                                                 }`}>
                                                 {propertyType === "Дом" && <Images.check />}

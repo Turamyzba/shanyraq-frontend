@@ -117,7 +117,7 @@ export const FileUpload = ({
           <label htmlFor="file" className="h-full w-[200px] flex flex-col justify-center text-center items-center gap-[15px] cursor-pointer">
             <Images.upload />
             <span className="text-[14px] font-normal text-[#252525]">
-            <span className="text-[#1AA683]">Нажмите</span>, чтобы загрузить, или перетащите.
+            <span className="text-[#1132F5]">Нажмите</span>, чтобы загрузить, или перетащите.
           </span>
             <span className="text-[14px] font-normal text-[#B5B7C0]">
             Минимум количество 5

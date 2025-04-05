@@ -19,7 +19,7 @@ const AuthRequiredPage = () => {
       <Header />
       <main className="flex-grow flex items-center justify-center py-20 px-4">
         <div className="max-w-lg w-full text-center space-y-8 p-10 rounded-xl">
-          <h2 className="text-3xl font-extrabold text-[#1AA683]">
+          <h2 className="text-3xl font-extrabold text-[#1132F5]">
             Доступ ограничен
           </h2>
           <p className="text-lg text-gray-700">
@@ -29,12 +29,12 @@ const AuthRequiredPage = () => {
           <div className="space-y-4">
             <Link
               href="/login"
-              className="w-full inline-flex justify-center py-3 px-6 border border-transparent text-base font-semibold rounded-md text-white bg-[#1AA683] hover:bg-[#169a76] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1AA683]">
+              className="w-full inline-flex justify-center py-3 px-6 border border-transparent text-base font-semibold rounded-md text-white bg-[#1132F5] hover:bg-[#169a76] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1132F5]">
               Войти / Зарегистрироваться
             </Link>
             <Link
               href="/landing"
-              className="w-full inline-flex justify-center py-3 px-6 border border-[#1AA683] text-base font-semibold rounded-md text-[#1AA683] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1AA683]">
+              className="w-full inline-flex justify-center py-3 px-6 border border-[#1132F5] text-base font-semibold rounded-md text-[#1132F5] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1132F5]">
               Вернуться на главную
             </Link>
           </div>

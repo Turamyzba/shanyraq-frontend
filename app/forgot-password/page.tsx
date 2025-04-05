@@ -80,11 +80,11 @@ const ForgotPasswordPage = () => {
                   required
                   placeholder=""
                   className="peer w-full px-3 py-[8px] text-[20px] font-normal
-               text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+               text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
                 />
                 <label
                   htmlFor="email"
-                  className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                  className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                     email ? "top-[-7px] px-[4px] text-xs" : "text-[20px] "
                   }`}>
                   Почта
@@ -95,7 +95,7 @@ const ForgotPasswordPage = () => {
               <button
                   disabled={loading}
                 type="submit"
-                className="mb-3 w-full font-circular font-semibold text-[20px] bg-[#1AA683] text-white py-[10px] rounded-lg hover:bg-[#1aa683df] focus:outline-none transition">
+                className="mb-3 w-full font-circular font-semibold text-[20px] bg-[#1132F5] text-white py-[10px] rounded-lg hover:bg-[#1132F5df] focus:outline-none transition">
                 {loading ? "Отправка..." : "Отправить"}
               </button>
 

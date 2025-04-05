@@ -87,12 +87,12 @@ const LoginPage = () => {
                                     setIsAuth(false);
                                     router.push("/login");
                                 }}
-                                className="font-bold text-white bg-[#1AA683] py-2 px-6 rounded-lg hover:bg-[#1aa683df] transition">
+                                className="font-bold text-white bg-[#1132F5] py-2 px-6 rounded-lg hover:bg-[#1132F5df] transition">
                                 Выйти
                             </button>
                             <button
                                 onClick={() => router.push("/landing")}
-                                className="font-bold text-[#1AA683] py-2 px-6 rounded-lg hover:bg-[#f1f1f1] transition">
+                                className="font-bold text-[#1132F5] py-2 px-6 rounded-lg hover:bg-[#f1f1f1] transition">
                                 Оставаться
                             </button>
                         </div>
@@ -119,7 +119,7 @@ const LoginPage = () => {
                                         autoComplete="off"
                                         required
                                         placeholder="Почта"
-                                        className="peer w-full px-3 py-[8px] text-[20px] font-normal text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1AA683]"
+                                        className="peer w-full px-3 py-[8px] text-[20px] font-normal text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1132F5]"
                                     />
                                 </div>
 
@@ -129,7 +129,7 @@ const LoginPage = () => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         required
-                                        className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1AA683]"
+                                        className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1132F5]"
                                     />
                                     <button
                                         className="absolute right-4 bottom-3 cursor-pointer"
@@ -137,7 +137,7 @@ const LoginPage = () => {
                                         disabled={!password}
                                         onClick={() => setShowPassword(!showPassword)}>
                                         {showPassword ? (
-                                            <Image.eyeOn className="w-[20px] h-[20px]" color="#1AA683" />
+                                            <Image.eyeOn className="w-[20px] h-[20px]" color="#1132F5" />
                                         ) : (
                                             <Image.eyeOff className="w-[20px] h-[20px]" color="gray" />
                                         )}
@@ -157,7 +157,7 @@ const LoginPage = () => {
                                         />
                                         <div
                                             className={`w-6 h-6 flex items-center justify-center mr-2 rounded border outline-none ${
-                                                IsRemember ? "border-[#1AA683]" : "border-gray-300"
+                                                IsRemember ? "border-[#1132F5]" : "border-gray-300"
                                             }`}>
                                             {IsRemember && <Image.check/>}
                                         </div>
@@ -165,7 +165,7 @@ const LoginPage = () => {
                                     </label>
                                     <Link
                                         href="/forgot-password"
-                                        className="text-[16px] text-[#1AA683] hover:underline">
+                                        className="text-[16px] text-[#1132F5] hover:underline">
                                         Забыли пароль?
                                     </Link>
                                 </div>
@@ -173,7 +173,7 @@ const LoginPage = () => {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full font-circular font-bold text-[20px] bg-[#1AA683] text-white py-[10px] rounded-lg hover:bg-[#1aa683df] transition">
+                                    className="w-full font-circular font-bold text-[20px] bg-[#1132F5] text-white py-[10px] rounded-lg hover:bg-[#1132F5df] transition">
                                     {isLoading ? "Загрузка..." : "Войти"}
                                 </button>
                             </form>
@@ -193,7 +193,7 @@ const LoginPage = () => {
 
                             <p className="text-center mt-6 text-[20px] text-gray-700">
                                 Нужна учетная запись?{" "}
-                                <Link href="/register" className="text-[#1AA683] hover:underline">
+                                <Link href="/register" className="text-[#1132F5] hover:underline">
                                     Создайте ее
                                 </Link>
                             </p>

@@ -59,8 +59,8 @@ const AccordionList: React.FC = () => {
         {appAdvantages.map((data, index) => (
           <div key={data.id} className="flex group">
             <div
-              className={`w-[4px] sm:w-[6px] flex-shrink-0 min-h-[40px] border-none outline-none group-hover:bg-[#1AA683] ${
-                activeId === data.id && "bg-[#1AA683]"
+              className={`w-[4px] sm:w-[6px] flex-shrink-0 min-h-[40px] border-none outline-none group-hover:bg-[#1132F5] ${
+                activeId === data.id && "bg-[#1132F5]"
               }`}
             />
 

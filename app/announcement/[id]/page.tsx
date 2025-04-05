@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, use } from "react";
-// import { useRouter } from 'next/navigation'; // Удаляем этот импорт
 import axiosInstance from "@/axiosInstance/axios";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
@@ -29,18 +28,13 @@ interface Announcement {
   region: string;
   district: string;
   microDistrict: string;
-
-  // Change from 'qualities' to 'preferences'
   preferences: string[];
-
   photos: { id: number; url: string }[];
   user: {
     firstName: string;
     lastName: string;
     profilePhoto: string | null;
   };
-
-  // Add this field since you use announcement.phoneNumber
   phoneNumber: string;
 }
 
@@ -49,7 +43,7 @@ interface AnnouncementPageProps {
 }
 
 const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
-  const { id } = use(params); // Получаем id из параметров маршрута
+  const { id } = use(params);
 
   const isMobile = useIsMobile();
   const is485 = useIsMobile(485);
@@ -59,14 +53,13 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState("description"); // Default to "description"
+  const [activeTab, setActiveTab] = useState("description");
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab); // Update the active tab
-    document.getElementById(tab).scrollIntoView({ behavior: "smooth" }); // Smooth scroll to section
+    setActiveTab(tab);
+    document.getElementById(tab).scrollIntoView({ behavior: "smooth" });
   };
 
-  // Функции для модального окна
   const openModal = (index: number) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);
@@ -96,7 +89,7 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
         } else if (event.key === "ArrowRight") {
           goToNextImage();
         } else if (event.key === "Escape") {
-          closeModal(); // Close modal on Escape key
+          closeModal();
         }
       }
     };
@@ -107,23 +100,6 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
     };
   }, [isModalOpen, goToPreviousImage, goToNextImage, closeModal]);
 
-  // useEffect(() => {
-  //   const fetchAnnouncement = async () => {
-  //     try {
-  //       const response = await axiosInstance.get(`/announcement/detail/${id}`);
-  //       setAnnouncement(response.data);
-  //     } catch (error) {
-  //       console.log("Ошибка при получении объявления:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   if (id) {
-  //     fetchAnnouncement();
-  //   }
-  // }, [id]);
-
   useEffect(() => {
     console.log("useEffect triggered, id is:", id);
     console.log(mockData);
@@ -132,17 +108,12 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
     setLoading(false);
   }, [id]);
 
-  // if (loading) {
-  //   return <div>Загрузка...</div>;
-  // }
-
   if (loading) {
     return (
       <div className="flex flex-col min-h-screen">
         <Header />
         <div className="flex-grow flex justify-center my-[30px]">
           <div className="w-full max-w-[1300px] space-y-6">
-            {/* Skeleton for the images */}
             <div className="grid grid-cols-4 gap-4">
               <Skeleton
                 variant="rectangular"
@@ -161,7 +132,6 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
               </div>
             </div>
 
-            {/* Skeleton for title and description */}
             <div className="grid grid-cols-5 gap-8">
               <div className="col-span-3 space-y-4">
                 <Skeleton variant="text" height={40} width="70%" />
@@ -173,7 +143,6 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                 />
               </div>
 
-              {/* Skeleton for pricing and contact info */}
               <div className="col-span-2 space-y-4">
                 <Skeleton
                   variant="rectangular"
@@ -197,25 +166,22 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
   if (!announcement) {
     return (
       <div className="flex flex-col min-h-screen">
-        {/* Header */}
         <Header />
 
-        {/* Main Content */}
         <div className="flex-grow flex flex-col items-center justify-center text-center space-y-4">
-          <h1 className="text-3xl font-semibold text-gray-700">Упс!</h1>
+          <h1 className="text-3xl font-semibold text-gray-700">Oops!</h1>
           <p className="text-lg text-gray-600">
-            Мы не смогли найти это объявление.
+            We couldn't find this listing.
           </p>
           <Link
             href="/"
-            className="text-lg text-[#1AA683] underline hover:no-underline"
+            className="text-lg text-[#1132F5] underline hover:no-underline"
           >
-            Вернуться на главную
+            Return to homepage
           </Link>
           <button onClick={() => console.log(announcement)}>button</button>
         </div>
 
-        {/* Footer */}
         <Footer />
       </div>
     );
@@ -223,15 +189,11 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
 
   return (
     <div className={`flex flex-col min-h-screen ${isMobile ? "pb-16" : ""}`}>
-      {/* Header */}
       <Header />
 
-      {/* Main Content */}
       <div className="flex-grow flex justify-center my-[30px] mx-4">
         <div className="w-full max-w-[1300px]">
-          {/* Top Section with Images */}
           <div className="grid grid-cols-4 gap-4">
-            {/* Main Image */}
             <div
               className="col-span-4 sm:col-span-2"
               onClick={() => openModal(0)}
@@ -243,7 +205,6 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
               />
             </div>
 
-            {/* Smaller Images */}
             <div className="col-span-2 hidden sm:block">
               <div className="grid grid-rows-2 grid-cols-2 gap-4 h-[500px]">
                 {announcement.photos.slice(1, 5).map((photo, index) => (
@@ -267,7 +228,7 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                       className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 text-white font-semibold rounded-lg"
                       onClick={() => openModal(5)}
                     >
-                      Показать все фото
+                      Show all photos
                     </button>
                   </div>
                 )}
@@ -275,7 +236,6 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
             </div>
           </div>
 
-          {/* Title and Description */}
           <div className="grid grid-cols-5 gap-8 my-8">
             <div className="col-span-5 lg:col-span-3 space-y-6">
               <h1 className="font-circular text-[28px] sm:text-[32px] md:text-[36px] font-semibold">
@@ -285,14 +245,14 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                 <div className="flex items-center justify-center space-x-2 px-2 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-white shadow-sm">
                   <Image.roomCount />
                   <span className="text-[#252525] text-[14px] lg:text-[16px] font-semibold">
-                    {announcement.quantityOfRooms} комнат
+                    {announcement.quantityOfRooms} rooms
                   </span>
                 </div>
 
                 <div className="flex items-center justify-center space-x-2 px-2 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-white shadow-sm">
                   <Image.apartmentArea />
                   <span className="text-[#252525] text-[14px] lg:text-[16px] font-semibold">
-                    {announcement.areaOfTheApartment} м²
+                    {announcement.areaOfTheApartment} m²
                   </span>
                 </div>
 
@@ -306,7 +266,7 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                 <div className="flex items-center justify-center space-x-2 px-2 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-white shadow-sm">
                   <Image.maxPeople />
                   <span className="text-[#252525] text-[14px] lg:text-[16px] font-semibold">
-                    {announcement.numberOfPeopleAreYouAccommodating} максимум
+                    {announcement.numberOfPeopleAreYouAccommodating} max
                   </span>
                 </div>
               </div>
@@ -316,40 +276,39 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                     onClick={() => handleTabClick("description")}
                     className={`${
                       activeTab === "description"
-                        ? "font-semibold border-b border-[#1AA683] text-[#1AA683]"
+                        ? "font-semibold border-b border-[#1132F5] text-[#1132F5]"
                         : ""
                     }`}
                   >
-                    Описание
+                    Description
                   </button>
                   <button
                     onClick={() => handleTabClick("information")}
                     className={`${
                       activeTab === "information"
-                        ? "font-semibold border-b border-[#1AA683] text-[#1AA683]"
+                        ? "font-semibold border-b border-[#1132F5] text-[#1132F5]"
                         : ""
                     }`}
                   >
-                    Информация
+                    Information
                   </button>
                   <button
                     onClick={() => handleTabClick("qualities")}
                     className={`${
                       activeTab === "qualities"
-                        ? "font-semibold border-b border-[#1AA683] text-[#1AA683]"
+                        ? "font-semibold border-b border-[#1132F5] text-[#1132F5]"
                         : ""
                     }`}
                   >
-                    Качества
+                    Preferences
                   </button>
                 </nav>
               </div>
 
               <div className="w-full sm:w-4/5 mt-[30px] flex flex-col space-y-10">
-                {/* Description */}
                 <div id="description" className="space-y-4">
                   <h2 className="font-circular text-[20px] sm:text-[24px] font-semibold">
-                    Описание
+                    Description
                   </h2>
                   <div className="">
                     <p className="text-[#252525] text-[15px] sm:text-[16px] leading-[24px]">
@@ -359,46 +318,42 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                   <hr className="mt-[20px]" />
                 </div>
 
-                {/* Information */}
                 <div
                   id="information"
                   className="space-y-4 text-[15px] sm:text-[16px]"
                 >
                   <h2 className="font-circular text-[20px] sm:text-[24px] font-semibold">
-                    Информация
+                    Information
                   </h2>
 
                   <div className="w-full sm:w-4/5 grid grid-cols-2 gap-y-[24px]">
-                    <div className="text-[#4D4D4D]">Город:</div>
+                    <div className="text-[#4D4D4D]">City:</div>
                     <div className="text-[#252525] font-semibold flex flex-col">
                       {announcement.region}, {announcement.district}
-                      {/*<a href="#" className="text-[#1AA683] underline">*/}
-                      {/*  показать на карте*/}
-                      {/*</a>*/}
                     </div>
 
-                    <div className="text-[#4D4D4D]">Тип жилья:</div>
+                    <div className="text-[#4D4D4D]">Type of housing:</div>
                     <div className="text-[#252525] font-semibold">
                       {announcement.typeOfHousing}
                     </div>
 
-                    <div className="text-[#4D4D4D]">Этаж:</div>
+                    <div className="text-[#4D4D4D]">Floor:</div>
                     <div className="text-[#252525] font-semibold">
-                      {announcement.numberOfFloor} из{" "}
+                      {announcement.numberOfFloor} of{" "}
                       {announcement.maxFloorInTheBuilding}
                     </div>
 
-                    <div className="text-[#4D4D4D]">Площадь:</div>
+                    <div className="text-[#4D4D4D]">Area:</div>
                     <div className="text-[#252525] font-semibold">
-                      {announcement.areaOfTheApartment} м²
+                      {announcement.areaOfTheApartment} m²
                     </div>
 
-                    <div className="text-[#4D4D4D]">Людей проживают:</div>
+                    <div className="text-[#4D4D4D]">Current residents:</div>
                     <div className="text-[#252525] font-semibold">
                       {announcement.howManyPeopleLiveInThisApartment}
                     </div>
 
-                    <div className="text-[#4D4D4D]">Людей ищут:</div>
+                    <div className="text-[#4D4D4D]">Looking for:</div>
                     <div className="text-[#252525] font-semibold">
                       {announcement.numberOfPeopleAreYouAccommodating}
                     </div>
@@ -407,10 +362,9 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                   <hr className="mt-[20px]" />
                 </div>
 
-                {/* Qualities */}
                 <div id="qualities" className="col-span-3 mt-8">
                   <h2 className="font-circular text-[20px] sm:text-[24px] font-semibold">
-                    Качества
+                    Preferences
                   </h2>
                   <ul className="flex flex-wrap gap-4 mt-4">
                     {announcement.preferences?.map((quality, index) => (
@@ -427,15 +381,14 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
               </div>
             </div>
 
-            {/* Pricing and Contact Info */}
             {isMobile ? (
               <div className="fixed bottom-0 left-0 w-full bg-white border-t shadow-xl px-4 py-3 flex items-center justify-between lg:hidden z-50">
                 <div>
                   <p className="text-[20px] font-bold text-[#252525]">
-                    {announcement.cost} тг / месяц
+                    ${announcement.cost} / month
                   </p>
                   <p className="text-sm text-gray-500">
-                    Доступно с {announcement.arriveDate}
+                    Available from {announcement.arriveDate}
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -450,10 +403,10 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                   </a>
                   <a
                     href={`https://wa.me/${announcement.phoneNumber}`}
-                    className="flex items-center justify-center gap-1 px-3 py-2 bg-gray-100 text-[#1aa683] rounded-lg text-[14px] font-semibold"
+                    className="flex items-center justify-center gap-1 px-3 py-2 bg-gray-100 text-[#1132F5] rounded-lg text-[14px] font-semibold"
                   >
                     <Image.whatsappIcon />
-                    {!is440 && <span>Написать</span>}
+                    {!is440 && <span>Message</span>}
                   </a>
                 </div>
               </div>
@@ -464,35 +417,35 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                     <div className="flex-1 p-6 border rounded-lg space-y-6">
                       <div className="flex items-center justify-between">
                         <h2 className="text-[30px] lg:text-[32px] font-semibold text-[#252525] leading-[45px]">
-                          {announcement.cost} тг
+                          ${announcement.cost}
                         </h2>
                         <span className="text-gray-500 text-[14px] leading-[20px]">
-                          / месяц
+                          / month
                         </span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <p className="text-[15px] lg:text-[16px] text-gray-500 leading-[20px]">
-                          Депозит:
+                          Deposit:
                         </p>
                         <p className="text-[#252525] text-[15px] lg:text-[16px] leading-[20px]">
-                          {announcement.deposit} тг
+                          ${announcement.deposit}
                         </p>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <p className="text-[15px] lg:text-[16px] text-gray-500 leading-[20px]">
-                          Коммунальные услуги:
+                          Utilities:
                         </p>
                         <p className="text-[#252525] text-[15px] lg:text-[16px] leading-[20px]">
-                          {announcement.minAmountOfCommunalService} -{" "}
-                          {announcement.maxAmountOfCommunalService} тг
+                          ${announcement.minAmountOfCommunalService} -{" "}
+                          ${announcement.maxAmountOfCommunalService}
                         </p>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <p className="text-[15px] lg:text-[16px] text-gray-500 leading-[20px]">
-                          Доступно с:
+                          Available from:
                         </p>
                         <p className="text-[#252525] text-[15px] lg:text-[16px] leading-[20px]">
                           {announcement.arriveDate}
@@ -501,10 +454,8 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                     </div>
 
                     <div className="flex-1 p-6 border rounded-lg space-y-4">
-                      {/* Contact Section */}
                       <p className="text-[13px] lg:text-[14px] text-[#4D4D4D] leading-[20px]">
-                        Вы можете связаться с сожителями и обсудить свои
-                        вопросы...
+                        You can contact the residents to discuss any questions...
                       </p>
 
                       <div className="flex items-start flex-col space-y-1">
@@ -522,7 +473,7 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                               {announcement.user.lastName}
                             </p>
                             <p className="text-[13px] lg:text-[14px] text-[#4D4D4D]">
-                              житель
+                              resident
                             </p>
                           </div>
                         </div>
@@ -540,39 +491,12 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
                             className="flex items-center justify-center space-x-2 px-4 py-2 w-full rounded-lg shadow-sm text-[13px] lg:text-[14px] font-semibold"
                           >
                             <Image.whatsappIcon />
-                            <span>Написать</span>
+                            <span>Message</span>
                           </a>
                         </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Interested People Section */}
-                  {/*<div className="p-6 border rounded-lg space-y-4">*/}
-                  {/*  <div className="flex justify-between items-start">*/}
-                  {/*    <p className="text-[#4D4D4D] text-[14px] leading-[20px]">*/}
-                  {/*      Заинтересованы в объявлении:*/}
-                  {/*      <strong className="block text-[#252525] text-[16px] leading-[20px]">*/}
-                  {/*        {announcement.interestedPeopleCount || 0} человек*/}
-                  {/*      </strong>*/}
-                  {/*    </p>*/}
-                  {/*    <a*/}
-                  {/*      href="#"*/}
-                  {/*      className="text-[#1AA683] text-[14px] underline font-extrabold"*/}
-                  {/*    >*/}
-                  {/*      посмотреть группы*/}
-                  {/*    </a>*/}
-                  {/*  </div>*/}
-
-                  {/*  <p className="text-[#4D4D4D] text-[14px] text-center">*/}
-                  {/*    Понравилось помещение? <br />*/}
-                  {/*    Подайте заявку!*/}
-                  {/*  </p>*/}
-
-                  {/*  <button className="w-full py-3 bg-[#32343A] text-white text-[16px] font-semibold rounded-lg">*/}
-                  {/*    Подать заявку*/}
-                  {/*  </button>*/}
-                  {/*</div>*/}
                 </div>
               </div>
             )}
@@ -624,7 +548,6 @@ const AnnouncementPage = ({ params }: AnnouncementPageProps) => {
         </div>
       )}
 
-      {/* Footer */}
       <Footer />
     </div>
   );

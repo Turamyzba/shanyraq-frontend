@@ -166,7 +166,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
               placeholder="Введите имя"
               className={`${
                 isEditing ? "cursor-text" : "cursor-not-allowed"
-              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]`}
+              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]`}
             />
           </div>
 
@@ -187,7 +187,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
               placeholder="Введите фамилию"
               className={`${
                 isEditing ? "cursor-text" : "cursor-not-allowed"
-              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]`}
+              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]`}
             />
           </div>
 
@@ -200,7 +200,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
               type="email"
               value={formData.email}
               disabled={true}
-              className={`cursor-not-allowed w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]`}
+              className={`cursor-not-allowed w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]`}
             />
           </div>
 
@@ -221,7 +221,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
               placeholder="Введите номер телефона"
               className={`${
                 isEditing ? "cursor-text" : "cursor-not-allowed"
-              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]`}
+              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]`}
             />
           </div>
 
@@ -246,7 +246,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
               disabled={!isEditing}
               className={`${
                 isEditing ? "cursor-text" : "cursor-not-allowed"
-              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683]`}
+              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1132F5]`}
             />
           </div>
 
@@ -265,7 +265,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
               disabled={!isEditing}
               className={`${
                 isEditing ? "cursor-text" : "cursor-not-allowed"
-              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1aa683]`}
+              }  w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:border-[#1132F5]`}
             >
               <option value="Мужской">Мужской</option>
               <option value="Женский">Женский</option>
@@ -314,11 +314,11 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 }
                 required
                 placeholder=""
-                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
               />
               <label
                 htmlFor="oldPassword"
-                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                   passwordData.oldPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
@@ -335,12 +335,12 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 {!passwordVisibility.old ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
-                    color={`${passwordData.oldPassword ? "#1AA683" : "gray"}`}
+                    color={`${passwordData.oldPassword ? "#1132F5" : "gray"}`}
                   />
                 ) : (
                   <Images.eyeOff
                     className="w-[20px] h-[20px]"
-                    color={`${passwordData.oldPassword ? "#1AA683" : "gray"}`}
+                    color={`${passwordData.oldPassword ? "#1132F5" : "gray"}`}
                   />
                 )}
               </button>
@@ -357,11 +357,11 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 }
                 required
                 placeholder=""
-                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
               />
               <label
                 htmlFor="newPassword"
-                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                   passwordData.newPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
@@ -378,12 +378,12 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 {!passwordVisibility.new ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
-                    color={`${passwordData.newPassword ? "#1AA683" : "gray"}`}
+                    color={`${passwordData.newPassword ? "#1132F5" : "gray"}`}
                   />
                 ) : (
                   <Images.eyeOff
                     className="w-[20px] h-[20px]"
-                    color={`${passwordData.newPassword ? "#1AA683" : "gray"}`}
+                    color={`${passwordData.newPassword ? "#1132F5" : "gray"}`}
                   />
                 )}
               </button>
@@ -400,11 +400,11 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 }
                 required
                 placeholder=""
-                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
               />
               <label
                 htmlFor="confirmPassword"
-                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                   passwordData.confirmPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
@@ -422,13 +422,13 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
                     color={`${
-                      passwordData.confirmPassword ? "#1AA683" : "gray"
+                      passwordData.confirmPassword ? "#1132F5" : "gray"
                     }`}
                   />
                 ) : (
                   <Images.eyeOff
                     className="w-[20px] h-[20px]"
-                    color={`${passwordVisibility.confirm ? "#1AA683" : "gray"}`}
+                    color={`${passwordVisibility.confirm ? "#1132F5" : "gray"}`}
                   />
                 )}
               </button>
@@ -437,7 +437,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
             <div className="flex flex-col items-center gap-4">
               <button
                 type="submit"
-                className="bg-[#1aa683] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center"
+                className="bg-[#1132F5] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center"
               >
                 Подтвердить
               </button>
@@ -473,11 +473,11 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 }
                 required
                 placeholder=""
-                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
               />
               <label
                 htmlFor="newPassword"
-                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                   passwordData.newPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
@@ -494,12 +494,12 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 {!passwordVisibility.new ? (
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
-                    color={`${passwordData.newPassword ? "#1AA683" : "gray"}`}
+                    color={`${passwordData.newPassword ? "#1132F5" : "gray"}`}
                   />
                 ) : (
                   <Images.eyeOff
                     className="w-[20px] h-[20px]"
-                    color={`${passwordData.newPassword ? "#1AA683" : "gray"}`}
+                    color={`${passwordData.newPassword ? "#1132F5" : "gray"}`}
                   />
                 )}
               </button>
@@ -516,11 +516,11 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                 }
                 required
                 placeholder=""
-                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1AA683]"
+                className="peer w-full px-3 py-[8px] text-[20px] font-normal text-left text-gray-900 border border-gray-300 rounded-lg placeholder-transparent focus:outline-none focus:border-[#1132F5]"
               />
               <label
                 htmlFor="confirmPassword"
-                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1AA683] ${
+                className={`absolute left-3 bg-white text-gray-400 font-normal transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm peer-focus:top-[-7px] peer-focus:px-[4px] peer-focus:text-xs peer-focus:text-[#1132F5] ${
                   passwordData.confirmPassword
                     ? "top-[-7px] px-[4px] text-xs"
                     : "text-[20px]"
@@ -538,13 +538,13 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
                   <Images.eyeOn
                     className="w-[20px] h-[20px]"
                     color={`${
-                      passwordData.confirmPassword ? "#1AA683" : "gray"
+                      passwordData.confirmPassword ? "#1132F5" : "gray"
                     }`}
                   />
                 ) : (
                   <Images.eyeOff
                     className="w-[20px] h-[20px]"
-                    color={`${passwordVisibility.confirm ? "#1AA683" : "gray"}`}
+                    color={`${passwordVisibility.confirm ? "#1132F5" : "gray"}`}
                   />
                 )}
               </button>
@@ -553,7 +553,7 @@ export default function ProfilePage({ formData, setFormData, fetchProfile }) {
             <div className="flex flex-col items-center gap-4">
               <button
                 type="submit"
-                className="bg-[#1aa683] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center"
+                className="bg-[#1132F5] text-white px-6 py-2 rounded-lg hover:bg-[#158f72] w-full text-center"
               >
                 Подтвердить
               </button>

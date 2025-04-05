@@ -445,7 +445,7 @@ function StepRole({ handleNext, formData, setFormData, closeModal }: any) {
           <div className={isMobile ? "w-full h-full flex items-center justify-center" : ""}>
             <button
                 onClick={() => handleSelect("Я житель")}
-                className={`w-full flex items-center border rounded-lg p-4 transition ${selectedRole === "Я житель" ? "border-[#1AA683] bg-[#E6F8F2]" : "border-gray-300 hover:bg-gray-100"}`}>
+                className={`w-full flex items-center border rounded-lg p-4 transition ${selectedRole === "Я житель" ? "border-[#1132F5] bg-[#E6F8F2]" : "border-gray-300 hover:bg-gray-100"}`}>
               <div className="flex items-center w-full justify-center md:gap-[36px] w-full">
                 <div className="min-w-[150px] h-[150px] flex items-center justify-start p-5 md:p-0 md:justify-center">
                   <Images.roleTenant />
@@ -558,7 +558,7 @@ function StepBasicInfo({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Введите заголовок"
-          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
         />
       </div>
 
@@ -586,7 +586,7 @@ function StepBasicInfo({
               <label
                 htmlFor={option}
                 className={`text-[16px] font-medium cursor-pointer ${
-                  gender === option ? " text-[#1AA683] " : " text-[#B5B7C0]"
+                  gender === option ? " text-[#1132F5] " : " text-[#B5B7C0]"
                 }`}>
                 {option}
               </label>
@@ -615,7 +615,7 @@ function StepBasicInfo({
             />
             <div
               className={`w-6 h-6 flex items-center ml-2 justify-center rounded border outline-none ${
-                livingInHome ? "border-[#1AA683]" : "border-gray-300"
+                livingInHome ? "border-[#1132F5]" : "border-gray-300"
               }`}>
               {livingInHome && <Images.check />}
             </div>
@@ -639,7 +639,7 @@ function StepBasicInfo({
               }}
               className={`${
                 peopleInApartment == room
-                  ? "bg-[#1AA683] text-[#FFFFFF]"
+                  ? "bg-[#1132F5] text-[#FFFFFF]"
                   : "bg-[#D1EDE6] text-[#5c5c5c]"
               } flex items-center justify-center w-[50px] h-[40px] rounded-[5px] cursor-pointer font-normal text-[16px] leading-[20px] `}>
               {room}
@@ -684,9 +684,9 @@ function StepBasicInfo({
           value={ageRange}
           className="w-full
                     [&_span.MuiSlider-thumb]:w-[28px] [&_span.MuiSlider-thumb]:h-[28px]
-                    [&_span.MuiSlider-thumb]:bg-[#1AA683] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[6px] [&_span.MuiSlider-thumb]:border-white
-                    [&_span.MuiSlider-track]:bg-[#1AA683] [&_span.MuiSlider-track]:border-none [&_span.MuiSlider-track]:h-[16px]
-                    [&_span.MuiSlider-rail]:bg-[#1AA683] [&_span.MuiSlider-rail]:h-[16px]"
+                    [&_span.MuiSlider-thumb]:bg-[#1132F5] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[6px] [&_span.MuiSlider-thumb]:border-white
+                    [&_span.MuiSlider-track]:bg-[#1132F5] [&_span.MuiSlider-track]:border-none [&_span.MuiSlider-track]:h-[16px]
+                    [&_span.MuiSlider-rail]:bg-[#1132F5] [&_span.MuiSlider-rail]:h-[16px]"
           onChange={handleAgeRangeChange}
           valueLabelDisplay="auto"
           valueLabelFormat={(value) => `${value} лет`}
@@ -856,7 +856,7 @@ function StepApartmentDetails({
             onChange={() => {}}
             onClick={() => setIsRegionDropdownOpen(!isRegionDropdownOpen)} // Show dropdown on focus
             placeholder="Выберите регион"
-            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
           />
           {isRegionDropdownOpen && (
             <div className="absolute z-10 w-full bg-white border border-gray-200 shadow-lg rounded-[5px] max-h-[150px] overflow-y-auto">
@@ -864,7 +864,7 @@ function StepApartmentDetails({
                 <div
                   key={region.name}
                   onClick={() => handleRegionSelect(region.name)}
-                  className="p-[10px] cursor-pointer hover:bg-[#1AA683] hover:text-white">
+                  className="p-[10px] cursor-pointer hover:bg-[#1132F5] hover:text-white">
                   {region.name}
                 </div>
               ))}
@@ -886,7 +886,7 @@ function StepApartmentDetails({
               onChange={() => {}}
               onClick={() => setIsDistrictDropdownOpen(!isDistrictDropdownOpen)} // Show dropdown on focus
               placeholder="Выберите район"
-              className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+              className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
             />
             {isDistrictDropdownOpen && (
               <div className="absolute z-10 w-full bg-white border border-gray-200 shadow-lg rounded-[5px] max-h-[150px] overflow-y-auto">
@@ -894,7 +894,7 @@ function StepApartmentDetails({
                   <div
                     key={district.name}
                     onClick={() => handleDistrictSelect(district.name)}
-                    className="p-[10px] cursor-pointer hover:bg-[#1AA683] hover:text-white">
+                    className="p-[10px] cursor-pointer hover:bg-[#1132F5] hover:text-white">
                     {district.name}
                   </div>
                 ))}
@@ -919,7 +919,7 @@ function StepApartmentDetails({
                 setIsMicroDistrictDropdownOpen(!isMicroDistrictDropdownOpen)
               } // Show dropdown on focus
               placeholder="Выберите микрорайон"
-              className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+              className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
             />
             {isMicroDistrictDropdownOpen && (
               <div className="absolute z-10 w-full bg-white border border-gray-200 shadow-lg rounded-[5px] max-h-[150px] overflow-y-auto">
@@ -929,7 +929,7 @@ function StepApartmentDetails({
                     onClick={() =>
                       handleMicroDistrictSelect(microDistrict.name)
                     }
-                    className="p-[10px] cursor-pointer hover:bg-[#1AA683] hover:text-white">
+                    className="p-[10px] cursor-pointer hover:bg-[#1132F5] hover:text-white">
                     {microDistrict.name}
                   </div>
                 ))}
@@ -949,7 +949,7 @@ function StepApartmentDetails({
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           placeholder="Введите адрес"
-          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
         />
       </div>
 
@@ -962,7 +962,7 @@ function StepApartmentDetails({
           type="date"
           value={moveInDate}
           onChange={(e) => setMoveInDate(e.target.value)}
-          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
         />
       </div>
 
@@ -976,7 +976,7 @@ function StepApartmentDetails({
           value={monthlyPayment}
           onChange={(e) => setMonthlyPayment(e.target.value)}
           placeholder="Введите сумму"
-          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
         />
       </div>
 
@@ -994,7 +994,7 @@ function StepApartmentDetails({
               }}
               className={`${
                 rooms == room
-                  ? "bg-[#1AA683] text-[#FFFFFF]"
+                  ? "bg-[#1132F5] text-[#FFFFFF]"
                   : "bg-[#D1EDE6] text-[#5c5c5c]"
               } flex items-center justify-center w-[50px] h-[40px] rounded-[5px] cursor-pointer font-normal text-[16px] leading-[20px] `}>
               {room}
@@ -1023,7 +1023,7 @@ function StepApartmentDetails({
             />
             <div
               className={`w-6 h-6 flex items-center ml-2 justify-center rounded border outline-none ${
-                deposit ? "border-[#1AA683]" : "border-gray-300"
+                deposit ? "border-[#1132F5]" : "border-gray-300"
               }`}>
               {deposit && <Images.check />}
             </div>
@@ -1038,7 +1038,7 @@ function StepApartmentDetails({
               value={depositAmount}
               onChange={(e) => setDepositAmount(e.target.value)}
               placeholder="Введите сумму"
-              className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+              className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
             />
           </div>
         </div>
@@ -1174,7 +1174,7 @@ function StepApartmentAdditionallyDetails({
               value={utilitiesAmount[0]}
               onChange={(e) => handleUtilitiesAmountChange(e, 0)}
               placeholder="Минимум"
-              className="w-[100px] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+              className="w-[100px] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
             />
             <label className="block text-[16px] font-normal leading-[20px] text-[#252525]">
               до
@@ -1184,7 +1184,7 @@ function StepApartmentAdditionallyDetails({
               value={utilitiesAmount[1]}
               onChange={(e) => handleUtilitiesAmountChange(e, 1)}
               placeholder="Максимум"
-              className="w-[100px] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+              className="w-[100px] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
             />
           </div>
         </div>
@@ -1218,7 +1218,7 @@ function StepApartmentAdditionallyDetails({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Введите описание "
-          className="w-full h-[150px] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683] placeholder:text-[#B5B7C0]"
+          className="w-full h-[150px] border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5] placeholder:text-[#B5B7C0]"
         />
       </div>
 
@@ -1345,7 +1345,7 @@ function StepApartmentFullDetails({
           <div
             className={`w-6 h-6 flex items-center mr-2 justify-center rounded border outline-none ${
               propertyType === "Квартира"
-                ? "border-[#1AA683]"
+                ? "border-[#1132F5]"
                 : "border-gray-300"
             }`}>
             {propertyType === "Квартира" && <Images.check />}
@@ -1365,7 +1365,7 @@ function StepApartmentFullDetails({
           />
           <div
             className={`w-6 h-6 flex items-center mr-2 justify-center rounded border outline-none ${
-              propertyType === "Дом" ? "border-[#1AA683]" : "border-gray-300"
+              propertyType === "Дом" ? "border-[#1132F5]" : "border-gray-300"
             }`}>
             {propertyType === "Дом" && <Images.check />}
           </div>
@@ -1383,7 +1383,7 @@ function StepApartmentFullDetails({
             type="number"
             value={floorsFrom}
             onChange={(e) => setFloorsFrom(parseInt(e.target.value))}
-            className="w-1/2 border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683]"
+            className="w-1/2 border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5]"
           />
           <label className="block text-[16px] px-[20px] font-normal leading-[20px] text-[#252525]">
             из
@@ -1392,7 +1392,7 @@ function StepApartmentFullDetails({
             type="number"
             value={floorsTo}
             onChange={(e) => setFloorsTo(parseInt(e.target.value))}
-            className="w-1/2 border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683]"
+            className="w-1/2 border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5]"
           />
         </div>
       </div>
@@ -1409,7 +1409,7 @@ function StepApartmentFullDetails({
           onChange={(e) =>
             setRoomSize(parseInt(e.target.value.trim() ? e.target.value : "0"))
           }
-          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683]"
+          className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5]"
         />
       </div>
 
@@ -1424,7 +1424,7 @@ function StepApartmentFullDetails({
           value={complex}
           onChange={(e) => setComplex(e.target.value)}
           placeholder="Поиск..."
-          className="w-full border-[1px] font-normal border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683]"
+          className="w-full border-[1px] font-normal border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5]"
         />
       </div> */}
 
@@ -1440,7 +1440,7 @@ function StepApartmentFullDetails({
             disabled
             onChange={(e) => setNearBy(e.target.value)}
             placeholder="Находится возле..."
-            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683]"
+            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5]"
           />
           <ToggleButton
             label="На долгий срок?"
@@ -1471,7 +1471,7 @@ function StepApartmentFullDetails({
             onChange={(e) => setOwnerPhone(e.target.value)}
             required
             placeholder="Введите номер телефона"
-            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683]"
+            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5]"
           />
         </div>
         {/* <div className="flex flex-col gap-[12px]">
@@ -1491,14 +1491,14 @@ function StepApartmentFullDetails({
               />
               <div
                 className={`w-6 h-6 flex items-center mr-2 justify-center rounded border outline-none ${
-                  false ? "border-[#1AA683]" : "border-gray-300"
+                  false ? "border-[#1132F5]" : "border-gray-300"
                 }`}>
               </div>
               +7 747 777 66 55
             </label>
             <label className="flex items-center gap-[12px]">
-              <Images.plus color={"#1AA683"} />
-              <p className="text-[16px] font-normal leading-[20px] text-left text-[#1AA683]">
+              <Images.plus color={"#1132F5"} />
+              <p className="text-[16px] font-normal leading-[20px] text-left text-[#1132F5]">
                 Добавить еще телефоны
               </p>
             </label>
@@ -1521,7 +1521,7 @@ function StepApartmentFullDetails({
             value={ownerName}
             onChange={(e) => setOwnerName(e.target.value)}
             placeholder="Игорь"
-            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1aa683]"
+            className="w-full border-[1px] border-[#EBEBEB] rounded-[5px] px-[15px] py-[10px] text-[16px] text-[#252525] outline-none focus:outline-none focus:border-[#1132F5]"
           />
         </div>
         <div className="flex flex-col gap-[12px]">
@@ -1541,14 +1541,14 @@ function StepApartmentFullDetails({
               />
               <div
                 className={`w-6 h-6 flex items-center mr-2 justify-center rounded border outline-none ${
-                  false ? "border-[#1AA683]" : "border-gray-300"
+                  false ? "border-[#1132F5]" : "border-gray-300"
                 }`}>
               </div>
               +7 747 777 66 55
             </label>
             <label className="flex items-center gap-[12px]">
-              <Images.plus color={"#1AA683"} />
-              <p className="text-[16px] font-normal leading-[20px] text-left text-[#1AA683]">
+              <Images.plus color={"#1132F5"} />
+              <p className="text-[16px] font-normal leading-[20px] text-left text-[#1132F5]">
                 Добавить еще телефоны
               </p>
             </label>
@@ -1657,7 +1657,7 @@ function StepSuccess({
               <div
                 className={`w-6 h-6 flex items-center mr-2 justify-center rounded border outline-none ${
                   selectedAdjectives.includes(adj)
-                    ? "border-[#1AA683]"
+                    ? "border-[#1132F5]"
                     : "border-gray-300"
                 }`}>
                 {selectedAdjectives.includes(adj) && <Images.check />}

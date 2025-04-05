@@ -144,7 +144,7 @@ const HomeCard: React.FC<HomeCardProps> = ({card, key}) => {
                             </p>
                             <button
                                 onClick={copyToClipboard}
-                                className="bg-[#1AA683] text-white px-4 py-1 rounded-md hover:bg-[#158f72]">
+                                className="bg-[#1132F5] text-white px-4 py-1 rounded-md hover:bg-[#158f72]">
                                 Копировать
                             </button>
                         </div>

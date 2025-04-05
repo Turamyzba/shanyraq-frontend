@@ -193,7 +193,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                       }}
                       className={`flex rounded py-1 px-2 mx-2 cursor-pointer ${
                         selectedCity === city.name
-                          ? "bg-[#1aa68383] text-white"
+                          ? "bg-[#1132F583] text-white"
                           : ""
                       }`}
                     >
@@ -239,7 +239,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                   onClick={() => setSelectedLanguage(lang.name)}
                   className={`px-[7px] py-[3px] rounded-[5px] text-[14px] font-normal leading-[18px] border ${
                     selectedLanguage === lang.name
-                      ? "border-[#1aa68383] text-[#1aa68383]"
+                      ? "border-[#1132F583] text-[#1132F583]"
                       : "border-[#B5B7C0] text-[#B5B7C0"
                   }`}
                 >
@@ -308,7 +308,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                             }}
                             className={`flex p-[12px] cursor-pointer ${
                               "Весь Казахстан" == address.regionOrCityName
-                                ? "bg-[#1aa68383] text-white"
+                                ? "bg-[#1132F583] text-white"
                                 : ""
                             }`}
                           >
@@ -329,7 +329,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                               }}
                               className={`flex p-[12px] cursor-pointer ${
                                 address.regionOrCityName === region.name
-                                  ? "bg-[#1aa68383] text-white"
+                                  ? "bg-[#1132F583] text-white"
                                   : ""
                               }`}
                             >
@@ -357,7 +357,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                                 }}
                                 className={`flex p-[12px] cursor-pointer ${
                                   address.districtName === d.name
-                                    ? "bg-[#1aa68383] text-white"
+                                    ? "bg-[#1132F583] text-white"
                                     : ""
                                 }`}
                               >
@@ -384,7 +384,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                                 }}
                                 className={`flex p-[12px] cursor-pointer ${
                                   address.microDistrictName === m.name
-                                    ? "bg-[#1aa68383] text-white"
+                                    ? "bg-[#1132F583] text-white"
                                     : ""
                                 }`}
                               >
@@ -435,7 +435,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                         onChange={(e) =>
                           setPriceRange([+e.target.value, priceRange[1]])
                         }
-                        className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1aa683] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
+                        className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1132F5] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
                         placeholder="Минимальный"
                       />
 
@@ -445,13 +445,13 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                         onChange={(e) =>
                           setPriceRange([priceRange[0], +e.target.value])
                         }
-                        className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1aa683] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
+                        className="text-[#4B4B4B] w-full border-[1px] border-[#D6D6D6] rounded-[5px] px-[10px] py-[9px] focus:outline-none focus:border-[#1132F5] text-sm font-normal leading-7 placeholder:text-[#D6D6D6] placeholder:font-normal placeholder:leading-7"
                         placeholder="Максимальный"
                       />
                     </div>
 
                     <div className="relative">
-                      <div className="flex justify-between text-[#1AA683] text-left font-semibold text-[12px] leading-[17px]">
+                      <div className="flex justify-between text-[#1132F5] text-left font-semibold text-[12px] leading-[17px]">
                         <span>0</span>
                         <span>500000</span>
                       </div>
@@ -462,9 +462,9 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                         onChange={handleSliderChange}
                         className="w-full
                     [&_span.MuiSlider-thumb]:w-4 [&_span.MuiSlider-thumb]:h-4
-                    [&_span.MuiSlider-thumb]:bg-[#1AA683] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
-                    [&_span.MuiSlider-track]:bg-[#1AA683] [&_span.MuiSlider-track]:border-none
-                    [&_span.MuiSlider-rail]:bg-[#1AA683]"
+                    [&_span.MuiSlider-thumb]:bg-[#1132F5] [&_span.MuiSlider-thumb]:rounded-[30px] [&_span.MuiSlider-thumb]:border-[2px] [&_span.MuiSlider-thumb]:border-white
+                    [&_span.MuiSlider-track]:bg-[#1132F5] [&_span.MuiSlider-track]:border-none
+                    [&_span.MuiSlider-rail]:bg-[#1132F5]"
                         valueLabelDisplay="auto"
                         min={0}
                         max={500000}
@@ -509,7 +509,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                           }}
                           className={`${
                             g.name === gender
-                              ? "bg-[#D1EDE6] text-[#1AA683]"
+                              ? "bg-[#D1EDE6] text-[#1132F5]"
                               : "bg-white text-[#252525]"
                           } w-full px-[12px] py-[4px] rounded-[5px] cursor-pointer font-normal text-[14px] leading-[17.5px]`}
                         >
@@ -551,7 +551,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                           }}
                           className={`${
                             housemates == room.name
-                              ? "bg-[#1AA683] text-[#FFFFFF]"
+                              ? "bg-[#1132F5] text-[#FFFFFF]"
                               : "bg-[#D1EDE6] text-[#5c5c5c]"
                           } flex items-center justify-center px-[12px] py-[4px] rounded-[5px] cursor-pointer font-light text-[14px] leading-[17.5px] `}
                         >
@@ -563,7 +563,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
                 )}
 
                 <button
-                  className="flex justify-center items-center w-[30px] h-[30px] bg-[#1aa683] rounded"
+                  className="flex justify-center items-center w-[30px] h-[30px] bg-[#1132F5] rounded"
                   onClick={handleSearchSubmit}
                 >
                   <Images.SearchIcon className="w-[16px] h-[16px]" />
@@ -575,14 +575,14 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
           <div className="font-circular hidden sm:flex flex-row justify-between space-x-[8px]">
             {!isAuth && (
               <button
-                className="flex justify-center items-center space-x-2 text-[#1aa683] font-bold px-[25px] h-[50px] rounded"
+                className="flex justify-center items-center space-x-2 text-[#1132F5] font-bold px-[25px] h-[50px] rounded"
                 onClick={() => router.push("/login")}
               >
                 <span>Войти</span>
               </button>
             )}
             <button
-              className="flex justify-center items-center space-x-2 bg-[#1aa683] text-white font-bold px-[25px] h-[50px] rounded"
+              className="flex justify-center items-center space-x-2 bg-[#1132F5] text-white font-bold px-[25px] h-[50px] rounded"
               onClick={handleCreateAnn}
             >
               <span>Подать объявление</span>
@@ -591,7 +591,7 @@ const Header: React.FC<HeaderProps> = ({ isFilterResults }) => {
             {isAuth && (
               <div className="relative">
                 <button
-                  className="flex items-center space-x-2 px-[9px] h-[50px] rounded border border-[#1aa683]"
+                  className="flex items-center space-x-2 px-[9px] h-[50px] rounded border border-[#1132F5]"
                   onClick={() => setDropdownOpen((prev) => !prev)}
                 >
                   <Images.UserIcon className="w-[32px] h-[32px]" />
